@@ -11,42 +11,9 @@
     <link rel="stylesheet" type="text/css" href="src/css/comp.css">
   </head>
   <body>
-    <div class="loader loader-inactive"></div>
-    <header><a href="/" class="logo"></a></header>
-    <nav class="default-menu"><a href="#work-section" class="work menu-item">
-      <div class="menu-link"><span class="title">work</span>
-        <div class="icon">
-          <svg>
-            <rect x="19" y="8" width="20" height="20"></rect>
-          </svg>
-        </div>
-      </div></a><a href="#about-section" class="about menu-item">
-      <div class="menu-link"><span class="title">about</span>
-        <div class="icon">
-          <svg>
-            <polygon points="29 5, 41 25, 18 25"></polygon>
-          </svg>
-        </div>
-      </div></a><a href="#contact-section" class="contact menu-item">
-      <div class="menu-link"><span class="title">contact</span>
-        <div class="icon">
-          <svg>
-            <circle cx="30" cy="14" r="10"> </circle>
-          </svg>
-        </div>
-      </div></a>
-    </nav>
-    <div id="main_content">
+    <main id="main_content">
       <router-view></router-view>
-    </div>
-    <footer class="container-fluid">
-      <div class="section">
-        <div class="row">
-          <div class="col-12"><span>© 2017 willem</span></div>
-        </div>
-      </div>
-    </footer>
+    </main>
     <script src="/dist/build.js"></script>
-    <script src="/src/menu.js"></script>
   </body>
 </html>

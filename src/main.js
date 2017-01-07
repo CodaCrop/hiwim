@@ -1,25 +1,53 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from './Home.vue';
-import Work from './views/Work.vue';
+
+// Import default page
+import Home from './views/Home.vue';
+
+// Import seperate children pages
+import Ben from './views/pages/Ben.vue';
+import Guidion from './views/pages/Guidion.vue';
+import Google from './views/pages/Google.vue';
+import School from './views/pages/Hhs.vue';
+import Schiphol from './views/pages/Klm.vue';
+import Alcedo from './views/pages/Alcedo.vue';
+import Museon from './views/pages/Museon.vue';
 
 Vue.use(VueRouter);
 
+const scrollBehavior = (to, from, savedPosition) => {
+  if(savedPosition) {
+    return savedPosition
+  } else {
+    const position = {}
+    if(to.hash) {
+      position.selector = to.hash
+    }
+    if(to.matched.some(m => m.meta.scrollToTop)) {
+      position.x = 0
+      position.y = 0
+    }
+    return position
+  }
+}
+
 const router = new VueRouter({
+  mode: 'history',
+  base: __dirname,
+  scrollBehavior,
   routes: [
-    { path: '', component: Home },
-    { name: 'ben', path: 'ben', component: Work },
-    { path: '/guidion', component: Work },
-    { path: '/google-chrome', component: Work },
-    { path: '/hhs', component: Work },
-    { path: '/klm', component: Work },
-    { path: '/alcedo-media', component: Work },
-    { path: '/museon', component: Work },
-    { path: '*', component: Home }
-  ],
-  mode: 'history'
+  { path: '/', component: Home, meta: { scrollToTop: true },
+      children: [
+        { path: 'ben', component: Ben },
+        { path: 'guidion', component: Guidion },
+        { path: 'google-chrome', component: Google },
+        { path: 'hhs', component: School },
+        { path: 'klm', component: Schiphol },
+        { path: 'alcedo-media', component: Alcedo },
+        { path: 'museon', component: Museon }
+      ]
+    }
+  ]
 })
 
-const app = new Vue({
-  router
-}).$mount('#main_content');
+const app = new Vue({router}).$mount('#main_content');
