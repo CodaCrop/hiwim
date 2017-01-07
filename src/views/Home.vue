@@ -143,7 +143,6 @@ export default {
     StateAbout: function() {
       if(this.HideDefaultLayer) { return ''; }
       else if(this.ActiveAbout) { return 'active'; }
-      else { return ''; }
     }
   },
   methods: {
@@ -172,8 +171,8 @@ export default {
       let menu = document.querySelectorAll('.menu-item');
       if (el !== '') {
         if(el == 'intro') { this.ActiveWork = false }
-        el == 'work' ? this.ActiveWork = true : this.ActiveWork = false
-        el == 'about' ? this.ActiveAbout = true : this.ActiveAbout = false
+        el == 'work' && !this.HideDefaultLayer ? this.ActiveWork = true : this.ActiveWork = false
+        el == 'about' && !this.HideDefaultLayer ? this.ActiveAbout = true : this.ActiveAbout = false
         el == 'contact' ? this.ActiveContact = true : this.ActiveContact = false
       }
     },

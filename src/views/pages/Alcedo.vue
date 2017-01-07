@@ -33,6 +33,7 @@
 </template>
 
 <script>
+require('../content/props')
 </script>
 
 <style>
