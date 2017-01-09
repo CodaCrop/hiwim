@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueLazyload from 'vue-lazyload';
 
 // Import default page
 import Home from './views/Home.vue';
@@ -12,11 +13,26 @@ import School from './views/pages/Hhs.vue';
 import Schiphol from './views/pages/Klm.vue';
 import Alcedo from './views/pages/Alcedo.vue';
 import Museon from './views/pages/Museon.vue';
+import Notfound from './views/Notfound.vue';
 
 Vue.use(VueRouter);
+Vue.use(VueLazyload, {
+    preLoad: 1.3,
+    error: '',
+    loading: '',
+    adapter: {
+      loading ({ bindType, el, naturalHeight, naturalWidth, $parent, src, loading, error, Init }) {
+      },
+      loaded (listender, Init) {
+      },
+      error (listender, Init) {
+      }
+}
+})
 
 const scrollBehavior = (to, from, savedPosition) => {
   if(savedPosition) {
+    //bugged, always returns null
     return savedPosition
   } else {
     const position = {}
@@ -36,7 +52,7 @@ const router = new VueRouter({
   base: __dirname,
   scrollBehavior,
   routes: [
-  { path: '/', component: Home, meta: { scrollToTop: true },
+  { path: '/', component: Home,
       children: [
         { path: 'ben', component: Ben },
         { path: 'guidion', component: Guidion },
@@ -46,7 +62,8 @@ const router = new VueRouter({
         { path: 'alcedo-media', component: Alcedo },
         { path: 'museon', component: Museon }
       ]
-    }
+    },
+    { path: '*', component: Notfound }
   ]
 })
 

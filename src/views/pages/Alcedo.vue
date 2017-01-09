@@ -1,8 +1,10 @@
 <template lang="jade">
 #work-layer
-  router-link.return-layer-bg(v-on:click.native='$parent.Hide(false)', to='/')
+  router-link.return-layer-bg(
+    v-on:click.native='$parent.HideHome(false), $parent.SetAnimeSpeed(200), $parent.ScrolledPosTop = 0',
+    to='/')
   .work-bg
-    .project-head-wrapper
+    .project-head-wrapper(v-bind:style='WrapperHeadColor')
     .project-wrapper
       .project-intro
         .row
@@ -18,22 +20,25 @@
                 p.work-class typeface :
                 p.work-attribute Trade Gothic / Proxima Nova
       .project-items
-        .row
+        .row(v-for="img in List")
           .col-12
             .item
-              img.web-shot
-        .row
-          .col-12
-            .item
-              img.web-shot
-        .row
-          .col-12
-            .item
-              img.web-shot
+              img(v-lazy="img" v-bind:key="img" lazy="loading").web-shot
 </template>
 
 <script>
-require('../content/props')
+export default {
+  data() {
+    return {
+      WrapperHeadColor: 'background-color: #3eb8e3',
+      List: [
+        'http://127.0.0.1:8080/dist/works/alcedo/test.jpg',
+        'http://127.0.0.1:8080/dist/works/alcedo/test-2.jpg',
+        'http://127.0.0.1:8080/dist/works/alcedo/test-3.jpg',
+      ]
+    }
+  }
+}
 </script>
 
 <style>

@@ -3,27 +3,32 @@
     header.default-header
       a.logo(href='/')
     nav.default-menu
-      router-link.work.menu-item(to="/#work-section", v-on:click.native="Hide(false)",
-      v-bind:class='{ active : HideDefaultLayer || ActiveWork }')
+      router-link(to="/#work-section", v-on:click.native="HideHome(false), SetAnimeSpeed(0)",
+      v-bind:class='{ active : HideDefaultLayer || ActiveWork }').work.menu-item
         .menu-link
           span.title work
           .icon
             svg
               rect(x='19', y='8', width='20', height='20')
-      router-link.about.menu-item(to="/#about-section", v-on:click.native="Hide(false)",
-      v-bind:class="StateAbout")
+      router-link(to="/#about-section", v-on:click.native="HideHome(false), SetAnimeSpeed(0)",
+      v-bind:class="StateAbout").about.menu-item
         .menu-link
           span.title about
           .icon
             svg
               polygon(points='29 5, 41 25, 18 25')
-      router-link.contact.menu-item(to="/#contact-section", v-on:click.native="Hide(false)",
-      v-bind:class='{ active: ActiveContact }')
+      router-link(to="/#contact-section", v-on:click.native="HideHome(false), SetAnimeSpeed(0)",
+      v-bind:class='{ active: ActiveContact }').contact.menu-item
         .menu-link
           span.title contact
           .icon
             svg
               circle(cx='30', cy='14', r='10')
+    nav.work-menu(v-if="HideDefaultLayer")
+      .prev-link(v-if="PrevBtn === true")
+        router-link(v-bind:to="PrevUrl", v-on:click.native="SetPageBtns(), SetAnimeSpeed(0)").prev-layer-btn previous {{ PrevUrl }}
+      .next-link(v-if="NextBtn === true")
+        router-link(v-bind:to="NextUrl", v-on:click.native="SetPageBtns(), SetAnimeSpeed(0)").next-layer-btn next {{ NextUrl }}
     #default-layer(v-bind:class='{ hidden : HideDefaultLayer }', v-bind:style="PosFromTop").container-fluid
       #intro-section.section
         .row
@@ -35,40 +40,17 @@
                 br
                 | see my latest &nbsp;
                 a.primary-link(href='#work-section') work
-      #work-section.section
+      #work-section.section()
         .row
           .col-12
             h2.section-title my work
         .row
-          .col-4.project-item
-            router-link.work-link(v-on:click.native='Hide(true), CatchScreenPos()', to='ben')
-              .image project 1
-              h3.title Ben
-          .col-4.project-item
-            router-link.work-link(v-on:click.native='Hide(true), CatchScreenPos()', to='guidion')
-              .image project 2
-              h3.title Guidion
-          .col-4.project-item
-            router-link.work-link(v-on:click.native='Hide(true), CatchScreenPos()', to='google-chrome')
-              .image project 3
-              h3.title Google Chrome
-          .col-4.project-item
-            router-link.work-link(v-on:click.native='Hide(true), CatchScreenPos()', to='hhs')
-              .image project 4
-              h3.title Haagse Hogeschool
-          .col-4.project-item
-            router-link.work-link(v-on:click.native='Hide(true), CatchScreenPos()', to='klm')
-              .image project 5
-              h3.title KLM
-          .col-4.project-item
-            router-link.work-link(v-on:click.native='Hide(true), CatchScreenPos()', to='alcedo-media')
-              .image project 6
-              h3.title Alcedo Media
-          .col-4.project-item
-            router-link.work-link(v-on:click.native='Hide(true), CatchScreenPos()', to='museon')
-              .image project 6
-              h3.title Museon
-      #about-section.section
+          .col-4.project-item(v-for="client in Clients")
+            router-link.work-link(v-on:click.native='HideHome(true), CatchScreenPos(), SetPageBtns()', v-bind:to='client.route')
+              .image
+                img(v-bind:src='client.src')
+              h3.title {{ client.title }}
+      #about-section.section()
         .row
           .col-12
             h2.section-title me
@@ -80,7 +62,7 @@
               | I'm a 27 year old UX designer and Front-end developer. I'm a bachelor
               | of applied sciences and studied UX, UI and front-end languages such as
               | HTML, CSS, Javascript.
-      #contact-section.section
+      #contact-section.section()
         .row
           .col-12
             h2.section-title let's talk
@@ -111,7 +93,7 @@
               .input-seperate
               button.button-icon.send-button(value='', type='submit')
               .message-sent
-    transition(name='smoothTrans')
+    transition(v-on:before-enter="WorkBeforeEnter", v-on:enter="WorkEnter", v-on:leave="WorkLeave")
       router-view(v-if='HideDefaultLayer')
     footer.default-footer(v-bind:class='{ hidden : HideDefaultLayer }')
       .row
@@ -121,17 +103,30 @@
 
 <script>
 import Vue from 'vue'
-var vueSmoothScroll = require('vue-smoothscroll')
-Vue.use(vueSmoothScroll);
+
 export default {
   data() {
     return {
+      PrevBtn: false,
+      NextBtn: false,
+      PrevUrl: '',
+      NextUrl: '',
+      AnimeMS: 200,
       HideDefaultLayer: false,
       ActiveWork: false,
       ActiveAbout: false,
       ActiveContact: false,
       ScrolledPosTop: 0,
-      Loading: false
+      Loading: false,
+      Clients: [
+        { src: 'http://127.0.0.1:8080/dist/assets/ben.png', route: 'ben', title: 'Ben' },
+        { src: 'http://127.0.0.1:8080/dist/assets/guidion.png', route: 'guidion', title: 'Guidion' },
+        { src: 'http://127.0.0.1:8080/dist/assets/google.png', route: 'google-chrome', title: 'Google' },
+        { src: 'http://127.0.0.1:8080/dist/assets/hhs.png', route: 'hhs', title: 'Haagse Hogeschool' },
+        { src: 'http://127.0.0.1:8080/dist/assets/klm.png', route: 'klm', title: 'KLM' },
+        { src: 'http://127.0.0.1:8080/dist/assets/alcedo.png', route: 'alcedo-media', title: 'Alcedo Media' },
+        { src: 'http://127.0.0.1:8080/dist/assets/museon.png', route: 'museon', title: 'Museon' },
+      ]
     }
   },
   computed: {
@@ -146,14 +141,29 @@ export default {
     }
   },
   methods: {
-    Hide: function(state) {
-      this.HideDefaultLayer = state;
+    SetPageBtns: function() {
+      switch(window.location.pathname) {
+        case '/ben': this.PrevBtn = false; this.NextBtn = true; this.NextUrl = 'guidion'; break;
+        case '/guidion': this.NextBtn = true; this.NextUrl = 'google-chrome'; this.PrevBtn = true; this.PrevUrl = 'ben'; break;
+        case '/google-chrome': this.NextBtn = true; this.NextUrl = 'hhs'; this.PrevBtn = true; this.PrevUrl = 'guidion'; break;
+        case '/hhs': this.NextBtn = true; this.NextUrl = 'klm'; this.PrevBtn = true; this.PrevUrl = 'google-chrome'; break;
+        case '/klm': this.NextBtn = true; this.NextUrl = 'alcedo-media'; this.PrevBtn = true; this.PrevUrl = 'hhs'; break;
+        case '/alcedo-media': this.NextBtn = true; this.NextUrl = 'museon'; this.PrevBtn = true; this.PrevUrl = 'klm'; break;
+        case '/museon': this.NextBtn = false; this.PrevBtn = true; this.PrevUrl = 'alcedo-media'; break;
+        default: this.NextBtn = false; this.PrevBtn = false;
+      }
+    },
+    HideHome: function(state) {
+      this.HideDefaultLayer = state
+    },
+    SetAnimeSpeed: function(ms) {
+      this.AnimeMS = ms
     },
     HandleScroll: function() {
-      let intro = document.getElementById("intro-section");
-      let work = document.getElementById("work-section");
-      let about = document.getElementById("about-section");
-      let contact = document.getElementById("contact-section");
+      let intro = document.getElementById("intro-section")
+      let work = document.getElementById("work-section")
+      let about = document.getElementById("about-section")
+      let contact = document.getElementById("contact-section")
       if(this.IsInViewport(intro)) { this.SetActiveState('intro') }
       if(this.IsInViewport(work)) { this.SetActiveState('work') }
       if(this.IsInViewport(about)) { this.SetActiveState('about') }
@@ -168,7 +178,7 @@ export default {
       )
     },
     SetActiveState: function(el) {
-      let menu = document.querySelectorAll('.menu-item');
+      let menu = document.querySelectorAll('.menu-item')
       if (el !== '') {
         if(el == 'intro') { this.ActiveWork = false }
         el == 'work' && !this.HideDefaultLayer ? this.ActiveWork = true : this.ActiveWork = false
@@ -177,32 +187,26 @@ export default {
       }
     },
     CatchScreenPos: function() {
-      var el = document.getElementById("default-layer");
-      var elPosY = el.getBoundingClientRect();
+      var el = document.getElementById("default-layer")
+      var elPosY = el.getBoundingClientRect()
       this.ScrolledPosTop = elPosY.top
+    },
+    WorkBeforeEnter: function(el) {
+      el.style.opacity = 0
+    },
+    WorkEnter: function(el, done) {
+      Velocity(el, { translateX: '200px' }, { duration: 0 })
+      Velocity(el, { opacity: 1, translateX: '0px' }, { duration: this.AnimeMS, complete: done })
+    },
+    WorkLeave: function(el, done) {
+      Velocity(el, { opacity: 0, translateX: '200px' }, { duration: this.AnimeMS, complete: done })
     }
   },
   mounted() {
-    window.addEventListener('scroll', this.HandleScroll);
+    window.addEventListener('scroll', this.HandleScroll)
   }
 }
 </script>
 
 <style lang="sass">
-  .smoothTrans-leave-active
-    transition: transform .3s ease, opacity .2s ease
-  .smoothTrans-enter-active
-    transition: all .3s ease
-  .smoothTrans-enter, .smoothTrans-leave-active
-    overflow-x: hidden
-    transform: translateX(200px)
-    opacity: 0
-
-  .smoothHide-leave-active
-    transition: transform .3s ease, opacity .2s ease
-  .smoothHide-enter-active
-    transition: all .3s ease
-  .smoothHide-enter, .smoothHide-leave-active
-    transform: translateX(400px)
-    opacity: 0.5
 </style>
