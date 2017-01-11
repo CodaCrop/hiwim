@@ -1,8 +1,8 @@
 <template lang="jade">
 #work-layer
-  router-link.return-layer-bg(v-on:click.native='$parent.HideHome(false), $parent.SetAnimeSpeed(200), $parent.ScrolledPosTop = 0', to='/')
+  router-link.return-layer-bg(@click.native='$parent.HideHome(false), $parent.SetAnimation(1, 400, 250), $parent.ScrolledPosTop = 0', to='/')
   .work-bg
-    .project-head-wrapper(v-bind:style='WrapperHeadColor')
+    .project-head-wrapper(:style='WrapperHeadColor')
     .project-wrapper
       .project-intro
         .row
@@ -21,7 +21,7 @@
         .row(v-for="img in List")
           .col-12
             .item
-              img(v-lazy="img" v-bind:key="img" lazy="loading").web-shot
+              img(v-lazy="img", :key="img", lazy="loading").web-shot
 </template>
 
 <script>
