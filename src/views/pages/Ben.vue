@@ -30,9 +30,10 @@ export default {
     return {
       WrapperHeadColor: 'background-color: #00adef',
       List: [
-        'http://127.0.0.1:8080/dist/works/alcedo/test.jpg',
-        'http://127.0.0.1:8080/dist/works/alcedo/test-2.jpg',
-        'http://127.0.0.1:8080/dist/works/alcedo/test-3.jpg',
+        'http://127.0.0.1:8080/dist/works/ben/ben-app-overzicht.jpg',
+        'http://127.0.0.1:8080/dist/works/ben/ben-factuur-overzicht.png',
+        'http://127.0.0.1:8080/dist/works/ben/ben-app-login.jpg',
+        'http://127.0.0.1:8080/dist/works/ben/ben-app-historie.jpg',
       ]
     }
   }

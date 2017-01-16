@@ -26,7 +26,7 @@
               circle(cx='30', cy='14', r='10')
     .work-menu(v-if="HideDefaultLayer")
       .prev-link(v-if="PrevBtn === true")
-        router-link(v-bind:to="PrevUrl", @click.native="SetPageBtns(), SetAnimation(1, 0, 0)").prev-layer-btn previous — {{ PrevUrl }}
+        router-link(:to="PrevUrl", @click.native="SetPageBtns(), SetAnimation(1, 0, 0)").prev-layer-btn previous — {{ PrevUrl }}
       .next-link(v-if="NextBtn === true")
         router-link(:to="NextUrl", @click.native="SetPageBtns(), SetAnimation(1, 0, 0)").next-layer-btn next — {{ NextUrl }}
     #default-layer(:class='{ hidden : HideDefaultLayer }', :style="PosFromTop").container-fluid
@@ -40,7 +40,7 @@
                 br
                 | see my latest &nbsp;
                 router-link(to="/#work-section", @click.native="SmoothScroll('work')").primary-link work
-      #work-section.section(:ref="work")
+      #work-section.section
         .row
           .col-12
             h2.section-title my work
@@ -51,7 +51,7 @@
               .image
                 img(:src='client.src')
               h3.title {{ client.title }}
-      #about-section.section(:ref="about")
+      #about-section.section
         .row
           .col-12
             h2.section-title me
@@ -63,7 +63,7 @@
               | I'm a 27 year old UX designer and Front-end developer. I'm a bachelor
               | of applied sciences and studied UX and UI concepts, and front-end languages such as
               | HTML, CSS and Javascript.
-      #contact-section.section(:ref="contact")
+      #contact-section.section
         .row
           .col-12
             h2.section-title let's talk
@@ -90,7 +90,7 @@
               .input-group
                 label#email(for='email') email:
                 span.state-text.input-error(v-if="errors.has('email')") {{ errors.first('email') }}
-                input(v-model="email", v-validate.initial="email", data-vv-rules="required|email",
+                input(v-model.lazy="email", v-validate.initial="email", data-vv-rules="required|email",
                 name='email', type='text')
               .input-group
                 label#message(for='message') message:
@@ -270,7 +270,7 @@ export default {
       Velocity(el, { opacity: 1, translateX: '0px' }, { duration: this.AnimeMS, complete: done })
     },
     WorkLeave: function(el, done) {
-      Velocity(el, { opacity: 0, translateX: this.AnimePX }, { duration: this.AnimeMS, complete: done })
+      Velocity(el, { opacity: 0, translateX: '0px' }, { duration: this.AnimeMS, complete: done })
     }
   },
   mounted() {

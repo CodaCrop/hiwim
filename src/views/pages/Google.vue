@@ -30,9 +30,10 @@ export default {
     return {
       WrapperHeadColor: 'background-color: #ffbb00',
       List: [
-        'http://127.0.0.1:8080/dist/works/alcedo/test.jpg',
-        'http://127.0.0.1:8080/dist/works/alcedo/test-2.jpg',
-        'http://127.0.0.1:8080/dist/works/alcedo/test-3.jpg',
+        'http://127.0.0.1:8080/dist/works/google/guidion-push-start.jpg',
+        'http://127.0.0.1:8080/dist/works/google/guidion-push-stats.jpg',
+        'http://127.0.0.1:8080/dist/works/google/guidion-push-config.jpg',
+        'http://127.0.0.1:8080/dist/works/google/guidion-push-result.jpg'
       ]
     }
   }

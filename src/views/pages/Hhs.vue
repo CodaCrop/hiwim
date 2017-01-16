@@ -16,7 +16,7 @@
                 p.work-attribute branding / web design / front end
               li
                 p.work-class typeface :
-                p.work-attribute Trade Gothic / Proxima Nova
+                p.work-attribute Archive / Helvetica Standard
       .project-items
         .row(v-for="img in List")
           .col-12
@@ -30,14 +30,17 @@ export default {
     return {
       WrapperHeadColor: 'background-color: #1f3141',
       List: [
-        'http://127.0.0.1:8080/dist/works/alcedo/test.jpg',
-        'http://127.0.0.1:8080/dist/works/alcedo/test-2.jpg',
-        'http://127.0.0.1:8080/dist/works/alcedo/test-3.jpg',
+        'http://127.0.0.1:8080/dist/works/hhs/hhs-contact.png',
+        'http://127.0.0.1:8080/dist/works/hhs/hhs-krediet.png',
+        'http://127.0.0.1:8080/dist/works/hhs/hhs-wat.png',
       ]
     }
   }
 }
 </script>
 
-<style>
+<style lang="sass">
+  h2.title, p.work-class, p.work-attribute
+    color: #f5f5f5
+
 </style>
