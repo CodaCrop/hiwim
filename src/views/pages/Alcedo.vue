@@ -32,9 +32,9 @@ export default {
     return {
       WrapperHeadColor: 'background-color: #3eb8e3',
       List: [
-        'http://127.0.0.1:8080/dist/works/alcedo/test.jpg',
-        'http://127.0.0.1:8080/dist/works/alcedo/test-2.jpg',
-        'http://127.0.0.1:8080/dist/works/alcedo/test-3.jpg',
+        '/dist/works/alcedo/test.jpg',
+        '/dist/works/alcedo/test-2.jpg',
+        '/dist/works/alcedo/test-3.jpg',
       ]
     }
   }

@@ -30,10 +30,10 @@ export default {
     return {
       WrapperHeadColor: 'background-color: #00adef',
       List: [
-        'http://127.0.0.1:8080/dist/works/ben/ben-app-overzicht.jpg',
-        'http://127.0.0.1:8080/dist/works/ben/ben-factuur-overzicht.png',
-        'http://127.0.0.1:8080/dist/works/ben/ben-app-login.jpg',
-        'http://127.0.0.1:8080/dist/works/ben/ben-app-historie.jpg',
+        '/dist/works/ben/ben-app-overzicht.jpg',
+        '/dist/works/ben/ben-factuur-overzicht.png',
+        '/dist/works/ben/ben-app-login.jpg',
+        '/dist/works/ben/ben-app-historie.jpg',
       ]
     }
   }

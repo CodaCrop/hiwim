@@ -30,9 +30,9 @@ export default {
     return {
       WrapperHeadColor: 'background-color: #f16b5f',
       List: [
-        'http://127.0.0.1:8080/dist/works/guidion/guidion-wiki-home.jpg',
-        'http://127.0.0.1:8080/dist/works/guidion/guidion-wiki.jpg',
-        'http://127.0.0.1:8080/dist/works/guidion/guidion-sonar-home.jpg',
+        '/dist/works/guidion/guidion-wiki-home.jpg',
+        '/dist/works/guidion/guidion-wiki.jpg',
+        '/dist/works/guidion/guidion-sonar-home.jpg',
       ]
     }
   }

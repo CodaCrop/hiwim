@@ -140,13 +140,13 @@ export default {
       SendLoader: false,
       MessageSent: false,
       Clients: [
-        { src: 'http://127.0.0.1:8080/dist/assets/clients/ben.png', route: 'ben', title: 'Ben' },
-        { src: 'http://127.0.0.1:8080/dist/assets/clients/guidion.png', route: 'guidion', title: 'Guidion' },
-        { src: 'http://127.0.0.1:8080/dist/assets/clients/google.png', route: 'google-chrome', title: 'Google' },
-        { src: 'http://127.0.0.1:8080/dist/assets/clients/hhs.png', route: 'hhs', title: 'Haagse Hogeschool' },
-        { src: 'http://127.0.0.1:8080/dist/assets/clients/klm.png', route: 'klm', title: 'KLM' },
-        { src: 'http://127.0.0.1:8080/dist/assets/clients/alcedo.png', route: 'alcedo-media', title: 'Alcedo Media' },
-        { src: 'http://127.0.0.1:8080/dist/assets/clients/museon.png', route: 'museon', title: 'Museon' },
+        { src: '/dist/assets/clients/ben.png', route: 'ben', title: 'Ben' },
+        { src: '/dist/assets/clients/guidion.png', route: 'guidion', title: 'Guidion' },
+        { src: '/dist/assets/clients/google.png', route: 'google-chrome', title: 'Google' },
+        { src: '/dist/assets/clients/hhs.png', route: 'hhs', title: 'Haagse Hogeschool' },
+        { src: '/dist/assets/clients/klm.png', route: 'klm', title: 'KLM' },
+        { src: '/dist/assets/clients/alcedo.png', route: 'alcedo-media', title: 'Alcedo Media' },
+        { src: '/dist/assets/clients/museon.png', route: 'museon', title: 'Museon' },
       ]
     }
   },

@@ -30,9 +30,9 @@ export default {
     return {
       WrapperHeadColor: 'background-color: #1f3141',
       List: [
-        'http://127.0.0.1:8080/dist/works/hhs/hhs-contact.png',
-        'http://127.0.0.1:8080/dist/works/hhs/hhs-krediet.png',
-        'http://127.0.0.1:8080/dist/works/hhs/hhs-wat.png',
+        '/dist/works/hhs/hhs-contact.png',
+        '/dist/works/hhs/hhs-krediet.png',
+        '/dist/works/hhs/hhs-wat.png',
       ]
     }
   }
