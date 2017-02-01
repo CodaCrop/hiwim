@@ -29,10 +29,12 @@
     nav.work-menu(v-show="HideDefaultLayer")
       .prev-link(v-if="PrevBtn === true")
         router-link(:to="PrevUrl", @click.native="SetPageBtns(), SetAnimation(1, 0, 0)").prev-layer-btn previous — {{ PrevUrl }}
+        router-link(:to="PrevUrl", @click.native="SetPageBtns(), SetAnimation(1, 0, 0)").prev-layer-btn-small prev
           svg(class="prev-arrow" xmlns="http://www.w3.org/2000/svg" width="50" height="10" viewBox="0 0 50 10")
             path(class="arrow" d="M34.6623,26.2627 L27.6313,19.2317 C27.2413,18.8417 26.6083,18.8417 26.2173,19.2317 C25.8273,19.6227 25.8273,20.2557 26.2173,20.6467 L31.5713,25.9997 L20.0003,25.9997 C19.4473,25.9997 19.0003,26.4477 19.0003,26.9997 C19.0003,27.5527 19.4473,27.9997 20.0003,27.9997 L31.6053,27.9997 L26.2273,33.3777 C25.8373,33.7687 25.8373,34.4017 26.2273,34.7917 C26.6183,35.1827 27.2513,35.1827 27.6423,34.7917 L34.7133,27.7207 C35.0093,27.4247 35.0783,26.9897 34.9243,26.6257 C34.8673,26.4837 34.7743,26.3637 34.6623,26.2627")
       .next-link(v-if="NextBtn === true")
         router-link(:to="NextUrl", @click.native="SetPageBtns(), SetAnimation(1, 0, 0)").next-layer-btn next — {{ NextUrl }}
+        router-link(:to="NextUrl", @click.native="SetPageBtns(), SetAnimation(1, 0, 0)").next-layer-btn-small next
     #default-layer(:class='{ hidden : HideDefaultLayer }', :style="PosFromTop")
       section#intro-section
         .content
