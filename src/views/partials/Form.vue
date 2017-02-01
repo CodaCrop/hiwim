@@ -66,8 +66,8 @@ export default {
         } else {
           let email = "sayhiwim@gmail.com"
           let data = "?subject=" + this.name + "?content=" + this.message + "?source=" + this.email
-          this.SendData(email, data)
 
+          this.SendData()
         }
       });
     },
