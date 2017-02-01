@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     ValidateBeforeSubmit: function(fields) {
-      this.$validator.validateAll().then(success => {
+      /*this.$validator.validateAll().then(success => {
         if (!success) {
           return;
         } else {
@@ -67,7 +67,7 @@ export default {
           //let data = "?subject=" + this.name + "?content=" + this.message + "?source=" + this.email
           this.SendData()
         }
-      });
+      });*/
     },
     SendData: function() {
       this.name = ''
