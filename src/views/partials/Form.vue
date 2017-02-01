@@ -39,7 +39,6 @@
                 path(class="paper-plane-icon" d="M462,54.955L355.371,437.187l-135.92-128.842L353.388,167l-179.53,124.074L50,260.973L462,54.955zM202.992,332.528v124.517l58.738-67.927L202.992,332.528z")
             .message-success(v-if="MessageSent")
               p.state-text Message sent!
-          .input-seperate
 </template>
 
 <script>
@@ -64,9 +63,8 @@ export default {
         if (!success) {
           return;
         } else {
-          let email = "sayhiwim@gmail.com"
-          let data = "?subject=" + this.name + "?content=" + this.message + "?source=" + this.email
-
+          //let email = "sayhiwim@gmail.com"
+          //let data = "?subject=" + this.name + "?content=" + this.message + "?source=" + this.email
           this.SendData()
         }
       });
@@ -90,6 +88,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>
