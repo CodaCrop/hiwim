@@ -12,7 +12,7 @@
           a.secundary-link(href='/', target='_blank')  facebook
         p.title zeg hi —
         p.complementary-text
-          | via email : <a href="" class="secundary-link">sayhiwim@gmail.com</a>
+          | via email : class="secundary-link">sayhiwim@gmail.com
           br
           | of stuur me direct een bericht
       .contact-form
