@@ -19,17 +19,17 @@
         form(@submit.prevent="ValidateBeforeSubmit")
           .input-group.half-width
             span.state-text.input-error(v-if="errors.has('name')") {{ errors.first('name') }}
-            input(v-model="name", v-validate="name", data-vv-rules="required|alpha",
+            input(v-model="name", v-validate="'required|alpha'", data-vv-rules="required|alpha",
             name='name', type='text')
             span.input-value(:class="{ filled : name !== '' }") Naam:
           .input-group.half-width
             span.state-text.input-error(v-if="errors.has('email')") {{ errors.first('email') }}
-            input(v-model.lazy="email", v-validate="email", data-vv-rules="required|email",
+            input(v-model.lazy="email", v-validate="'required|email'", data-vv-rules="required|email",
             name='email', type='text')
             span.input-value(:class="{ filled : email !== '' }") Email:
           .input-group.full-width
             span.state-text.message-error(v-if="errors.has('message')") {{ errors.first('message') }}
-            textarea(v-model="message", v-validate="message", data-vv-rules="required",
+            textarea(v-model="message", v-validate="'required'", data-vv-rules="required",
             name='message', rows='1', spellcheck='false')
             span.input-value(:class="{ filled : message !== '' }") Bericht:
           .input-group.full-width.send
