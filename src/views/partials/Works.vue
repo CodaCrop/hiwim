@@ -5,8 +5,7 @@
       .year(v-if="client.year") {{ client.title }}
       .item(v-if="!client.year", :class="{ work : client.work }")
         .info(:class="{ work : client.work, study : !client.work, professional : client.workingfor }")
-          router-link(@click.native='$parent.HideHome(true), $parent.SetPageBtns(), $parent.SetAnimation(0, 400, 250), $parent.CatchScreenPos()',
-          :to='client.route', v-if=('client.work'))
+          router-link(:to='client.route' @click.native='$parent.HideHome(true), $parent.SetPageBtns(), $parent.SetAnimation(0, 400, 250), $parent.CatchScreenPos()', v-if=('client.work'))
             {{ client.title }}
             i
             .date
