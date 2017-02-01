@@ -72,7 +72,6 @@
           span.band.blue_3.bottom.right.rotate_c.origin_br
       section#contact-section
         FormComponent
-        .bg
     transition(v-on:before-enter="WorkBeforeEnter", v-on:enter="WorkEnter", v-on:leave="WorkLeave")
       router-view(v-if='HideDefaultLayer')
     footer.foot(v-if='!HideDefaultLayer')
