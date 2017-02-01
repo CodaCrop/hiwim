@@ -35,7 +35,7 @@
               svg(version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 512 512" xml:space="preserve")
                 path(class="paper-plane-icon" d="M462,54.955L355.371,437.187l-135.92-128.842L353.388,167l-179.53,124.074L50,260.973L462,54.955zM202.992,332.528v124.517l58.738-67.927L202.992,332.528z")
             .message-success(v-if="MessageSent")
-              p.state-text Thanks for the message!
+              p.state-text Bedankt voor je berichtje!
 </template>
 
 <script>
