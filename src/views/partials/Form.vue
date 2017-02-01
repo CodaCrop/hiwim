@@ -19,7 +19,7 @@
         form(@submit.prevent="ValidateBeforeSubmit")
           .input-group.half-width
             span.state-text.input-error(v-if="errors.has('name')") {{ errors.first('name') }}
-            input(v-model="name", v-validate="'required|alpha'", name='name', type='text')
+            input(v-model.lazy="name", v-validate="'required|alpha|min:3'", name='name', type='text')
             span.input-value(:class="{ filled : name !== '' }") Naam:
           .input-group.half-width
             span.state-text.input-error(v-if="errors.has('email')") {{ errors.first('email') }}
@@ -27,7 +27,7 @@
             span.input-value(:class="{ filled : email !== '' }") Email:
           .input-group.full-width
             span.state-text.message-error(v-if="errors.has('message')") {{ errors.first('message') }}
-            textarea(v-model="message", v-validate="'required'", name='message', rows='1', spellcheck='false')
+            textarea(v-model.lazy="message", v-validate="'required|min:10'", name='message', rows='1', spellcheck='false')
             span.input-value(:class="{ filled : message !== '' }") Bericht:
           .input-group.full-width.send
             button.send-button(:class="{ 'disabled' : errors.has('name') || errors.has('email') || errors.has('message'), 'sending' : SendLoader }",
@@ -58,10 +58,8 @@ export default {
     ValidateBeforeSubmit: function(fields) {
       this.$validator.validateAll().then(success => {
         if (!success) {
-          console.log('fail')
           return;
         } else {
-          console.log('success')
           //let email = "sayhiwim@gmail.com"
           //let data = "?subject=" + this.name + "?content=" + this.message + "?source=" + this.email
           this.SendData()
