@@ -43,9 +43,11 @@
 </template>
 
 <script>
-import VeeValidate from 'vee-validate'
-import Vue from 'vue'
-Vue.use(VeeValidate)
+
+import Vue from 'vue';
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate);
+
 export default {
   data() {
     return {

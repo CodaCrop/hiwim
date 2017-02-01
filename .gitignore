@@ -4,3 +4,4 @@ npm-debug.log
 src/precomp
 .sass-cache/
 package.json
+gruntfile.js
