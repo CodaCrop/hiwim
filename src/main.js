@@ -52,7 +52,7 @@ const router = new VueRouter({
   base: __dirname,
   scrollBehavior,
   routes: [
-  { path: '/', component: Home, 
+  { path: '/', component: Home, meta: { scrollToTop: true },
       children: [
         { path: 'ben', component: Ben },
         { path: 'guidion', component: Guidion },

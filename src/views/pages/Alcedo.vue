@@ -1,17 +1,17 @@
 <template lang="jade">
 #work-layer
   router-link.return-layer-bg(
-    @click.native='$parent.HideHome(false), $parent.SetAnimation(1, 400, 250), $parent.ScrolledPosTop = 0',
-    to='/')
+    @click.native='ScrollPos',
+    to='/#work-section')
   .work-bg
     .project-head-wrapper(:style='WrapperHeadColor')
     .project-wrapper
       .project-intro
         .row
-          .project-intro-title.col-12
+          .project-intro-title
             h2.title Alcedo Media
         .row
-          .project-detail-data.col-12
+          .project-detail-data
             ul.work-details
               li
                 p.work-class role :
@@ -21,9 +21,8 @@
                 p.work-attribute Trade Gothic / Proxima Nova
       .project-items
         .row(v-for="img in List")
-          .col-12
-            .item
-              img(v-lazy="img", :key="img", lazy="loading").web-shot
+          .item
+            img(v-lazy="img", :key="img", lazy="loading").web-shot
 </template>
 
 <script>
@@ -36,6 +35,41 @@ export default {
         '/dist/works/alcedo/test-2.jpg',
         '/dist/works/alcedo/test-3.jpg',
       ]
+    }
+  },
+  methods: {
+    ScrollTop: function() {
+      console.log('scroll top called')
+    },
+    GoBack: function() {
+      console.log('go back called')
+    },
+    ScrollPos: function() {
+      $parent.HideHome(false)
+      $parent.SetAnimation(1, 400, 0)
+      $parent.ScrolledPosTop = 0
+    },
+    DelayBack: function() {
+      function DelayState(t) {
+        return new Promise(function (resolve) {
+          setTimeout(resolve, t)
+        });
+      }
+      Promise.DelayState = function(fn, t) {
+        if(!t) {
+          t = fn;
+          fn = function() {};
+        }
+        return DelayState(t).then(fn)
+      }
+      Promise.prototype.DelayState = function(fn, t) {
+        return this.then(function() {
+          return Promise.DelayState(fn, t)
+        });
+      }
+      Promise
+        .DelayState(this.ScrollTop, 1500)
+        .DelayState(this.GoBack, 1000)
     }
   }
 }
