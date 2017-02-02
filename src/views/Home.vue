@@ -85,13 +85,13 @@
       .content
         .row
           p.footer-text {{ CurrentYear }}  © Hiwim is ontwikkeld met&nbsp;
-            a(href="#") VueJS,&nbsp;
-            a(href="#") VelocityJS,&nbsp;
-            a(href="#") HTML Jade,&nbsp;
-            a(href="#") CSS Sass,&nbsp;
-            a(href="#") GitHub,&nbsp;
-            a(href="#") Webpack &&nbsp;
-            a(href="#") Netlify
+            a(href="https://vuejs.org" target="_blank") VueJS,&nbsp;
+            a(href="http://velocityjs.org/" target="_blank") VelocityJS,&nbsp;
+            a(href="https://pugjs.org/api/getting-started.html" target="_blank") HTML Jade,&nbsp;
+            a(href="http://sass-lang.com/" target="_blank") CSS Sass,&nbsp;
+            a(href="https://github.com/" target="_blank") GitHub,&nbsp;
+            a(href="https://webpack.github.io/" target="_blank") Webpack &&nbsp;
+            a(href="https://www.netlify.com/" target="_blank") Netlify
 </template>
 
 <script>
@@ -116,7 +116,8 @@ export default {
       ActiveWork: false,
       ActiveAbout: false,
       ActiveContact: false,
-      ScrolledPosTop: 0
+      ScrolledPosTop: 0,
+      Loading: false,
     }
   },
   watch: {
@@ -141,6 +142,9 @@ export default {
     FormComponent
   },
   methods: {
+    Nigga: function() {
+      this.Loading = true;
+    },
     SetPageBtns: function() {
       switch(window.location.pathname) {
         case '/ben': this.PrevBtn = false; this.NextBtn = true; this.NextUrl = 'guidion'; break;
@@ -155,11 +159,6 @@ export default {
     },
     HideHome: function(state) {
       this.HideDefaultLayer = state
-    },
-    SetAnimation: function(op, px, ms) {
-      this.AnimeOP = op
-      this.AnimePX = px
-      this.AnimeMS = ms
     },
     HandleScroll: function() {
       let intro = document.getElementById("intro-section")
@@ -216,15 +215,21 @@ export default {
       var elPosY = el.getBoundingClientRect()
       this.ScrolledPosTop = elPosY.top
     },
+    SetAnimation: function(op, px, ms) {
+      this.AnimeOP = op
+      this.AnimePX = px
+      this.AnimeMS = ms
+    },
     WorkBeforeEnter: function(el) {
       el.style.opacity = this.AnimeOP
     },
     WorkEnter: function(el, done) {
-      //Velocity(el, { translateX: this.AnimePX }, { duration: 0 })
+      Velocity(el, { translateX: '200px' }, { duration: 0 })
       Velocity(el, { opacity: 1, translateX: '0px' }, { duration: this.AnimeMS, complete: done })
     },
     WorkLeave: function(el, done) {
-      Velocity(el, { opacity: 0, translateX: '0px' }, { duration: this.AnimeMS, complete: done })
+      Velocity(el, { translateX: '200px'}, { duration: 0 })
+      Velocity(el, { opacity: 0 , translateX: '0px'}, { duration: this.AnimeMS, complete: done })
     }
   },
   mounted() {
