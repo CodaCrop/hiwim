@@ -19,11 +19,11 @@
         form(@submit.prevent="ValidateBeforeSubmit")
           .input-group.half-width
             span.state-text.input-error(v-if="errors.has('name')") {{ errors.first('name') }}
-            input(v-model.lazy="name", v-validate="'required|alpha|min:3'", name='name', type='text')
+            input(v-model.lazy="name", v-validate="'required|alpha|min:3'", name='name', type='text', autocomplete="off")
             span.input-value(:class="{ filled : name !== '' }") Naam:
           .input-group.half-width
             span.state-text.input-error(v-if="errors.has('email')") {{ errors.first('email') }}
-            input(v-model.lazy="email", v-validate="'required|email'", name='email', type='text')
+            input(v-model.lazy="email", v-validate="'required|email'", name='email', type='text', autocomplete="off")
             span.input-value(:class="{ filled : email !== '' }") Email:
           .input-group.full-width
             span.state-text.message-error(v-if="errors.has('message')") {{ errors.first('message') }}
