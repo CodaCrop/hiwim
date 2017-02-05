@@ -116,8 +116,7 @@ export default {
       ActiveWork: false,
       ActiveAbout: false,
       ActiveContact: false,
-      ScrolledPosTop: 0,
-      Loading: false,
+      ScrolledPosTop: 0
     }
   },
   watch: {
@@ -139,12 +138,9 @@ export default {
     PhoneComponent,
     TabletComponent,
     WorkComponent,
-    FormComponent
+    FormComponent,
   },
   methods: {
-    Nigga: function() {
-      this.Loading = true;
-    },
     SetPageBtns: function() {
       switch(window.location.pathname) {
         case '/ben': this.PrevBtn = false; this.NextBtn = true; this.NextUrl = 'guidion'; break;

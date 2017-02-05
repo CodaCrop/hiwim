@@ -14,6 +14,7 @@ import Schiphol from './views/pages/Klm.vue';
 import Alcedo from './views/pages/Alcedo.vue';
 import Museon from './views/pages/Museon.vue';
 import Notfound from './views/Notfound.vue';
+import Construction from './views/components/Construction.vue';
 
 Vue.use(VueRouter);
 Vue.use(VueLazyload, {
@@ -28,6 +29,14 @@ Vue.use(VueLazyload, {
       error (listender, Init) {
       }
 }
+})
+
+Vue.filter('two_digits', function (value) {
+    if(value.toString().length <= 1)
+    {
+        return "0"+value.toString();
+    }
+    return value.toString();
 })
 
 const scrollBehavior = (to, from, savedPosition) => {
@@ -52,6 +61,8 @@ const router = new VueRouter({
   base: __dirname,
   scrollBehavior,
   routes: [
+    { path: '/', component: Construction }
+    /*
   { path: '/', component: Home, meta: { scrollToTop: true },
       children: [
         { path: 'ben', component: Ben },
@@ -63,7 +74,7 @@ const router = new VueRouter({
         { path: 'museon', component: Museon }
       ]
     },
-    { path: '*', component: Notfound }
+    { path: '*', component: Notfound } */
   ]
 })
 
