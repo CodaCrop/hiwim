@@ -63,10 +63,11 @@ export default {
       background-color: #ffcc1b
       position: relative
       width: calc(100vw - 40vw)
-      height: 100vh
+      min-height: 100vh
       display: flex
       justify-content: flex-start
       flex-direction: row
+      flex-grow: 1
       flex-wrap: wrap
       align-items: center
       opacity: 1
