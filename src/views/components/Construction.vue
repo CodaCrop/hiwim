@@ -118,6 +118,7 @@ export default {
           p.info-body
             font-size: 0.9em
             line-height: 1.8
+            margin-bottom: 20px
             a
               font-weight: 800
               transition: all .3s ease
@@ -138,15 +139,20 @@ export default {
         top: 0
         right: 0
         width: 100%
-        height: 100%
+        height: inherit
         background: #6d2a9c
         opacity: 0.8
+    @media screen and (min-width: 1820px)
+      .content-fullpage::after
+        transform: none
     @media screen and (max-width: 820px)
       .content-fullpage::after
         transform: none
     @media screen and (max-width: 450px)
       .content-fullpage
         width: 100vw
+        .maintenance h2.info-counter
+          flex-wrap: wrap
       aside.block-element
         display: none
 </style>
