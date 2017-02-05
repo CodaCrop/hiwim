@@ -19,7 +19,9 @@
               b.text s
         .context
           p.info-body Mijn website is onder constructie. De lancering van de nieuwe
-             | website komt binnenkort online te staan.
+             | website komt binnenkort online te staan. Ondertussen kan je me gewoon
+             | volgen op <a href="https://github.com/CodaCrop" target="_blank">GitHub</a>
+             | of <a href="https://nl.linkedin.com/in/wim-de-boer-700a1416" target="_blank">LinkedIn</a>
           .countdown
       .social
     aside.block-element
@@ -78,6 +80,7 @@ export default {
         transform: skewX(-14deg)
         background-color: inherit
         z-index: 1
+        transition: transform .3s ease
       .logo
         font-size: 36px
         font-weight: bold
@@ -112,11 +115,17 @@ export default {
         .context
           max-width: 500px
           p.info-body
-            font-size: 18px
+            font-size: 0.9em
             line-height: 1.8
+            a
+              font-weight: 800
+              transition: all .3s ease
+              &:hover
+                color: #079e81
     aside.block-element
       background: url('/dist/assets/launch.jpg') no-repeat
       background-size: cover
+      transition: background .3s ease
       position: absolute
       top: 0
       right: 0
