@@ -58,101 +58,105 @@ export default {
 </script>
 
 <style lang="sass">
- .container
-    .content-fullpage
-      background-color: #ffcc1b
-      position: relative
-      width: calc(100vw - 40vw)
-      min-height: 100vh
+.container
+  display: flex
+.content-fullpage
+  background-color: #ffcc1b
+  position: relative
+  width: calc(100vw - 40vw)
+  min-height: 100vh
+  display: flex
+  justify-content: flex-start
+  flex-direction: row
+  flex-grow: 1
+  flex-wrap: wrap
+  align-items: center
+  opacity: 1
+  &::after
+    content: ''
+    position: absolute
+    top: 0
+    bottom: 0
+    right: -11vw
+    min-height: inherit
+    width: 30vw
+    transform: skewX(-14deg)
+    background-color: inherit
+    z-index: 1
+    transition: transform .3s ease
+  .logo
+    font-size: 36px
+    font-weight: bold
+    width: 100%
+    color: #252525
+    margin-left: 2rem
+    margin-right: 2rem
+  .maintenance
+    width: 100%
+    color: #252525
+    margin-left: 2rem
+    margin-right: 2rem
+    z-index: 2
+    h1.info-title
+      font-size: 20px
+      font-weight: 600
+    h2.info-counter
+      font-size: 20px
+      font-weight: 600
+      max-width: 200px
       display: flex
-      justify-content: flex-start
-      flex-direction: row
-      flex-grow: 1
+      justify-content: space-between
+      flex-wrap: nowrap
+      margin-bottom: 24px
+      .time
+        margin-right: 1rem
+        span.digit
+          color: #079e81
+        b.text
+          margin-left: 7px
+          color: #252525
+    .context
+      max-width: 500px
+      p.info-body
+        font-size: 0.9em
+        line-height: 1.8
+        margin-bottom: 20px
+        a
+          font-weight: 800
+          transition: all .3s ease
+          &:hover
+            color: #079e81
+aside.block-element
+  background: url('/dist/assets/launch.jpg') no-repeat
+  background-size: cover
+  transition: background .3s ease
+  position: relative
+  top: 0
+  bottom: 0
+  right: 0
+  min-height: 100vh
+  width: 40vw
+  &::after
+    content: ''
+    position: absolute
+    top: 0
+    bottom: 0
+    right: 0
+    width: 100%
+    min-height: inherit
+    background: #6d2a9c
+    opacity: 0.8
+@media screen and (min-width: 1820px)
+  .content-fullpage::after
+    transform: none
+@media screen and (max-width: 820px)
+  .content-fullpage::after
+    transform: none
+@media screen and (max-width: 450px)
+  .content-fullpage
+    width: 100vw
+    .maintenance h2.info-counter
       flex-wrap: wrap
-      align-items: center
-      opacity: 1
-      &::after
-        content: ''
-        position: absolute
-        top: 0
-        right: -11vw
-        height: 100vh
-        width: 30vw
-        transform: skewX(-14deg)
-        background-color: inherit
-        z-index: 1
-        transition: transform .3s ease
-      .logo
-        font-size: 36px
-        font-weight: bold
-        width: 100%
-        color: #252525
-        margin-left: 2rem
-        margin-right: 2rem
-      .maintenance
-        width: 100%
-        color: #252525
-        margin-left: 2rem
-        margin-right: 2rem
-        z-index: 2
-        h1.info-title
-          font-size: 20px
-          font-weight: 600
-        h2.info-counter
-          font-size: 20px
-          font-weight: 600
-          max-width: 200px
-          display: flex
-          justify-content: space-between
-          flex-wrap: nowrap
-          margin-bottom: 24px
-          .time
-            margin-right: 1rem
-            span.digit
-              color: #079e81
-            b.text
-              margin-left: 7px
-              color: #252525
-        .context
-          max-width: 500px
-          p.info-body
-            font-size: 0.9em
-            line-height: 1.8
-            margin-bottom: 20px
-            a
-              font-weight: 800
-              transition: all .3s ease
-              &:hover
-                color: #079e81
-    aside.block-element
-      background: url('/dist/assets/launch.jpg') no-repeat
-      background-size: cover
-      transition: background .3s ease
-      position: absolute
-      top: 0
-      right: 0
-      width: 40vw
-      height: 100%
-      &::after
-        content: ''
-        position: absolute
-        top: 0
-        right: 0
-        width: 100%
-        height: inherit
-        background: #6d2a9c
-        opacity: 0.8
-    @media screen and (min-width: 1820px)
-      .content-fullpage::after
-        transform: none
-    @media screen and (max-width: 820px)
-      .content-fullpage::after
-        transform: none
-    @media screen and (max-width: 450px)
-      .content-fullpage
-        width: 100vw
-        .maintenance h2.info-counter
-          flex-wrap: wrap
-      aside.block-element
-        display: none
+  aside.block-element
+    display: none
 </style>
