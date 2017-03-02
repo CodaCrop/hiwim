@@ -3,20 +3,21 @@
     .content-fullpage
       .logo Hiwim
       .maintenance
-        h1.info-title Ik ga Lanceren in :
-        h2.info-counter
-          .time
-            span.digit {{ days | two_digits }}
-              b.text dagen
-          .time
-            span.digit {{ hours | two_digits }}
-              b.text u
-          .time
-            span.digit {{ minutes | two_digits }}
-              b.text m
-          .time
-            span.digit {{ seconds | two_digits }}
-              b.text s
+        h1.info-title Ik ga binnenkort lanceren
+        //-
+          h2.info-counter
+            .time
+              span.digit {{ days | two_digits }}
+                b.text dagen
+            .time
+              span.digit {{ hours | two_digits }}
+                b.text u
+            .time
+              span.digit {{ minutes | two_digits }}
+                b.text m
+            .time
+              span.digit {{ seconds | two_digits }}
+                b.text s
         .context
           p.info-body Mijn website is onder constructie. De lancering van de nieuwe
              | website komt binnenkort online te staan. Ondertussen kan je me gewoon
