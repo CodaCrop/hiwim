@@ -61,8 +61,8 @@ const router = new VueRouter({
   base: __dirname,
   scrollBehavior,
   routes: [
-    { path: '/', component: Construction }
-    /*
+    //{ path: '/', component: Construction }
+   
   { path: '/', component: Home, meta: { scrollToTop: true },
       children: [
         { path: 'ben', component: Ben },
@@ -74,7 +74,7 @@ const router = new VueRouter({
         { path: 'museon', component: Museon }
       ]
     },
-    { path: '*', component: Notfound } */
+    { path: '*', component: Notfound }
   ]
 })
 
