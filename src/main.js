@@ -6,6 +6,8 @@ import VueLazyload from 'vue-lazyload';
 import Home from './views/Home.vue';
 
 // Import seperate children pages
+import Knab from './views/pages/Knab.vue';
+import Brightcubes from './views/pages/Brightcubes.vue';
 import Ben from './views/pages/Ben.vue';
 import Guidion from './views/pages/Guidion.vue';
 import Google from './views/pages/Google.vue';
@@ -65,6 +67,8 @@ const router = new VueRouter({
    
   { path: '/', component: Home, meta: { scrollToTop: true },
       children: [
+        { path: 'knab', component: Knab },
+        { path: 'brightcubes', component: Brightcubes },
         { path: 'ben', component: Ben },
         { path: 'guidion', component: Guidion },
         { path: 'google-chrome', component: Google },
