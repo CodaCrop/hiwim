@@ -78,14 +78,7 @@
     footer.foot(v-if='!HideDefaultLayer')
       .content
         .row
-          p.footer-text {{ CurrentYear }}  © Hiwim is ontwikkeld met&nbsp;
-            a(href="https://vuejs.org" target="_blank") VueJS,&nbsp;
-            a(href="http://velocityjs.org/" target="_blank") VelocityJS,&nbsp;
-            a(href="https://pugjs.org/api/getting-started.html" target="_blank") HTML Jade,&nbsp;
-            a(href="http://sass-lang.com/" target="_blank") CSS Sass,&nbsp;
-            a(href="https://github.com/" target="_blank") GitHub,&nbsp;
-            a(href="https://webpack.github.io/" target="_blank") Webpack &&nbsp;
-            a(href="https://www.netlify.com/" target="_blank") Netlify
+          p.footer-text {{ CurrentYear }}  © Hiwim
 </template>
 
 <script>
