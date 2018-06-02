@@ -13,7 +13,7 @@
             ul.work-details
               li
                 p.work-class role :
-                p.work-attribute consultancy | software developer
+                p.work-attribute consultant | software developer
       .project-items
         .row(v-for="img in List")
           .item
