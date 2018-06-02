@@ -44,6 +44,10 @@ export default {
           tags: [ 'consultancy', 'software development' ]
         },
         {
+          project: '', route: '', title: '2017', info: '', context: '', work: false,
+          year: true
+        }
+        {
           project: '/dist/assets/clients/klm.png',
           route: 'klm', title: 'KLM',
           info: 'Booking data retriever',
