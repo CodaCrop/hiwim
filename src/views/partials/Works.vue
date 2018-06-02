@@ -93,8 +93,7 @@ export default {
           date: 'September 2015',
           context: 'Blabla',
           work: true,
-          tags: [ 'design', 'front-end', 'back-end', 'wordpress', 'ui / ux', 'testing' ],
-          workingfor: true
+          tags: [ 'design', 'front-end', 'back-end', 'wordpress', 'ui / ux', 'testing' ]
         },
         {
           project: '/dist/assets/clients/hhs.png',
@@ -103,8 +102,7 @@ export default {
           date: 'Mei 2015',
           context: 'Blabla',
           work: true,
-          tags: [ 'design', 'front-end', 'ui / ux', 'testing' ],
-          workingfor: true
+          tags: [ 'design', 'front-end', 'ui / ux', 'testing' ]
         },
         {
           project: '', route: '', title: '2015', info: '', context: '', work: false,
