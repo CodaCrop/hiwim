@@ -40,11 +40,8 @@
         .content
           TabletComponent
           .intro-text.item
-            h1.title Hallo ik ben Wim — UX designer & coder
+            h1.title Hallo
             p.intro-content
-              | en ik vind het fijn om aan
-              | uitdagende projecten te werken, samen te werken met mensen die dezelfde
-              | passie delen en nieuwe technologieën op te pakken om er wat moois van te maken.
             .goto-work
               router-link(to="/#work-section", @click.native="SmoothScroll('work')")
                 i.arrow-down
@@ -60,18 +57,15 @@
           .row.profile-pic
               img(src="dist/assets/photo_animated.gif" alt="image")
           .row
-            h2.title — Wim is een creatieve front-end developer
+            h2.title — 
           .row.about
             .flex-wrap
               .personal-synopsis
                 h2.title Development
-                p.complementary-text Programmeren is mijn passie. Het totstand laten komen van een
-                  | zelfgemaakt product geeft dan ook een bijzonder goed gevoel. Dit heb ik dus ook met programmeren.
-                  | Ik sta altijd open om oude/nieuwe frameworks, MVC's, preprocessors en talen uit te proberen.
+                p.complementary-text 
               .personal-skills
                 h2.title UX UI Design
-                p.complementary-text Een product ontwikkelen dat goed aansluit op de klant. Een erg belangrijk
-                  | proces binnen het ontwikkeltraject.
+                p.complementary-text 
         .bg
           span.band.white.top.right.rotate_cc.origin_br
           span.band.blue_1.top.right.rotate_cc.origin_tr
