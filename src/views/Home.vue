@@ -2,7 +2,6 @@
   .container
     header.heading(:class="{ works : ActiveWork || HideDefaultLayer }")
       router-link(to='/#intro-section', @click.native="SmoothScroll('intro')").logo
-        | \/<span> </span>/
     transition(v-on:before-enter="WorkBeforeEnter", v-on:enter="WorkEnter", v-on:leave="WorkLeave")
       nav.menu(:class="{ works : ActiveWork || HideDefaultLayer }")
         router-link(to="/#work-section", @click.native="HideHome(false), SmoothScroll('work'), SetAnimation(1, 0, 0)",
