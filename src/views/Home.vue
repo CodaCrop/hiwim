@@ -57,7 +57,7 @@
           .row.profile-pic
               img(src="dist/assets/photo_animated.gif" alt="image")
           .row
-            h2.title — 
+            h2.title
           .row.about
             .flex-wrap
               .personal-synopsis
