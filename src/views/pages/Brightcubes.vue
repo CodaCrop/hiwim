@@ -24,7 +24,7 @@
 export default {
   data() {
     return {
-      WrapperHeadColor: 'background-color: #00adef',
+      WrapperHeadColor: 'background-color: #e28b23',
       List: []
     }
   }
