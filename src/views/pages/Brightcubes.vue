@@ -7,16 +7,13 @@
       .project-intro
         .row
           .project-intro-title
-            h2.title Ben
+            h2.title Bright Cubes
         .row
           .project-detail-data
             ul.work-details
               li
                 p.work-class role :
-                p.work-attribute branding / web design / front end
-              li
-                p.work-class typeface :
-                p.work-attribute Trade Gothic / Proxima Nova
+                p.work-attribute consultancy | software developer
       .project-items
         .row(v-for="img in List")
           .item
