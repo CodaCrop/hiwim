@@ -1,7 +1,7 @@
 <template lang="jade">
   .content
     .row
-      h2.title — laten we praten
+      h2.title
     .row.contact
       .follow-text
         p.title volg me op —
@@ -10,11 +10,8 @@
           a.secundary-link(href='/', target='_blank')  github,
           a.secundary-link(href='/', target='_blank')  kodity,
           a.secundary-link(href='/', target='_blank')  facebook
-        p.title zeg hi —
+        p.title
         p.complementary-text
-          | via email : <a href="#" class="secundary-link">sayhiwim@gmail.com</a>
-          br
-          | of stuur me direct een bericht
       .contact-form
         form(@submit.prevent="ValidateBeforeSubmit")
           .input-group.half-width
@@ -35,7 +32,7 @@
               svg(width="50px" height="50px" x="0" y="0" viewBox="0 0 512 512" xml:space="preserve")
                 path(class="paper-plane-icon" d="M462,54.955L355.371,437.187l-135.92-128.842L353.388,167l-179.53,124.074L50,260.973L462,54.955zM202.992,332.528v124.517l58.738-67.927L202.992,332.528z")
             .message-success(v-if="MessageSent")
-              p.state-text Bedankt voor je berichtje!
+              p.state-text
 </template>
 
 <script>
