@@ -4,12 +4,9 @@
       h2.title
     .row.contact
       .follow-text
-        p.title volg me op —
+        p.title
         p.complementary-text
-          a.secundary-link(href='/', target='_blank') dribble,
-          a.secundary-link(href='/', target='_blank')  github,
-          a.secundary-link(href='/', target='_blank')  kodity,
-          a.secundary-link(href='/', target='_blank')  facebook
+          a.secundary-link(href='/', target='_blank') github
         p.title
         p.complementary-text
       .contact-form
