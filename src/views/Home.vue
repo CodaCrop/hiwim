@@ -137,7 +137,9 @@ export default {
   methods: {
     SetPageBtns: function() {
       switch(window.location.pathname) {
-        case '/ben': this.PrevBtn = false; this.NextBtn = true; this.NextUrl = 'guidion'; break;
+        case '/knab': this.PrevBtn = false; this.NextBtn = true; this.NextUrl = 'brightcubes'; break;
+        case '/brightcubes': this.PrevBtn = true; this.PrevUrl = 'Knab'; this.NextBtn = true; this.NextUrl = 'ben'; break;
+        case '/ben': this.PrevBtn = true; this.PrevUrl = 'brightcubes'; this.NextBtn = true; this.NextUrl = 'guidion'; break;
         case '/guidion': this.NextBtn = true; this.NextUrl = 'google-chrome'; this.PrevBtn = true; this.PrevUrl = 'ben'; break;
         case '/google-chrome': this.NextBtn = true; this.NextUrl = 'hhs'; this.PrevBtn = true; this.PrevUrl = 'guidion'; break;
         case '/hhs': this.NextBtn = true; this.NextUrl = 'klm'; this.PrevBtn = true; this.PrevUrl = 'google-chrome'; break;
