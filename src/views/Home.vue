@@ -40,7 +40,7 @@
         .content
           TabletComponent
           .intro-text.item
-            h1.title Hallo
+            h1.title
             p.intro-content
             .goto-work
               router-link(to="/#work-section", @click.native="SmoothScroll('work')")
