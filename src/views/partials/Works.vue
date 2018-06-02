@@ -26,6 +26,24 @@ export default {
     return {
       works: [
         {
+          project: '/dist/assets/clients/knab.png',
+          route: 'knab', title: 'Knab',
+          info: 'Software developer',
+          date: 'June 2017 - present',
+          context: 'Blabla',
+          work: true,
+          tags: [ 'fintech', 'consultancy', 'front-end', 'back-end' ]
+        },
+        {
+          project: '/dist/assets/clients/brightcubes.png',
+          route: 'brightcubes', title: 'Bright Cubes',
+          info: 'Software developer consultant',
+          date: 'March 2017 - present',
+          context: 'Blabla',
+          work: true,
+          tags: [ 'consultancy', 'software development' ]
+        },
+        {
           project: '/dist/assets/clients/klm.png',
           route: 'klm', title: 'KLM',
           info: 'Booking data retriever',
