@@ -1,0 +1,128 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Button
+// Description:     Defines styles for Button.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Core: Button
+ ========================================================================== */
+
+%button {
+    @include transition(all 0.3s ease-in-out);
+    background-color: transparent;
+    border: $button-border-width solid transparent;
+    border-radius: $button-border-radius;
+    display: inline-block;
+    font-family: $button-font-family;
+    font-size: $button-font-size;
+    font-weight: $button-font-weight;
+    line-height: $button-line-height;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: $button-padding-y $button-padding-x;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+        outline: none;
+    }
+
+    &:not(:disabled) {
+        cursor: pointer;
+    }
+
+    &:disabled {
+        opacity: 0.7;
+    }
+}
+
+/* Buttons
+========================================================================== */
+
+.button-primary {
+    @include button-variation($button-primary-color, $button-primary-background-color);
+}
+
+.button-success {
+    @include button-variation($button-success-color, $button-success-background-color);
+}
+
+.button-info {
+    @include button-variation($button-info-color, $button-info-background-color);
+}
+
+.button-warning {
+    @include button-variation($button-warning-color, $button-warning-background-color);
+}
+
+.button-danger {
+    @include button-variation($button-danger-color, $button-danger-background-color);
+}
+
+/* Button outline
+========================================================================== */
+
+.button-outline-primary {
+    @include button-outline-variation($button-primary-background-color);
+}
+
+.button-outline-success {
+    @include button-outline-variation($button-success-background-color);
+}
+
+.button-outline-info {
+    @include button-outline-variation($button-info-background-color);
+}
+
+.button-outline-warning {
+    @include button-outline-variation($button-warning-background-color);
+}
+
+.button-outline-danger {
+    @include button-outline-variation($button-danger-background-color);
+}
+
+.button-outline-white {
+    @include button-outline-variation($color-bright, $color-hover-background: rgba($color-bright, 0.30));
+}
+
+/* Size variations
+========================================================================== */
+
+.button-small {
+    @include button-size-variation($button-small-font-size, $button-small-padding-y, $button-small-padding-x);
+}
+
+.button-large {
+    @include button-size-variation($button-large-font-size, $button-large-padding-y, $button-large-padding-x);
+}
+
+/* Block
+========================================================================== */
+
+.button-block {
+    display: block;
+    width: 100%;
+}
+
+@include breakpoint-down("mobile") {
+    .button-mobile-block {
+        display: block;
+        width: 100%;
+    }
+}
+
+@include breakpoint-down("tablet") {
+    .button-tablet-block {
+        display: block;
+        width: 100%;
+    }
+}

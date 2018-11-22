@@ -1,0 +1,92 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Filters
+// Description:     Defines styles for filters component.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Component: Filters
+ ========================================================================== */
+
+ .filters {
+     background-color: $filters-background-color;
+     border-top: $filters-border;
+     border-bottom: $filters-border;
+     height: $filters-height;
+     overflow: hidden;
+     position: relative;
+
+    .filter-items {
+        -webkit-overflow-scrolling: touch;
+        height: $filter-items-height;
+        list-style: none;
+        margin: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0;
+        white-space: nowrap;
+
+        li {
+            display: inline-block;
+            margin: 17px 2px;
+
+            &:first-child {
+                margin-left: 10px;
+            }
+
+            &:last-child {
+                margin-right: 10px;
+            }
+
+            > input[type="checkbox"] {
+                height: 1px;
+                opacity: 0;
+                position: absolute;
+                width: 1px;
+            }
+
+            > input[type="checkbox"] + label {
+                border: $filters-border;
+                border-radius: $filters-border-radius;
+                cursor: pointer;
+                display: block;
+                font-weight: $filter-item-font-weight;
+                line-height: $filter-item-line-height;
+                padding: 0 20px;
+                position: relative;
+            }
+
+            > input[type="checkbox"]:checked + label {
+                &:after {
+                    border: $filter-item-active-border;
+                    border-radius: $filters-border-radius;
+                    bottom: -1px; 
+                    content: "";
+                    left: -1px;
+                    position: absolute; 
+                    right: -1px;
+                    top: -1px;
+                }
+            }
+        }
+    }
+
+    @include breakpoint-up("tablet") {
+        .filter-items li {
+            > input[type="checkbox"]:hover + label {
+                &:after{
+                        border: $filter-item-active-border;
+                        border-radius: $filters-border-radius;
+                        bottom: -1px; 
+                        content: "";
+                        left: -1px;
+                        position: absolute; 
+                        right: -1px;
+                        top: -1px;
+                }
+            }
+        }
+    }
+ }

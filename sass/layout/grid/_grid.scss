@@ -1,0 +1,92 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Grid
+// Description:     Defines styles for the responsive grid system.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Layout: Grid
+ ========================================================================== */
+
+/* Containers
+ ========================================================================== */
+
+.container {
+    @include make-container;
+    @include make-container-max-widths;
+}
+
+.container-fluid {
+    @include make-container;
+}
+
+/* Row
+ ========================================================================== */
+
+.row {
+    @include make-row;
+
+    > .column > .cell,
+    > [class*="column-"] > .cell {
+        @include make-cell($content-spacing-button: false);
+    }
+
+    > .column > .cell-equalize,
+    > [class*="column-"] > .cell-equalize {
+        @include make-cell($content-spacing-button: true);
+    }
+}
+
+.row-marker:after {
+    background-color: $grid-border-color;
+    content: "";
+    display: block;
+    height: 1px;
+    margin: $grid-gutter-width-base ($grid-gutter-width-base / 2) 0;
+    width: 100%;
+}
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+
+    &.row-marker:after {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    > .column,
+    > [class*="column-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+.no-column-gutters {
+    overflow: hidden;
+    
+    > .column,
+    > [class*="column-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@include breakpoint-only("mobile") {
+    .no-column-gutters-mobile {
+        overflow: hidden;
+        
+        > .column,
+        > [class*="column-"] {
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+}
+
+/* Columns
+ ========================================================================== */
+
+@include make-grid-columns;

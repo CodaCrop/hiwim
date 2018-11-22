@@ -1,0 +1,303 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         List
+// Description:     Defines styles for lists.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Core: List
+ ========================================================================== */
+
+/* List
+ ========================================================================== */
+
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &.list-divider > li {
+        border-top: 1px solid $list-border-color;
+        padding-bottom: $list-spacing;
+        padding-top: $list-spacing;
+
+        &:first-child {
+            border-top-color: transparent;
+        }
+    }
+}
+
+/* Bullet
+========================================================================== */
+
+.list-bullet {
+    list-style: none;
+    list-style-position: inside;
+    margin: $list-spacing 0;
+    padding: 0;
+
+    > li {
+        padding-left: 1em;
+        position: relative;
+
+        &:before {
+            content: "•";
+            color: $color-gray;
+            margin-right: 0.25rem;
+            left: 0;
+            position: absolute;
+        }
+    }
+}
+
+/* Checkmark
+========================================================================== */
+
+.list-checkmark {
+    list-style: none;
+    list-style-position: inside;
+    margin: $list-spacing 0;
+    padding: 0;
+
+    > li {
+        padding-left: 1.5em;
+        position: relative;
+
+        &:before {
+            @extend %icon;
+
+            content: $icon-checkmark;
+            margin-right: 5px;
+            left: 0;
+            position: absolute;
+            top: 0.15em;
+        }
+    }
+}
+
+/* Inline
+========================================================================== */
+
+.list-input-inline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    > li:first-of-type {
+        flex: 2;
+        width: 60%;
+        padding-right: $list-inline-spacing;
+    }
+
+    > li:last-of-type {
+        flex: 1;
+        width: 40%;
+
+        > input {
+            width: 100%;
+        }
+    }
+
+    @include breakpoint-down("desktop") {
+        display: block;
+
+        > li:first-of-type,
+        > li:last-of-type {
+            flex: unset;
+            padding: 0 0 $list-spacing;
+            width: 100%;
+        }
+    }
+}
+
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .list#{$infix}-inline {        
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        > li {
+            display: block;
+            margin-bottom: $list-inline-spacing;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    @include breakpoint-up($breakpoint) {
+        .list#{$infix}-inline {
+            display: inline-block;
+
+            > li {
+                float: left;
+                margin-right: $list-inline-spacing;
+    
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+/* Ordered
+ ========================================================================== */
+
+.list-ordered {
+    list-style-position: inside;
+    margin: 0;
+    padding: 0;
+}
+
+/* List column (modifiers)
+========================================================================== */
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .list#{$infix}-column-1,
+    .list#{$infix}-column-2,
+    .list#{$infix}-column-3,
+    .list#{$infix}-column-4 {
+        column-gap: $list-spacing;
+    }
+
+    @include breakpoint-up($breakpoint) {
+        .list#{$infix}-column-1 {
+            column-count: 2;
+        }
+
+        .list#{$infix}-column-2 {
+            column-count: 2;
+        }
+
+        .list#{$infix}-column-3 {
+            column-count: 3;
+        }
+
+        .list#{$infix}-column-4 {
+            column-count: 4;
+        }
+    }
+}
+
+/* Group
+========================================================================== */
+
+.list-group {
+    list-style: none;
+    padding: 0;
+}
+
+.list-group-header {
+    background-color: $list-group-header-background-color;
+    border-bottom: 1px solid $list-group-border-color;
+    display: flex;
+    padding: ($list-group-spacing / 2) $list-group-spacing;
+}
+
+.list-group-content {
+    padding: 0 $list-group-spacing;
+}
+
+/* Description list
+========================================================================== */
+
+.description-list {
+    margin: 0;
+
+    > dt {
+        font-weight: 800;
+        margin-top: $description-list-spacing;
+        text-transform: uppercase;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    > dd {
+        margin-left: 0;
+    }
+}
+
+/* Raster list
+========================================================================== */
+
+.list-raster {
+    border-top: 1px solid $list-border-color;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+
+    > li {
+        border-color: $list-border-color;
+        border-style: solid;
+        border-width: 0 1px 1px;
+        flex: 0 0 percentage(1 / 2);
+        max-width: percentage(1 / 2);
+        min-height: 1px;
+        padding: 1rem 0.5rem;
+        position: relative;
+        text-align: center;
+
+        &:nth-child(odd) {
+            border-left-width: 0;
+        }
+
+        &:nth-child(even) {
+            border-left-width: 0;
+            border-right-width: 0;
+        }
+    }
+
+    @include breakpoint-up("tablet") {
+        &.list-raster-tablet-one-third {
+            > li {
+                border-width: 0 1px 1px;
+                flex: 0 0 percentage(1 / 3);
+                max-width: percentage(1 / 3);
+
+                &:nth-child(3n+1) {
+                    border-left-width: 0;
+                }
+
+                &:nth-child(3n+2) {
+                    border-left-width: 0;
+                    border-right-width: 1px;
+                }
+
+                &:nth-child(3n+3) {
+                    border-left-width: 0;
+                    border-right-width: 0;
+                }
+            }
+        }
+    }
+
+
+    @include breakpoint-up("tablet") {
+        &.list-raster-tablet-one-sixth {
+            > li {
+                border-width: 0 1px 1px 0;
+                flex: 0 0 percentage(1 / 6);
+                max-width: percentage(1 / 6);
+
+                &:nth-child(6n+6) {
+                    border-right-width: 0;
+                }
+            }
+        }
+    }
+}

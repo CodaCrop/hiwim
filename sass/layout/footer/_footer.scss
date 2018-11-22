@@ -1,0 +1,266 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Footer
+// Description:     Defines styles for the footer.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Layout: Footer
+ ========================================================================== */
+
+.footer {
+    border-top: 1px solid $footer-border-color;
+    width: 100%;
+}
+
+/* Section
+ ========================================================================== */
+
+.footer-section {
+    background-color: $footer-section-background-color;
+    border-top: 1px solid $footer-section-border-color;
+    padding-bottom: $footer-section-spacing;
+    padding-top: $footer-section-spacing;
+
+    &:first-child {
+        border-color: transparent;
+    }
+
+    a {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &.footer-section--inverse {
+        background-color: $footer-section-inverse-background-color;
+        border-top: 1px solid $footer-section-inverse-border-color;
+        color: $footer-section-inverse-color;
+
+        a {
+            color: $footer-section-inverse-color;
+        }
+    }
+}
+
+/* Breadcrumb
+ ========================================================================== */
+
+.footer-breadcrumb {
+    color: $footer-breadcrumb-link-color;
+    list-style: none;
+    margin: 0;
+    padding: $footer-breadcrumb-spacing 0;
+
+    @include breakpoint-up("desktop") {
+        float: left;
+    }
+
+
+    > li {
+        display: inline-block;
+        line-height: $footer-breadcrumb-line-height;
+
+        > a {
+            color: $footer-breadcrumb-link-color;
+            text-decoration: none;
+        }
+    }
+
+    > li + li:before {
+        @extend %icon;
+
+        color: $footer-breadcrumb-divider-color;
+        content: $icon-arrow-right;
+    }
+}
+
+/* Jump
+ ========================================================================== */
+
+.footer-jump {
+    display: table;
+    list-style: none;
+    margin: 0;
+    padding: $footer-jump-spacing 0;
+    table-layout: fixed;
+
+    @include breakpoint-down("tablet") {
+        width: 100%;
+
+        &:before {
+            border-top: 1px solid $footer-jump-divider-color;
+            content: '';
+            display: block;
+            left: 0;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+        }
+
+        > li {
+            text-align: center;
+            width: 50%;
+        }
+    }
+
+
+    @include breakpoint-up("desktop") {
+        float: right;
+    }
+
+
+    > li {
+        display: table-cell;
+        line-height: $footer-jump-line-height;
+        padding-left: $footer-jump-list-item-spacing;
+        padding-right: $footer-jump-list-item-spacing;
+
+        &:first-child {
+            padding-left: $footer-jump-list-item-spacing / 2;
+        }
+
+        &:last-child {
+            padding-right: $footer-jump-list-item-spacing / 2;
+        }
+
+        > a {
+            color: $footer-jump-link-color;
+            font-weight: 700;
+            text-decoration: none;
+        }
+    }
+
+    > li + li {
+        border-left: 1px solid $footer-jump-divider-color;
+    }
+}
+
+/* Nav
+ ========================================================================== */
+
+.footer-nav {
+    margin-top: $footer-nav-spacing;
+}
+
+.footer-nav-toggle {
+    display: none;
+
+    @include breakpoint-down("tablet") {
+        + .footer-nav-title:after {
+            content: $icon-arrow-down;
+
+            @include transform(rotate(0deg));
+        }
+
+        &:checked + .footer-nav-title {
+            color: $footer-nav-list-color;
+        }
+
+        &:checked + .footer-nav-title:after {
+            @include transform(rotate(-180deg));
+        }
+
+        + .footer-nav-title + .footer-nav-list {
+            max-height: 0;
+            overflow: hidden;
+
+            @include transition(all 0.25s);
+
+            transition-delay: 0.25s;
+        }
+
+        &:checked + .footer-nav-title + .footer-nav-list {
+            max-height: 200px;
+        }
+    }
+}
+
+.footer-nav-title {
+    @include transition(all 0.25s);
+
+    display: block;
+    font-weight: 800;
+    margin-bottom: $footer-nav-title-spacing;
+    position: relative;
+    text-transform: uppercase;
+
+    &:after {
+        @extend %icon;
+
+        @include transition(transform 0.2s 0.2s);
+    }
+
+    @include breakpoint-down("tablet") {
+        cursor: pointer;
+
+        &:after {
+            position: absolute;
+            right: 0;
+        }
+    }
+}
+
+.footer-nav-title--inverse {
+    color: $footer-nav-inverse-title-color;
+}
+
+.footer-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    > li {
+        padding-bottom: $footer-nav-list-spacing;
+        padding-top: $footer-nav-list-spacing;
+
+        a {
+            display: block;
+        }
+    }
+}
+
+/* Links
+ ========================================================================== */
+
+.footer-links {
+    list-style: none;
+    margin: 0 0 $footer-links-spacing;
+    padding: 0;
+
+    > li {
+        display: inline-block;
+        padding-right: $footer-links-spacing;
+        padding-bottom: $footer-links-spacing;
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+}
+
+/* Social
+ ========================================================================== */
+
+.footer-social {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include breakpoint-up("desktop") {
+        float: right;
+    }
+
+
+    > li {
+        display: inline-block;
+    }
+}
+
+.footer-social-icon {
+    font-size: $footer-social-icon-size;
+}

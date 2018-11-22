@@ -1,0 +1,34 @@
+/// <reference path="../../_design-system.scss" />
+//
+// Subject:         Badge
+// Description:     Defines styles for Badge.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Components: Badge
+ ========================================================================== */
+
+ .badge {
+  background-color: $badge-background-color;
+  border-radius: 50%;
+  color: $badge-color;
+  display: block;
+  font-family: Arial; 
+  font-size: $badge-font-size;	
+  height: $badge-height;
+  line-height: $badge-height;
+  text-align: center;
+  width: $badge-width;
+}
+
+.badge-wrapper {
+  position: relative;
+
+  .badge {
+    position: absolute;
+    right: -6px;
+    top: -6px;
+    z-index: 1;
+  }
+}

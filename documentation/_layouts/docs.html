@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/assets/stylesheets/design-system.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="/vendor/slick-carousel/slick/slick.css">
+    <style>
+        .doc-example-box {
+            background-color: #E5F6FC;
+            border: 1px solid #00A0DE;
+            padding: 15px;
+        }
+
+        .doc-icon-list {
+            list-style: none;
+            margin: 0 0 20px;
+            padding: 0;
+        }
+
+        .doc-icon-list li {
+            background-color: #f9f9f9;
+            border: 1px solid #fff;
+            float: left;
+            height: 125px;
+            padding: 10px;
+            line-height: 1.4;
+            text-align: center;
+            width: 33.333%;
+        }
+
+        .doc-icon-list-icon {
+            font-size: 2.222222em;
+        }
+
+        .doc-icon-list-name {
+            display: block;
+            font-size: 16px;
+        }
+
+        @media (min-width: 980px) {
+            .doc-icon-list li {
+                height: 110px;
+                width: 20%;
+            }
+        }
+
+        .doc-table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 20px
+        }
+
+        .doc-table th {
+            padding: 10px 5px;
+            text-align: left;
+            vertical-align: bottom;
+            font-weight: 800;
+            text-transform: uppercase
+        }
+
+        .doc-table td {
+            padding: 10px 5px;
+            vertical-align: top
+        }
+
+        .doc-table td>:last-child {
+            margin-bottom: 0
+        }
+
+        .doc-table tfoot {
+            font-size: 16px
+        }
+
+        .doc-table caption {
+            font-size: 16px;
+            text-align: left;
+            color: #999
+        }
+
+        .doc-table>tr:nth-of-type(odd),
+        .doc-table tbody tr:nth-of-type(odd) {
+            background: #f8f8f8;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5
+        }
+
+        /* highlight.js styling */
+
+        .hljs {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .razor .hljs-start {
+            background-color: yellow;
+            color: black;
+        }
+
+        pre {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    {{> header }}
+    <!-- <div class="notify-bar">
+        <div class="notify-bar-content">
+            <div class="container text-center">
+                <span class="icon-award icon-large"></span> <strong>Ondernemen</strong> via hét Unlimited netwerk.  <a class="text-nowrap" href="javascript:return false;">Meer weten</a>
+            </div>
+        </div>
+    </div> -->
+    <main role="main">
+        <div class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="column-tablet-8">
+                        {{{ contents }}}
+                    </div>
+                    <div class="column-tablet-4">
+                        <ul class="sidebar">
+                            {{#each collections}}
+                            <li class="{{#compare @key '==' ../collection }}is-active{{/compare}}">
+                                <a href="/documentation/{{this.0.path}}">{{@key}}</a> {{#compare @key '==' ../collection }}
+                                <ul>
+                                    {{#each this}}
+                                    <li class="{{#compare ../../title '==' title}}is-active{{/compare}}">
+                                        <a href="/documentation/{{path}}">{{title}}</a>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                                {{/compare}}
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{> footer }}
+    <script src="/vendor/jquery/dist/jquery.js"></script>
+    <script src="/vendor/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="/vendor/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+    <script src="/vendor/popper.js/dist/umd/popper.min.js"></script>    
+    <script src="/assets/javascripts/design-system.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+    <script src="/vendor/slick-carousel/slick/slick.min.js"></script>
+    <script src="/vendor/jquery.floatThead/dist/jquery.floatThead.min.js"></script>
+    <script>
+        hljs.registerLanguage("razor", function (b) {
+            var a = "foreach|0 var|0 if|0 in|0 else|0 model|0 using|0 false|0true|0 null|0 int|0 for|0 double|0 decimal|0 float|0 string|0 new|0";
+            return { k: a, c: [{ cN: "built_in", b: "Html|Scripts|RenderBody|RenderSection|Styles" }, { cN: "comment", b: "@[*]", e: "[*]@" }, { cN: "start", b: /[@][?\\w]*/, i: /[@][{*]/ }, { cN: "string", b: '"((?!@))', e: '"', i: "\\n" }, { b: "<", e: ">", i: "</?", sL: "xml", c: [{ b: '"@', e: '"', sL: "razor" }] }] }
+        });
+        hljs.initHighlightingOnLoad();
+    </script>
+    <script>
+        $.extend($.validator.messages, {
+            required: "Dit is een verplicht veld.",
+            remote: "Controleer dit veld.",
+            email: "Vul hier een geldig e-mailadres in.",
+            url: "Vul hier een geldige URL in.",
+            date: "Vul hier een geldige datum in.",
+            dateISO: "Vul hier een geldige datum in (ISO-formaat).",
+            number: "Vul hier een geldig getal in.",
+            digits: "Vul hier alleen getallen in.",
+            creditcard: "Vul hier een geldig creditcardnummer in.",
+            equalTo: "Vul hier dezelfde waarde in.",
+            accept: "Vul hier een waarde in met een geldige extensie.",
+            maxlength: $.validator.format("Vul hier maximaal {0} tekens in."),
+            minlength: $.validator.format("Vul hier minimaal {0} tekens in."),
+            rangelength: $.validator.format("Vul hier een waarde in van minimaal {0} en maximaal {1} tekens."),
+            range: $.validator.format("Vul hier een waarde in van minimaal {0} en maximaal {1}."),
+            max: $.validator.format("Vul hier een waarde in kleiner dan of gelijk aan {0}."),
+            min: $.validator.format("Vul hier een waarde in groter dan of gelijk aan {0}.")
+        });
+        $('form').validate({
+            focusInvalid: false,
+            errorClass: 'is-invalid',
+            errorPlacement: function (place, element) {
+                place.addClass('invalid-feedback');
+                place.insertAfter(element);
+            },
+            validClass: 'is-valid'
+        });
+        $('[data-navbar-search-input]').autocomplete({
+            placeholder: $('[data-navbar-search-result]').detach().html(),
+            menuClass: 'navbar-search-autocomplete',
+            minChars: 3,
+            source: function (term, renderSuggestion) {
+                $.ajax({
+                    url: "https://www.t-mobile.nl/Resources/SearchSuggest.ashx",
+                    data: { q: term },
+                    type: "POST",
+                    dataType: "jsonp",
+                    success: function (result) {
+                        renderSuggestion(result.suggestions);
+                    }
+                });
+            }
+        });
+
+        $('#autocompete-example-1').autocomplete({
+            minChars: 2,
+            source: function (term, renderSuggestion) {
+                term = term.toLowerCase();
+                var choices = ['Samsung Galaxy S8', 'Apple iPhone 7 32GB', 'Huawei P10 64GB', 'Sony Xperia XZ Premium', 'Samsung Galaxy S7 32GB', 'LG G6', 'Samsung Galaxy S8+', 'Apple iPhone 7 Plus 32GB', 'Motorola Moto Z2 Play 32GB', 'Sony Xperia XZs', 'Apple iPhone 7 128GB', 'Samsung Galaxy S7 edge 32GB', 'Apple iPhone 6 32GB', 'Apple iPhone 6s 32GB', 'Motorola Moto G5 Plus', 'Motorola Moto G5', 'Apple iPhone SE 128GB', 'Apple iPhone SE 32GB', 'Huawei P10 Plus', 'Motorola Moto Z Play 32GB', 'Sony Xperia X Compact 32GB', 'Huawei P10 Lite', 'Sony Xperia XA1', 'Sony Xperia L1', 'Apple iPhone 6s Plus 32GB', 'Huawei P9', 'Apple iPhone 7 Plus 128GB', 'Samsung Galaxy A5 2017', 'Samsung Galaxy A3 2017', 'Samsung Galaxy J5 2017 16GB', 'LG G5 SE 32GB', 'Apple iPhone 7 256GB', 'Apple iPhone 7 Plus 256GB', 'Huawei P9 Lite', 'Apple iPhone 5s 16GB', 'Samsung Galaxy Xcover 4 32GB', 'Huawei P8 Lite 2017', 'Samsung Galaxy J3 (2016)', 'LG K10 2017'];
+                var suggestions = [];
+                for (i = 0; i < choices.length; i++) {
+                    if (~choices[i].toLowerCase().indexOf(term)) {
+                        suggestions.push(choices[i]);
+                    }
+                }
+                renderSuggestion(suggestions);
+            }
+        });
+    </script>
+</body>
+
+</html>

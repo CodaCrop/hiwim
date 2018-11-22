@@ -1,0 +1,33 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Visibility
+// Description:     To show or hide content on breakpoints.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Utilities: Visibility
+ ========================================================================== */
+
+.visible {
+    visibility: visible !important;
+}
+
+.invisible {
+    visibility: hidden !important;
+}
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    .hidden-#{$breakpoint}-up {
+        @include breakpoint-up($breakpoint) {
+            display: none !important;
+        }
+    }
+
+    .hidden-#{$breakpoint}-down {
+        @include breakpoint-down($breakpoint) {
+            display: none !important;
+        }
+    }
+}

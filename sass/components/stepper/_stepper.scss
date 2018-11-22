@@ -1,0 +1,118 @@
+/// <reference path="../../_design-system.scss" />
+//
+// Subject:         Stepper
+// Description:     Defines styles for stepper.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Components: Stepper
+ ========================================================================== */
+
+.stepper {
+  list-style: none; 
+  counter-reset: li;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  
+  > li {
+    display: inline-block;
+
+    &:last-child {
+      .stepper-dot::after {
+        display: none;
+      }
+    }
+
+    &.is-active {
+      .stepper-dot {
+        border-color: $stepper-active-color;
+
+        &:before {
+          background-color: $stepper-active-color;
+        }
+
+        &:after {
+          background: linear-gradient(to left,$stepper-inactive-color 50%,$stepper-active-color 50%);
+        }
+      }
+
+      .stepper-label { 
+        color: #262626;
+      }
+    }
+
+    &.is-completed {
+      .stepper-dot {
+        border-color: $stepper-active-color;
+
+        &:before, &:after {
+          background-color: $stepper-active-color;
+        }
+      }
+
+      .stepper-label { 
+        color: $stepper-active-color;
+      }
+    }
+  }
+
+  .stepper-dot {
+    border: 2px solid $stepper-inactive-color;
+    border-radius: $stepper-dot-height/2;
+    color: $stepper-dot-text-color;
+    counter-increment: li;
+    display: inline-block;
+    font-weight: $stepper-dot-font-weight;
+    height: $stepper-dot-height;
+    line-height: 30px;
+    margin: 0 $stepper-dot-margin;
+    position: relative;
+    width: $stepper-dot-width;
+
+    &:before {
+      background-color: $stepper-inactive-color;
+      border-radius: ($stepper-dot-height - 14px)/2;
+      content: counter(li); 
+      height: $stepper-dot-height - 14px;
+      left: 7px - $stepper-border-width;
+      position: absolute;
+      text-align: center;
+      top: 7px - $stepper-border-width;
+      width: $stepper-dot-height - 14px;
+    }
+  
+    &:after {
+      background-color: $stepper-inactive-color;
+      content: "";
+      position: absolute;
+      height: $stepper-border-width;
+      right: ($stepper-dot-line-width + $stepper-border-width)*-1;	
+      top: ($stepper-dot-height - $stepper-border-width)/2;
+      width: $stepper-dot-line-width;	
+    }
+  }
+
+  .stepper-label {
+    color: $stepper-inactive-color;
+    display: block;
+    font-weight: $stepper-label-font-weight;
+    margin-top: $stepper-label-margin-top;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@include breakpoint-down("tablet") {
+  .stepper {
+    .stepper-dot {
+      margin: 0 24px;
+
+      &:after {
+        right: -56px;
+        width: 56px;
+      }
+    }
+  }
+}

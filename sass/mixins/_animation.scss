@@ -1,0 +1,24 @@
+﻿/// <reference path="../_design-system.scss" />
+
+@mixin transition($transition) {
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+@mixin transition-delay($delay) {
+    -webkit-transition-delay: $delay;
+    -moz-transition-delay: $delay;
+    -o-transition-delay: $delay;
+    transition-delay: $delay;
+}
+
+@mixin transform($transition) {
+    -webkit-transform: $transition;
+    -moz-transform: $transition;
+    -ms-transform: $transition;
+    -o-transform: $transition;
+    transform: $transition;
+}

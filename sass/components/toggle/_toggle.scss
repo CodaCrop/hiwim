@@ -1,0 +1,62 @@
+/// <reference path="../../_design-system.scss" />
+//
+// Subject:         Toggle
+// Description:     Defines styles for toggle element.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Component: Toggle
+ ========================================================================== */
+
+.toggle {
+    cursor: pointer;
+    display: inline;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+        opacity: .8;
+        text-decoration: none;
+    }
+    
+    &:after {
+        @extend %icon;
+        @include transition(all 0.35s);
+        content: $icon-arrow-down;
+        margin-left: 0.25rem;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+    .hidden-on-opened {
+        display: inline;
+    }
+
+    .visible-on-opened {
+        display: none;
+    }
+
+    &.is-opened {
+        .hidden-on-opened {
+            display: none;
+        }
+        
+        .visible-on-opened {
+            display: inline;
+        }
+
+        &:after {
+            @include transform(rotate(-180deg));
+        }
+    }
+}
+
+.toggle-text {
+    @extend .toggle;
+    color: $base-body-color;
+
+    &:hover {
+        color: $base-body-color;
+    }
+}

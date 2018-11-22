@@ -1,0 +1,268 @@
+/// <reference path="../../_design-system.scss" />
+//
+// Subject:         Modal
+// Description:     Defines styles for modal.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Utility: Modal
+ ========================================================================== */
+
+// Kill the scroll on the body
+.modal-open {
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+// Container that the modal scrolls within
+.modal {
+    backface-visibility: hidden;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    outline: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    visibility: hidden;
+    z-index: $zindex-modal;
+    .modal-open & {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+}
+
+.fade {
+    opacity: 0;
+    @include transition($modal-transition-fade);
+    &.show {
+        opacity: 1;
+    }
+}
+
+// Shell div to position the modal with bottom padding
+.modal-dialog {
+    margin: $modal-dialog-margin-mobile;
+    opacity: 0;
+    pointer-events: none;
+    position: relative;
+    transform: scale(0.7);
+    transition: all 0.3s;
+    width: auto; // When fading in the modal, animate it to slide down
+    
+    .modal.fade & {
+        @include transition($modal-transition);
+    }
+
+    .modal.show & {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    &.modal-large {
+        margin: $modal-dialog-margin-mobile;
+    }
+
+    &.modal-full-screen {
+        margin: 0;
+        max-width: $modal-full-screen;
+        height: 100%;
+
+        .modal-content {
+            border-radius: 0;
+            height: 100%;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        &.modal-transparent .modal-content {
+            box-shadow: none;
+        }
+    }
+
+    &.modal-max-height {
+        max-height: calc(100% - #{$modal-dialog-margin * 2});
+        overflow: hidden;
+
+        .modal-content {
+            max-height: calc(100vh - #{$modal-header-height});
+        }
+
+        .modal-body {
+            height: calc(100vh - #{($modal-dialog-margin * 2) + ($modal-header-height * 2)});
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            box-shadow: 0 0 20px 0 rgba(0,0,0,0.1);
+        }
+
+        @include breakpoint-only("mobile") {
+            margin: 0;
+            max-height: 100%;
+            max-width: $modal-full-screen;
+            height: 100%;
+            
+            .modal-content {
+                border-radius: 0;
+                height: 100%;
+                max-height: 100%;
+            }
+
+            &.modal-transparent .modal-content {
+                box-shadow: none;
+            }
+        }
+    }
+    
+    &.modal-transparent {
+        .modal-content {
+            background-color: transparent;
+        }
+    }
+}
+
+// Actual modal
+.modal-content {
+    background-color: $modal-content-background-color;
+    background-clip: padding-box;
+    border-radius: $modal-content-border-radius;
+    box-shadow: $modal-content-box-shadow;
+    display: flex;
+    flex-direction: column;
+    outline: 0;
+    pointer-events: auto;
+    position: relative;
+}
+
+// Modal background
+.modal-backdrop {
+    background-color: $modal-backdrop-background-color;
+    bottom: 0;
+    left: 0;
+    opacity: $modal-backdrop-opacity;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1049; // Fade for backdrop
+
+    &.fade {
+        opacity: 0;
+    }
+
+    &.show {
+        opacity: $modal-backdrop-opacity;
+    }
+}
+
+.modal-close-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: $modal-close-button-font-size;
+    height: $modal-close-button-height;
+    outline: none;
+    padding: 0;
+    position: absolute;
+    right: $modal-close-button-right;
+    top: $modal-close-button-top;
+    width: $modal-close-button-width;
+    z-index: 10;
+    -webkit-appearance: none;
+
+    &:after {
+        @extend %icon;
+        content: $icon-close;
+    }
+}
+
+// Modal header
+// Top section of the modal w/ title and dismiss
+.modal-header {
+    align-items: center;
+    border-bottom: 1px solid $color-border;
+    display: flex;
+    height: $modal-header-height;
+    justify-content: center;
+    padding: $modal-header-padding;
+}
+
+// Title text within header
+.modal-title {
+    line-height: $modal-title-line-height;
+    margin-bottom: 0;
+}
+
+// Modal body
+.modal-body {
+    flex: 1 1 auto;
+    position: relative;
+    padding: $modal-inner-padding;
+}
+
+.modal-body-overflow {
+    max-height: calc(100% - #{$modal-header-height});
+    overflow-y: auto;
+    padding-bottom: $modal-header-height * 1.25;
+}
+
+.modal-body-overflow + .modal-footer {
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.1);
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+// Footer (for actions)
+.modal-footer {
+  align-items: center;
+  background-color: $modal-content-background-color;
+  border-top: 1px solid $color-border;
+  display: flex;
+  height: $modal-header-height;
+  justify-content: space-between;
+  padding: $modal-header-padding;
+
+  &.footer-hidden {
+      display: none;
+  }
+}
+
+// Measure scrollbar width for padding body during modal show/hide
+.modal-scrollbar-measure {
+    height: 50px;
+    overflow: scroll;
+    position: absolute;
+    top: -9999px;
+    width: 50px;
+}
+
+// Scale up the modal
+@include breakpoint-up(tablet) {
+    .modal-dialog {
+        margin: $modal-dialog-margin auto;
+        max-width: $modal-medium;
+        &.modal-large {
+            max-width: $modal-large;
+        }
+        &.modal-small {
+            max-width: $modal-small;
+        }
+    }
+}
+
+@include breakpoint-up(desktop) {
+    .modal-dialog {
+        &.modal-large {
+            margin: $modal-dialog-margin auto;
+        }
+    }
+    .modal-close-button {
+        right: $modal-close-button-right-desktop;
+        top: $modal-close-button-top-desktop;
+    }
+}

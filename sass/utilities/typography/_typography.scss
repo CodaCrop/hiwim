@@ -1,0 +1,128 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Typography
+// Description:     Utilities for text.
+//
+// ===========================================================================
+
+/* Responsive alignment modifiers
+ ========================================================================== */
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+        .text#{$infix}-left {
+            text-align: left !important;
+        }
+
+        .text#{$infix}-right {
+            text-align: right !important;
+        }
+
+        .text#{$infix}-center {
+            text-align: center !important;
+        }
+    }
+}
+
+/* Transform modifiers
+ ========================================================================== */
+
+.text-nowrap {
+    white-space: nowrap !important;
+}
+
+.text-justify {
+    text-align: justify !important;
+}
+
+.text-lowercase {
+    text-transform: lowercase !important;
+}
+
+.text-uppercase {
+    text-transform: uppercase !important;
+}
+
+.text-capitalize {
+    text-transform: capitalize !important;
+}
+
+.text-transform-reset {
+    text-transform: none;
+}
+
+/* Size modifiers
+ ========================================================================== */
+
+.text-small {
+    font-size: 0.88889em;
+}
+
+.text-large {
+    font-size: 1.25em;
+}
+
+.text-extra-large {
+    font-size: 2em;
+}
+
+/* Style and weight modifiers
+========================================================================== */
+
+.text-italic {
+    font-style: italic;
+}
+
+.text-weight-light  { 
+    font-weight: 200 !important;
+}
+
+.text-weight-normal { 
+    font-weight: 400 !important;
+}
+
+.text-weight-bold   { 
+    font-weight: 700 !important;
+}
+
+.text-weight-bolder   { 
+    font-weight: 900 !important;
+}
+
+/* Text decoration
+========================================================================== */
+
+.text-line-through {
+    text-decoration: line-through;
+}
+
+/* Context modifiers
+ ========================================================================== */
+
+.text-white {
+    color: #fff !important;
+
+    a {
+        color: inherit !important;
+        text-decoration: underline;
+
+        &:hover {
+            color: inherit !important;
+            opacity: 0.8;
+        }
+    }
+}
+
+.text-default {
+    color: $base-body-color !important;
+}
+
+@include text-emphasis-variant(".text-muted", $color-muted);
+@include text-emphasis-variant(".text-brand", $color-brand);
+@include text-emphasis-variant(".text-success", $color-success);
+@include text-emphasis-variant(".text-info", $color-info);
+@include text-emphasis-variant(".text-warning", $color-warning);
+@include text-emphasis-variant(".text-danger", $color-danger);

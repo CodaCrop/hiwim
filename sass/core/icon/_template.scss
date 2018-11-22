@@ -1,0 +1,78 @@
+﻿//
+// Subject:         Icon
+// Description:     Defines styles for icons.
+//
+// ===========================================================================
+
+
+// Variables
+// ========================================================================
+<% _.each(glyphs, function(glyph) { %>$<%= cssClass%>-<%= glyph.fileName %>: "\<%= glyph.codePoint %>" !default;
+<% }); %>
+
+/* ========================================================================
+   Component: Icon
+ ========================================================================== */
+@font-face {
+    font-family: "<%= fontName %>";
+    src: url('<%= fontPath %><%= fontName %>.eot?v=#{$version}');
+    src: url('<%= fontPath %><%= fontName %>.eot?#iefix&v=#{$version}') format('eot'),
+         url('<%= fontPath %><%= fontName %>.woff?v=#{$version}') format('woff'),
+         url('<%= fontPath %><%= fontName %>.ttf?v=#{$version}') format('truetype'),
+         url('<%= fontPath %><%= fontName %>.svg#<%= fontName %>&v=#{$version}') format('svg');
+}
+
+%icon {
+    bottom: 1px;
+    display: inline-block;
+    font-family: "<%= fontName %>";
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    position: relative;
+    speak: none;
+    text-transform: none !important;
+    vertical-align: middle;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="<%= cssClass%>-"],
+[class*=" <%= cssClass%>-"] {
+    @extend %icon;
+}
+
+/* Link
+ ========================================================================== */
+
+.icon-link {
+    color: $icon-link-color;
+    cursor: pointer;
+
+    &:hover {
+        color: $icon-link-color;
+    }
+}
+
+/* Size modifiers
+ ========================================================================== */
+
+.icon-large:before {
+    vertical-align: -19%;
+    font-size: 1.65em;
+}
+
+.icon-extra-large:before {
+    vertical-align: -19%;
+    font-size: 4.5em;
+}
+
+/* Icon mapping
+ ========================================================================== */
+
+<% _.each(glyphs, function(glyph) { %>.<%= cssClass%>-<%= glyph.fileName %> {
+    &:before {
+        content: $<%= cssClass%>-<%= glyph.fileName %>;
+    }
+}
+<% }); %>

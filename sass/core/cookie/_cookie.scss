@@ -1,0 +1,43 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Cookie
+// Description:     Defines styles for cookie overlay.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Core: Cookie
+ ========================================================================== */
+.cookie {
+    .cookie-dialog.modal-dialog {
+        max-height: 80vh;
+    }
+
+    .cookie-header {
+        height: 60px;
+    }
+
+    .cookie-body {
+        font-size: 16px;
+        max-height: 340px;
+    }
+
+    .cookie-footer {
+        height: 70px;
+    }
+}
+
+@include breakpoint-down("mobile") {
+    .cookie.modal {
+        bottom: 0;
+        top: auto;
+
+        .cookie-content {
+            .cookie-body.modal-body {
+                max-height: calc(80vh - 130px);
+                height: auto;
+            }
+        }
+    }
+}

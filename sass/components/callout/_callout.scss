@@ -1,0 +1,50 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Callout
+// Description:     Defines styles for callout component.
+//
+// ===========================================================================
+
+@mixin callout-variation($color) {
+    @extend %callout;
+
+    border-left-color: $color;
+
+    .callout-title {
+        color: $color;
+    }
+}
+
+/* ========================================================================
+   Components: Callout
+ ========================================================================== */
+
+%callout {
+    border: 1px solid $callout-border-color;
+    border-left: 4px solid $callout-border-color;
+    border-radius: $callout-border-radius;
+    margin-bottom: $callout-margin-y;
+    margin-top: $callout-margin-y;
+    padding: $callout-spacing-y $callout-spacing-x;
+
+    .callout-title {
+        font-weight: 900;
+    }
+}
+
+.callout-success {
+    @include callout-variation($color-success);
+}
+
+.callout-warning {
+    @include callout-variation($color-warning);
+}
+
+.callout-info {
+    @include callout-variation($color-info);
+}
+
+.callout-danger {
+    @include callout-variation($color-danger);
+}

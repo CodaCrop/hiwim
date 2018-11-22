@@ -1,0 +1,9 @@
+﻿/// <reference path="../../_design-system.scss" />
+
+@include font-face('TeleGroteskNext', 'telegrotesknext-thin', '/assets/fonts/telegrotesknext-thin', 200, normal);
+@include font-face('TeleGroteskNext', 'telegrotesknext-regular', '/assets/fonts/telegrotesknext-regular', 400, normal);
+@include font-face('TeleGroteskNext', 'telegrotesknext-regular-italic', '/assets/fonts/telegrotesknext-regular-italic', 400, italic);
+@include font-face('TeleGroteskNext', 'telegrotesknext-medium', '/assets/fonts/telegrotesknext-medium', 600, normal);
+@include font-face('TeleGroteskNext', 'telegrotesknext-medium-italic', '/assets/fonts/telegrotesknext-medium-italic', 600, italic);
+@include font-face('TeleGroteskNext', 'telegrotesknext-bold', '/assets/fonts/telegrotesknext-bold', 700, normal);
+@include font-face('TeleGroteskNext', 'telegrotesknext-ultra', '/assets/fonts/telegrotesknext-ultra', 800, normal);

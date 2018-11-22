@@ -1,0 +1,62 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Page visual
+// Description:     Defines styles for page visual.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Layout: Page Visual
+ ========================================================================== */
+
+.page-visual {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: relative;
+    width: 100%;
+
+    &:before {
+        background-color: $page-visual-background-color;
+        content: "";
+        height: 100%;
+        position: absolute;
+        width: 100%;
+    }
+
+    &:after {
+        background: $page-visual-background-gradient;
+        content: "";
+        height: 100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+
+.page-visual-content {
+    padding: $page-visual-content-padding;
+    position: relative;
+    z-index: 1;
+}
+
+.page-visual-title {
+    font-size: $page-visual-title-font-size;
+}
+
+.page-visual-text {
+    font-size: $page-visual-text-font-size;
+    line-height: $page-visual-text-line-height;
+}
+
+@include breakpoint-down("mobile") {
+    .page-visual-content {
+        padding: $page-visual-content-padding-mobile;
+    }
+
+    .page-visual-title {
+        font-size: $page-visual-title-font-size-mobile;
+    }
+}

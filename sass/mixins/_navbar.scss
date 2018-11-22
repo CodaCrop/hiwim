@@ -1,0 +1,7 @@
+@mixin navbar-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: $navbar-height;
+    text-decoration: none;
+}

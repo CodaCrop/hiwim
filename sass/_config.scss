@@ -1,0 +1,806 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Configuration
+// Description:     Defines all default configurations for the design system.
+//
+// ===========================================================================
+
+
+// Design System
+// ===========================================================================
+
+$version:                                       '0.9.13-beta';
+$building-unit:                                 10px !default;
+
+// Colors
+// ===========================================================================
+
+$color-bright:                                  #fff !default;
+$color-gray-light:                              #ededed !default;
+$color-gray:                                    #a4a4a4 !default;
+$color-gray-dark:                               #6c6c6c !default;
+$color-gray-darker:                             #262626 !default;
+$color-black:                                   #000000 !default;
+
+$color-success:                                 #21b277 !default;
+$color-warning:                                 #ff9a1e !default;
+$color-danger:                                  #d90000 !default;
+$color-brand:                                   #e20074 !default;
+$color-inactive:                                #d0d0d0 !default;
+$color-info:                                    #1063AD !default;
+$color-highlight:                               #ff0 !default;
+$color-selected:                                #53baf2 !default;
+$color-muted:                                   #918984 !default;
+
+$color-border:                                  #e6e6e6 !default;
+$color-border-darker:                           #4b4b4b !default;
+
+// Spacing
+// ===========================================================================
+
+$spacer:   1rem !default;
+$spacer-x: $spacer !default;
+$spacer-y: $spacer !default;
+$spacers: (
+  0: (
+    x: 0,
+    y: 0
+  ),
+  1: (
+    x: ($spacer-x * .25),
+    y: ($spacer-y * .25)
+  ),
+  2: (
+    x: ($spacer-x * .5),
+    y: ($spacer-y * .5)
+  ),
+  3: (
+    x: $spacer-x,
+    y: $spacer-y
+  ),
+  4: (
+    x: ($spacer-x * 1.5),
+    y: ($spacer-y * 1.5)
+  ),
+  5: (
+    x: ($spacer-x * 3),
+    y: ($spacer-y * 3)
+  )
+) !default;
+
+$sizes: (
+  25: 25%,
+  50: 50%,
+  75: 75%,
+  100: 100%
+) !default;
+
+// Z-index
+// ===========================================================================
+
+$zindex-autocomplete:                           800 !default;
+$zindex-logo:                                   1 !default;
+$zindex-navbar:                                 900 !default;
+$zindex-navbar-menu-state:                      2 !default;
+$zindex-modal:                                  1050 !default;
+$zindex-toast-container:                        700 !default;
+$zindex-toast:                                  700 !default;
+$zindex-toast-close:                            10 !default;
+$zindex-tooltip:                                700 !default;
+$zindex-search:                                 2 !default;
+$zindex-user-dropdown:                          2 !default;
+
+// Base
+// ===========================================================================
+
+$base-font-family-tmobile:                      'TeleGroteskNext', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$base-font-family-icon:                         'TeleIcon-Outline' !default;
+$base-font-family-regular:                      $base-font-family-tmobile !default;
+
+$base-font-size:                                18px !default;
+$base-line-height:                              1.2 !default;
+
+$base-body-background:                          #fff !default;
+$base-body-font-family:                         $base-font-family-regular !default;
+$base-body-font-weight:                         normal !default;
+$base-body-font-size:                           $base-font-size !default;
+$base-body-line-height:                         1.2 !default;
+$base-body-color:                               $color-gray-darker !default;
+
+$base-link-color:                               #1063ad !default;
+$base-link-text-decoration:                     none !default;
+$base-link-hover-color:                         darken($base-link-color, 7%) !default;
+$base-link-hover-text-decoration:               underline !default;
+
+$h1-font-size:                                  2.25rem !default;
+$h2-font-size:                                  2rem !default;
+$h3-font-size:                                  1.25rem !default;
+$h4-font-size:                                  1rem !default;
+$h5-font-size:                                  1rem !default;
+$h6-font-size:                                  1rem !default;
+
+$h1-mobile-font-size:                           2rem !default;
+$h2-mobile-font-size:                           1.555556rem !default;
+$h3-mobile-font-size:                           1.25rem !default;
+
+$headings-font-family:                          $base-font-family-tmobile !default;
+$headings-font-weight:                          800 !default;
+$headings-line-height:                          1.2 !default;
+$headings-margin-bottom:                        0.5rem !default;
+
+$list-border-color:                             $color-border !default;
+$list-spacing:                                  $building-unit * 1 !default;
+$list-inline-spacing:                           $building-unit * 1 !default;
+
+$list-group-border-color:                       $color-border !default;
+$list-group-spacing:                            $building-unit * 2 !default;
+$list-group-header-background-color:            #f6f6f6 !default;
+
+$description-list-spacing:                      $building-unit * 2 !default;
+
+// Core: Button
+// ===========================================================================
+
+$button-font-size:                              $base-body-font-size !default;
+$button-font-family:                            $base-font-family-regular !default;
+$button-font-weight:                            800 !default;
+$button-padding-x:                              26px;
+$button-padding-y:                              12px;
+$button-line-height:                            1.25 !default;
+$button-border-width:                           2px !default;
+$button-border-radius:                          3px;
+
+$button-primary-color:                          #fff !default;
+$button-primary-background-color:               $color-brand !default;
+
+$button-success-color:                          #fff !default;
+$button-success-background-color:               $color-success !default;
+
+$button-info-color:                             #fff !default;
+$button-info-background-color:                  $color-info !default;
+
+$button-warning-color:                          #fff !default;
+$button-warning-background-color:               $color-warning !default;
+
+$button-danger-color:                           #fff !default;
+$button-danger-background-color:                $color-danger !default;
+
+$button-small-font-size:                        14px;
+$button-small-padding-x:                        $button-padding-x / 2;
+$button-small-padding-y:                        $button-padding-y / 2;
+
+$button-large-font-size:                        22px;
+$button-large-padding-x:                        $button-padding-x * 1.5;
+$button-large-padding-y:                        $button-padding-y * 1.5;
+
+// Core: Forms
+// ===========================================================================
+
+$form-input-background-color:                   $color-bright !default;
+$form-input-border-color:                       $color-border !default;
+$form-input-border-radius:                      2px !default;
+$form-input-border-width:                       1px !default;
+$form-input-color:                              $base-body-color !default;
+$form-input-disabled-background:                $color-gray-light !default;
+$form-input-disabled-color:                     $color-muted !default;
+$form-input-font-size:                          $base-body-font-size !default;
+$form-input-font-family:                        $base-body-font-family !default;
+$form-input-font-weight:                        $base-body-font-weight !default;
+$form-input-line-height:                        $button-line-height !default;
+$form-input-placeholder-color:                  $color-inactive !default;
+$form-input-spacing-y:                          15px !default;
+$form-input-spacing-x:                          20px !default;
+
+$form-input-height-inner:                       ($base-font-size * $form-input-line-height) + ($form-input-spacing-y * 2) !default;
+$form-input-height:                             calc(#{$form-input-height-inner} + #{$form-input-border-width * 2}) !default;
+
+$form-group-margin-bottom:                      1rem !default;
+
+$form-text-margin-top:                          .25rem !default;
+
+$form-check-input-margin-x:                     .25rem !default;
+
+$form-feedback-valid-color:                     $color-success !default;
+$form-feedback-invalid-color:                   $color-danger !default;
+
+$form-number-border-color:                      $color-border !default;
+$form-number-border-radius:                     3px !default;
+$form-number-height:                            50px !default;
+$form-number-width:                             $form-number-height * 3 !default;
+$form-number-font-size:                         1rem !default;
+$form-number-color:                             $color-gray-darker !default;
+$form-number-icon-font-size:                    1.7rem !default;
+$form-number-icon-font-weight:                  200 !default;
+
+$custom-control-gutter:                         1.5rem !default;
+$custom-control-line-height:                    $base-body-line-height !default;
+$custom-control-spacer-y:                       .25rem !default;
+$custom-control-spacer-x:                       1rem !default;
+
+$custom-control-indicator-background:           $color-bright !default;
+$custom-control-indicator-checked-color:        $color-brand !default;
+$custom-control-indicator-size:                 1rem !default;
+
+$custom-checkbox-indicator-icon-checked:        str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='#{$custom-control-indicator-checked-color}' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E"), "#", "%23") !default;
+$custom-radio-indicator-icon-checked:           str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-3 -3 6 6'%3E%3Ccircle r='3' fill='#{$custom-control-indicator-checked-color}'/%3E%3C/svg%3E"), "#", "%23") !default;
+$custom-select-indicator-icon:                  url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M9.5 21.5c0-.4.1-.8.4-1.1.6-.6 1.5-.6 2.1 0l20 20 19.9-19.9c.6-.6 1.5-.6 2.1 0 .6.6.6 1.5 0 2.1l-21 21c-.6.6-1.5.6-2.1 0l-21-21c-.3-.3-.4-.7-.4-1.1z'/%3E%3Cpath fill='none' d='M0 0h64v64H0z'/%3E%3C/svg%3E") !default;
+
+$custom-file-text: (
+  placeholder: (
+    en: "Choose file...",
+    nl: "Kies bestand..."
+  ),
+  button-label: (
+    en: "Browse",
+    nl: "Zoeken..."
+  )
+) !default;
+
+
+$form-selector-active-color:                    $color-brand !default;
+$form-selector-inactive-color:                  $color-inactive !default;
+$form-selector-border-radius:                   3px !default;
+$form-selector-padding-x:                       $building-unit * 2!default;
+$form-selector-padding-y:                       $building-unit !default;
+$form-selector-indicator-size:                  $building-unit * 2.5 !default;
+$form-selector-width-small:                     $building-unit * 10 !default;
+$form-selector-width-medium:                    $form-selector-width-small * 2 !default;
+$form-selector-width-large:                     $form-selector-width-small * 3 !default;
+
+// Core: Icon
+// ===========================================================================
+
+$icon-link-color:                               $color-gray;
+
+// Core: Table
+// ===========================================================================
+
+$table-border-color:                            $color-border !default;
+$table-cell-padding:                            $building-unit * 2 !default;
+$table-foot-color:                              $color-muted !default;
+$table-head-background-color:                   transparent !default;
+$table-head-font-weight:                        700 !default;
+$table-head-mobile-width:                       40% !default;
+$table-striped-background-color:                #f6f6f6 !default;
+
+
+// Layout: Grid
+// ===========================================================================
+
+$grid-breakpoints: (
+    'mobile': 0,
+    'tablet': 768px, 
+    'desktop': 980px,
+    'desktop-large': 1200px
+) !default;
+
+$grid-columns:              12 !default;
+$grid-border-color:         $color-border;
+$grid-gutter-width-base:    $building-unit * 3 !default;
+$grid-gutter-widths: (
+  'mobile': $grid-gutter-width-base,
+  'tablet': $grid-gutter-width-base,
+  'desktop': $grid-gutter-width-base,
+  'desktop-large': $grid-gutter-width-base
+) !default;
+
+$container-max-widths: (
+    'tablet': map-get($grid-breakpoints, 'tablet') - map-get($grid-gutter-widths, 'tablet'),
+    'desktop': map-get($grid-breakpoints, 'desktop') - map-get($grid-gutter-widths, 'desktop'),
+    'desktop-large': map-get($grid-breakpoints, 'desktop-large') - map-get($grid-gutter-widths, 'desktop-large')
+) !default;
+
+// Layout: Localnav
+// ===========================================================================
+
+$localnav-border-color:                         $color-border !default;
+$localnav-height:                               60px !default;
+
+// Layout: Navbar
+// ===========================================================================
+
+$navbar-background-color:                       #fff !default; // #fff | $color-gray-darker
+$navbar-border:                                 $color-border !default;
+$navbar-color:                                  $base-body-color !default; // $base-body-color | $color-gray
+$navbar-active-color:                           $color-brand !default;
+$navbar-height:                                 $building-unit * 8 !default;
+
+$navbar-item-spacing:                           $building-unit * 2.4 !default;
+
+$navbar-menu-background-color:                  $navbar-background-color !default;
+$navbar-menu-spacing:                           $building-unit * 1.5 !default;
+$navbar-menu-toggle-size:                       $building-unit * 2.2 !default;
+$navbar-menu-animation:                         0.3s !default;
+
+$navbar-menu-sub-title-background-color:        #f6f6f6 !default;
+$navbar-menu-sub-spacing-desktop:               $building-unit * 3 0 !default;
+
+$navbar-logo-url:                               "/assets/static/t-mobile-logo.svg?v=2018" !default;
+$navbar-logo-height:                            28px !default;
+$navbar-logo-width:                             55px !default;
+$navbar-logo-spacing:                           $navbar-menu-spacing * 2 !default;
+
+$navbar-cart-dropdown-background-color:          $color-bright !default;
+$navbar-cart-dropdown-border-color:              $color-border !default;
+$navbar-cart-dropdown-font-size:                 0.9rem !default;
+$navbar-cart-dropdown-width:                     386px !default;
+$navbar-cart-dropdown-color:                    #f6f6f6 !default;
+$navbar-cart-footer-height:                     170px !default;
+ 
+$navbar-user-spacing-x:                         $navbar-menu-spacing !default;
+$navbar-user-spacing-y:                         $building-unit * 1 !default;
+$navbar-user-dropdown-spacing:                  $building-unit * 1.5 !default;
+$navbar-user-dropdown-arrow-size:               $building-unit * 0.7 !default;
+$navbar-user-menu-spacing:                      $building-unit * 1 !default;
+$navbar-user-menu-close-spacing:                $grid-gutter-width-base / 2 !default;
+
+$navbar-search-spacing:                         $grid-gutter-width-base !default;
+$navbar-search-autocomplete-background-color:   darken($navbar-background-color, 3%) !default;
+$navbar-search-autocomplete-selected-color:     $color-selected !default;
+
+// Layout: Notify bar
+// ===========================================================================
+
+$notify-bar-background-color:                   #f6f6f6 !default;
+$notify-bar-spacing:                            $building-unit * 2 !default;
+
+$notify-bar-brand-background-color:         $color-brand !default;
+$notify-bar-brand-color:                    #fff !default;
+
+$notify-bar-success-background-color:         $color-success !default;
+$notify-bar-success-color:                    #fff !default;
+
+// Layout: Page header
+// ===========================================================================
+
+$page-visual-background-color:                rgba(0,0,0,0.35) !default;
+$page-visual-background-gradient:               linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%) !default;
+$page-visual-content-padding:                   ($building-unit * 9) 0 !default;
+$page-visual-content-padding-mobile:            ($building-unit * 3) 0 !default;
+$page-visual-title-font-size:                   2.5rem !default;
+$page-visual-title-font-size-mobile:            2rem !default;
+$page-visual-text-font-size:                    1.25rem !default;
+$page-visual-text-line-height:                  1.8rem !default;
+$page-visual-link-back-color:                   $color-bright !default;
+$page-visual-link-back-top-spacing:             $building-unit * 3 !default;
+
+// Layout: Section
+// ===========================================================================
+
+$section-padding-y:                             $building-unit * 6 !default;
+$section-article-padding-y:                     $building-unit * 4 !default;
+
+$section-heading-border-color:                  $color-border !default;
+$section-heading-margin-bottom:                 1.388889rem !default;
+
+$section-intro-color:                           $base-body-color !default;
+$section-intro-font-size:                       1.25rem !default;
+$section-intro-line-height:                     1.4 !default;
+
+$section-service-background-color:              #f6f6f6 !default;
+$section-service-background-image:              "/assets/images/patterns/service.svg" !default;
+$section-service-landing-color:                 $color-bright !default;
+
+$section-gray-light:                            $color-gray-light !default;
+$section-gray-light-intro-color:                $color-gray-darker !default;
+
+$section-promo-heading-color:                   $color-brand !default;
+
+$section-marker-border:                         1px solid $color-border !default;
+
+$section-split-gray-color:                    #f6f6f6 !default;
+
+// Layout: Subnav
+// ===========================================================================
+
+$subnav-background-color:                       #f6f6f6 !default;
+$subnav-height:                                 $building-unit * 11 !default;
+$subnav-list-spacing-x:                         $grid-gutter-width-base / 2 !default;
+$subnav-item-spacing-x:                         $building-unit !default;
+$subnav-item-spacing-y:                         $building-unit * 2.5 !default;
+$subnav-link-color:                             $base-body-color !default;
+$subnav-link-active-color:                      $color-brand !default;
+$subnav-icon-size:                              $building-unit * 3.5 !default;
+
+// Layout: Footer
+// ===========================================================================
+
+$footer-border-color:                           $color-border !default;
+
+$footer-section-background-color:               $color-bright !default;
+$footer-section-border-color:                   $color-border !default;
+$footer-section-link-color:                     $base-body-color !default;
+$footer-section-spacing:                        $building-unit * 3  !default;
+$footer-section-inverse-background-color:       $color-gray-darker !default;
+$footer-section-inverse-border-color:           $color-border-darker !default;
+$footer-section-inverse-color:                  $color-gray-dark !default;
+
+$footer-breadcrumb-divider-color:               $color-border !default;
+$footer-breadcrumb-line-height:                 2 !default;
+$footer-breadcrumb-link-color:                  $base-body-color !default;
+$footer-breadcrumb-spacing:                     $building-unit * 2 !default;
+
+$footer-jump-divider-color:                     $color-border !default;
+$footer-jump-line-height:                       2 !default;
+$footer-jump-link-color:                        $color-gray-darker !default;
+$footer-jump-list-item-spacing:                 $building-unit * 3  !default;
+$footer-jump-spacing:                           $building-unit * 2  !default;
+
+$footer-nav-spacing:                            $building-unit * 2 !default;
+$footer-nav-title-color:                        $color-gray-darker !default;
+$footer-nav-title-spacing:                      $building-unit * 2 !default;
+$footer-nav-list-color:                         $color-brand !default;
+$footer-nav-list-spacing:                       $building-unit !default;
+$footer-nav-inverse-title-color:                $color-bright !default;
+
+$footer-links-spacing:                          $building-unit !default;
+
+$footer-social-icon-size:                       $building-unit * 4 !default;
+
+// Components: Autocomplete
+// ===========================================================================
+
+$autocomplete-background-color:                 $form-input-background-color !default;
+$autocomplete-border:                           $form-input-border-width solid $form-input-border-color !default;
+$autocomplete-inverse-color:                    $color-bright !default;
+$autocomplete-selected-color:                   $color-selected !default;
+$autocomplete-spacing-x:                        $form-input-spacing-x !default;
+$autocomplete-spacing-y:                        $form-input-spacing-y !default;
+
+$autocomplete-category-spacing-x:               $building-unit * 1 !default;
+$autocomplete-category-spacing-y:               $building-unit * 2.5 !default;
+$autocomplete-category-inset:                   $building-unit * 2 !default;
+$autocomplete-category-suggestion-spacing:      $building-unit * 0.5 !default;
+
+// Components: Callout
+// ===========================================================================
+
+$callout-border-color:                          $color-border !default;
+$callout-border-radius:                         3px !default;
+$callout-margin-y:                              $spacer !default;
+$callout-spacing-x:                             $building-unit * 3 !default;
+$callout-spacing-y:                             $building-unit * 2.5 !default;
+
+// Components: Hero
+// ===========================================================================
+
+$hero-mobile-height:                            312px !default;
+$hero-tablet-height:                            212px !default;
+$hero-desktop-height:                           360px !default;
+$hero-desktop-large-height:                     420px !default;
+
+$hero-heading-mobile-font-size:                 36px !default;
+$hero-heading-desktop-font-size:                48px !default;
+
+// Core: Cookie
+// ===========================================================================
+
+$cookie-dialog-height:                        80vh !default;
+$cookie-header-height:                        60px !default;
+$cookie-body-font-size:                       16px !default;
+$cookie-body-height:                          340px !default;
+$cookie-footer-height:                        70px !default;
+
+$cookie-body-mobile-height:                   calc(80vh - ($cookie-footer-height + $cookie-header-height));
+
+// Components: Link list
+// ===========================================================================
+
+$link-list-title-color:                       $color-brand !default;
+$link-list-title-font-size:                   $base-body-font-size;
+$link-list-title-font-weight:                 800 !default;
+$link-list-title-padding-y:                   $building-unit * 2 !default;
+
+$link-list-item-border:                       1px solid $color-border !default;
+$link-list-item-color:                        $color-gray-darker !default;
+$link-list-item-active-color:                 $color-brand !default;
+$link-list-item-padding-y:                    $building-unit * 2 !default;
+
+$link-list-item-arrow-color:                  $color-border !default;
+
+// Components: Label
+// ===========================================================================
+
+$label-padding:                               ($building-unit * 0.5) $building-unit !default;
+$label-border-radius:                         3px !default;
+$label-font-size:                             0.666667rem !default;
+$label-color:                                 $color-bright !default;
+
+// Components: Card
+// ===========================================================================
+
+$card-box-shadow:                             0 0 8px rgba(0,0,0,0.08) !default;
+$card-border-radius:                          0 !default;
+$card-background-color:                       $color-bright !default;
+$card-inverse-text-color:                     $color-bright !default;
+$card-inverse-background-color:               transparent !default;
+$card-brand-background-color:                 $color-brand !default;
+$card-size-s:                                 $building-unit * 15 !default;
+$card-size-m:                                 $building-unit * 32 !default;
+$card-size-l:                                 $building-unit * 45 !default;
+$card-image-height:                           $building-unit * 15 !default;
+$card-padding:                                $building-unit * 3 !default;
+$card-title-font-size:                        1.25rem !default;
+
+// Components: Accordion
+// ===========================================================================
+
+$accordion-background-color:				  rgba(246,246,246,0.4);
+$accordion-spacing:                           $building-unit * 2.5 !default;
+
+$accordion-panel-border:                      1px solid $color-border !default;
+$accordion-panel-title-font-size:             $base-body-font-size !default;
+
+$accordion-icon-size:                         $building-unit * 2 !default;
+$accordion-icon-color:                        $color-gray-dark !default;
+
+// Components: Tab
+// ==========================================================================
+
+$tab-active-color:                            $color-brand !default;
+$tab-border-color:                            $color-border !default;
+$tab-border-width:                            2px !default;
+$tab-margin-bottom:                           $building-unit * 2 !default;
+
+$tab-link-font-weight:                        800 !default;
+$tab-link-padding:                            $building-unit ($building-unit * 2) !default;
+
+$tab-pane-spacing-y:                          $building-unit * 6 !default;
+
+// Components: Tooltip
+// ==========================================================================
+
+$tooltip-border-radius:                       3px !default;
+$tooltip-background-color:                    $color-gray-darker !default;
+$tooltip-color:                               $color-bright !default;
+$tooltip-max-width:                           $building-unit * 30 !default;
+$tooltip-spacing:                             1rem !default;
+
+$tooltip-arrow-size:                          $building-unit !default;
+
+// Components: Price-compare
+// ===========================================================================
+
+$price-compare-background-color:              $color-bright !default;
+$price-compare-border:                        1px solid $color-border !default;
+$price-compare-border-radius:                 4px !default;
+$price-compare-box-shadow:                    0 1px 1px 0 rgba(0, 0, 0, 0.1) !default;
+$price-compare-line-background-color:         $color-border !default;
+$price-compare-line-border-radius:            4px 4px 0 0 !default;
+$price-compare-line-height:                   6px !default;
+$price-compare-min-height:                    530px !default;
+$price-compare-padding:                       36px 15px !default;
+$price-compare-selected-background-color:     $color-brand !default;
+$price-compare-list-line-height:              2.44rem !default;
+
+// Components: Video-carousel
+// ===========================================================================
+
+$video-carousel-items-background-color:       $color-gray-darker !default;
+$video-carousel-items-height:                 550px !default;
+$video-carousel-items-transition:             transform 0.30s ease-in-out !default;
+$video-carousel-items-transition-delay:       0.30s !default;
+
+$video-carousel-header-font-size:             2rem !default;
+$video-carousel-header-line-height:           2.1rem !default;
+
+$video-carousel-quote-font-size:              1.8rem !default;
+$video-carousel-quote-line-height:            2.6rem !default;
+
+$video-carousel-play-button-color:            $color-bright !default;
+$video-carousel-play-button-height:           60px !default;
+$video-carousel-play-button-line-height:      58px !default;
+$video-carousel-play-button-width:            $video-carousel-play-button-height !default;
+$video-carousel-play-button-font-size:        1.4rem !default;
+
+$video-carousel-overlay-background-color:   rgba(0,0,0,0.8) !default;
+$video-carousel-overlay-close-button-background-color: rgba(38,38,38,0.6) !default;
+$video-carousel-overlay-close-button-height:  40px !default;
+$video-carousel-overlay-close-button-right:   30px !default;
+$video-carousel-overlay-close-button-top:     30px !default;
+$video-carousel-overlay-close-button-width:   $video-carousel-overlay-close-button-height !default;
+$video-carousel-overlay-close-button-font-size: 1.4rem !default;
+
+$video-carousel-thumbnails-height:             160px !default;
+$video-carousel-thumbnails-margin-top:         -35px !default;
+
+$video-carousel-thumbnail-background-color:    $color-bright !default;
+$video-carousel-thumbnail-border:              1px solid $color-bright !default;
+$video-carousel-thumbnail-height:              72px !default;
+$video-carousel-thumbnail-margin:              0 15px !default;
+$video-carousel-thumbnail-opacity:             0.4 !default;
+$video-carousel-thumbnail-icon-color:          $color-bright !default;
+$video-carousel-thumbnail-width:               $video-carousel-thumbnail-height !default;
+$video-carousel-thumbnail-transition:          transform 0.30s ease-in-out, margin 0.30s ease-in-out, width 0.30s ease-in-out !default;
+
+// Components: Carousel
+// ===========================================================================
+
+$carousel-dot-background-color-active:         $color-gray !default;
+$carousel-dot-background-color:                $color-border !default;
+$carousel-dot-height:                          14px !default;
+$carousel-dot-margin-right:                    15px !default;
+$carousel-dot-padding:                         5px !default;
+$carousel-dot-width:                           14px !default;
+$carousel-dots-margin:                         25px 0 0 0 !default;
+
+$carousel-arrow-background-color:              $color-bright !default;
+$carousel-arrow-box-shadow:                    0 0 6px 0 rgba(0,0,0,0.25) !default;
+$carousel-arrow-color:                         $color-gray-darker !default;
+$carousel-arrow-height:                        65px !default;
+$carousel-arrow-margin-top:                    -32px !default;
+$carousel-arrow-next-right:                    50px !default;
+$carousel-arrow-next-font-size:                1.4rem !default;
+$carousel-arrow-prev-left:                     $carousel-arrow-next-right !default;
+$carousel-arrow-prev-font-size:                1.4rem !default;
+$carousel-arrow-top:                           40% !default;
+$carousel-arrow-width:                         $carousel-arrow-height !default;
+
+$carousel-slider-padding:                      $building-unit * 1.5 !default;
+
+// Components: Carousel
+// ===========================================================================
+
+$color-swatch-size:                            $building-unit * 2.6 !default;
+$color-swatch-spacing:                         $building-unit * 0.7 !default;
+$color-swatch-checked-color:                   $color-brand !default;
+
+// Components: Product listing
+// ===========================================================================
+
+$product-listing-item-padding:                 15px !default;
+$product-listing-item-padding-mobile:          5px !default;
+
+$product-listing-item-content-background-color: $color-bright !default;
+$product-listing-item-content-color:           $color-gray-darker !default;
+$product-listing-item-content-padding:         40px 20px !default;
+$product-listing-item-content-padding-mobile:  40px 20px !default;
+
+$product-listing-item-image-height:            360px !default;
+$product-listing-item-image-height-mobile:     150px !default;
+$product-listing-item-image-max-width:         140px !default;
+
+$product-listing-item-description-line-height: 24px !default;
+
+$product-listing-item-title-font-size:         1.25em !default;
+
+// Components: Filters
+// ===========================================================================
+
+$filters-background-color:                     $color-bright !default;
+$filters-border:                               1px solid $color-border !default;
+$filters-border-radius:                        3px !default;
+$filters-height:                               80px !default;
+
+$filter-items-height:                          120px !default;
+$filter-items-margin:                          17px 2px !default;
+$filter-items-outer-margin:                    10px !default;
+
+$filter-item-font-weight:                      500px !default;
+$filter-item-line-height:                      44px !default;
+
+$filter-item-active-border:                    2px solid $color-brand !default;
+$filter-item-active-color:                     $color-brand !default;
+
+
+// Components: Modal
+// ===========================================================================
+
+$modal-inner-padding:                          1rem !default;
+
+$modal-dialog-background-grey:                 #f6f6f6 !default;
+$modal-dialog-margin:                          40px !default;
+$modal-dialog-margin-mobile:                   10px !default;
+$modal-dialog-margin-y-sm-up:                  1.75rem !default;
+
+$modal-title-line-height:                      1.5 !default;
+
+$modal-content-background-color:               $color-bright !default;
+$modal-content-box-shadow:                     0 0 4px 0 rgba(0,0,0,0.1) !default;
+$modal-content-border-radius:                  4px !default;
+
+$modal-backdrop-background-color:              #EDEDED !default;
+$modal-backdrop-opacity:                       0.9 !default;
+
+$modal-header-height:                          80px !default;
+$modal-header-padding:                         25px !default;
+
+$modal-close-button-font-size:                 24px !default;
+$modal-close-button-height:                    24px !default;
+$modal-close-button-right:                     22px !default;
+$modal-close-button-right-desktop:             25px !default;
+$modal-close-button-top:                       $modal-close-button-right !default;
+$modal-close-button-top-desktop:               $modal-close-button-right-desktop !default;
+$modal-close-button-width:                     $modal-close-button-height !default;
+
+$modal-full-screen:                            100% !default;
+$modal-large:                                  980px !default;
+$modal-medium:                                 500px !default;
+$modal-small:                                  300px !default;
+
+$modal-transition:                             transform .3s ease-out  !default;
+$modal-transition-fade:                        opacity .15s linear !default;
+
+// Components: Gallery images
+// ===========================================================================
+
+$gallery-image-max-height:                     460px !default;
+$gallery-image-padding:                        0 25px !default;
+
+$gallery-images-thumbnails-margin:             20px 0 0 0 !default;
+$gallery-images-thumbnail-background-color:    #f6f6f6 !default;
+$gallery-images-thumbnail-border:              1px solid $color-inactive !default;
+$gallery-images-thumbnail-border-radius:       3px !default;
+$gallery-images-thumbnail-height:              70px !default;
+$gallery-images-thumbnail-margin:              5px !default;
+$gallery-images-thumbnail-padding:             10px !default;
+$gallery-images-thumbnail-width:               $gallery-images-thumbnail-height !default;
+
+$gallery-images-thumbnail-triangle-width:      8px !default;
+$gallery-images-thumbnail-triangle-border-color: $color-inactive !default;
+$gallery-images-thumbnail-triangle-right:      26px !default;
+$gallery-images-thumbnail-triangle-top:        -9px !default;
+
+// Components: Shopping cart
+// ===========================================================================
+
+$shopping-cart-background-color:               #f6f6f6 !default;
+$shopping-cart-border-color:                   $color-border !default;
+$shopping-cart-padding:                        $grid-gutter-width-base / 2 !default;
+$shopping-cart-padding-desktop:                $grid-gutter-width-base !default;
+
+$shopping-cart-table-spacing:                  $building-unit * 1.5 !default;
+
+// Components: Badge
+// ===========================================================================
+
+$badge-background-color:                        $color-brand !default;
+$badge-color:                                   $color-bright !default;
+$badge-font-size:                               0.56rem !default;
+$badge-height:                                  16px !default;
+$badge-width:                                   $badge-height !default;
+
+// Components: Toast
+// ===========================================================================
+
+$toast-background-color:                        $color-bright !default;
+$toast-box-shadow:                              0 0 3px 0 rgba(0, 0, 0, 0.1) !default;
+$toast-margin-bottom:                           10px !default;
+$toast-padding:                                 30px !default;
+$toast-top:                                     $navbar-height !default;
+$toast-width:                                   386px !default;
+
+$toast-close-size:                              1rem !default;
+$toast-close-right:                             10px !default;
+
+$toast-backdrop-background-color:               $color-gray-darker !default;
+$toast-backdrop-opacity:                        0.88 !default;
+$toast-backdrop-top:                            $navbar-height !default;
+
+// Components: Sticky shopping cart
+// ===========================================================================
+
+$sticky-shopping-cart-background-color:         $color-bright !default;
+$sticky-shopping-cart-top:                      $navbar-height !default;
+$sticky-shopping-cart-height:                   $navbar-height !default;
+
+// Components: Steps
+// ===========================================================================
+
+$stepper-active-color:                          $color-brand !default;
+$stepper-inactive-color:                        $color-inactive !default;
+$stepper-border-width:                          2px !default;
+
+$stepper-dot-text-color:                        $color-bright !default;
+$stepper-dot-font-weight:                       900 !default;
+$stepper-dot-height:                            44px !default;
+$stepper-dot-margin:                            37px !default;
+$stepper-dot-width:                             $stepper-dot-height !default;
+
+$stepper-dot-line-width:                        80px !default;
+
+$stepper-label-font-weight:                     600 !default;
+$stepper-label-margin-top:                      14px !default;
+
+

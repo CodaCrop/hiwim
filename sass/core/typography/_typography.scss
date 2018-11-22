@@ -1,0 +1,173 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Typography
+// Description:     Defines styles for typography.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Core: Typography
+ ========================================================================== */
+
+/* Headings
+ ========================================================================== */
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;    
+    line-height: $headings-line-height;
+    margin-top: 0;
+    margin-bottom: $headings-margin-bottom;
+}
+
+h1, .h1 {
+    font-size: $h1-font-size;
+    text-transform: uppercase;
+}
+
+h2, .h2 {
+    font-size: $h2-font-size;
+    text-transform: uppercase;
+}
+
+h3, .h3 {
+    font-size: $h3-font-size;
+}
+
+h4, .h4 {
+    font-size: $h4-font-size;
+}
+
+h5, .h5 {
+    font-size: $h5-font-size;
+}
+
+h6, .h6 {
+    font-size: $h6-font-size;
+}
+
+@include breakpoint-down("tablet") {
+    h1, .h1 {
+        font-size: $h1-mobile-font-size
+    }
+    h2, .h2 {
+        font-size: $h2-mobile-font-size;
+    }
+    
+    h3, .h3 {
+        font-size: $h3-mobile-font-size;
+    }
+}
+
+/* Horizontal rules
+ ========================================================================== */
+
+hr {
+    border: 0;
+    border-top: 1px solid $color-border;
+    margin-top: $building-unit;
+    margin-bottom: $building-unit;
+}
+
+/* Paragrapgh
+ ========================================================================== */
+
+p:first-child {
+    margin-top: 0;
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* Link
+ ========================================================================== */
+
+.link-back {
+    color: $color-muted;
+
+    &:before {
+        @extend %icon;
+
+        content: $icon-arrow-left;
+        font-size: 0.777778em;
+        font-weight: 600;
+    }
+
+    &:hover {
+        color: $color-muted;
+    }
+}
+
+.link-call-to-action {
+    &:after {
+        @extend %icon;
+
+        content: $icon-arrow-right;
+        font-size: 0.777778em;
+        font-weight: 600;
+    }
+
+    &:hover {
+        text-decoration: none;
+
+        &:after {
+            color: inherit;
+        }
+    }
+}
+
+.link-white {
+    color: $color-bright;
+    text-decoration: underline;
+
+    &:hover {
+        color: $color-bright;
+        opacity: 0.8;
+    }
+}
+
+.link-add {
+    cursor: pointer;
+
+    &:before {
+        @extend %icon;
+
+        content: $icon-add-outline;  
+        font-size: 1.3em;      
+        margin-right: 0.5rem;
+    }
+}
+
+a[href$=".pdf"]:before {
+    @extend %icon;
+
+    content: $icon-pdf;
+    padding-right: 0.25rem;
+}
+
+/* Price text
+========================================================================== */
+
+.price-text {
+    display: flex;
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 3rem;
+
+    &:before {
+        content: "€";
+        display: block;
+        font-size: 2rem;
+        margin-top: -5px;
+    }
+}
+
+.price-text-description {
+    font-weight: 900;
+    font-size: 0.9rem;
+    line-height: 1rem;
+    display: block;
+}

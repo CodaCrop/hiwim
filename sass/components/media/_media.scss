@@ -1,0 +1,21 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Media
+// Description:     Defines styles for media object.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Utility: Media
+ ========================================================================== */
+
+.media {
+    align-items: flex-start;
+    display: flex; 
+    width: 100%;
+
+    .media-body {
+        flex: 1;
+    }
+}

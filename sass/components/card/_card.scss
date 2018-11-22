@@ -1,0 +1,135 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Card
+// Description:     Defines styles for card.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Components: Card
+ ========================================================================== */
+
+.card {
+    background-clip: border-box;
+    background-color: $card-background-color;
+    border-radius: $card-border-radius;
+    box-shadow: $card-box-shadow;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    word-wrap: break-word;
+
+    &.card-inverse {
+        background-color: $card-inverse-background-color;
+        color: $card-inverse-text-color;
+    }
+
+    &.card-clickable {
+        .card-link {
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .card-image-top,
+        .card-title,
+        .card-title-inline,
+        .card-body {
+            pointer-events: none; /// Enable clicks to fall through to the card-link element.
+            position: relative;
+            z-index: 10; /// Content on top of the card-link
+
+            [class*="button-"], a {
+                pointer-events: auto; /// Buttons and links should be clickable.           
+            }
+        }
+    }
+}
+
+/* Size (modifier)
+ ========================================================================== */
+
+.card-size-s {
+    height: $card-size-s;
+}
+
+.card-size-m {
+    height: $card-size-m;
+}
+
+.card-size-l {
+    height: $card-size-l;
+}
+
+/* Image
+ ========================================================================== */
+
+.card-image-top {
+    align-self: flex-start;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: $card-image-height;
+    padding: $card-padding;
+    width: 100%;
+}
+
+/* Background Image
+ ========================================================================== */
+
+.card-background {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+}
+
+.card-background-overlayed {
+    @extend .card-background;
+
+    &:before {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+        content: "";
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+    }
+}
+
+/* Title
+ ========================================================================== */
+
+.card-title {
+    font-size: $card-title-font-size;
+    text-transform: none;
+}
+
+.card-title-inline {
+    display: inline-block;
+    font-size: $card-title-font-size;
+    text-transform: none;
+}
+
+/* Body
+ ========================================================================== */
+
+.card-body {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    padding: $card-padding;
+    width: 100%;
+    z-index: 10;
+}
+
+.card-image-top + .card-body {
+    height: calc(100% - #{$card-image-height});
+}

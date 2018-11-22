@@ -1,0 +1,6 @@
+﻿---
+title: Footer
+---
+
+# Footer
+

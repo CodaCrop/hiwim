@@ -1,0 +1,72 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Price compare
+// Description:     Defines styles for price compare component.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Component: Price compare
+ ========================================================================== */
+
+ .price-compare {
+    align-items: stretch;
+    background-color: $price-compare-background-color;
+    border: $price-compare-border;
+    border-radius: $price-compare-border-radius;
+    box-shadow: $price-compare-box-shadow;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: $price-compare-padding;
+    position: relative;
+
+    &:before {
+      border-top: $price-compare-line-height solid $price-compare-line-background-color;
+      border-radius: $price-compare-line-border-radius; 
+      content: "";
+      display: block;
+      left: -1px;
+      padding: 21px 20px;
+      position: absolute;
+      right: -1px;
+      text-align: left;
+      top: -1px;
+    }
+
+    &.is-active:before {
+      border-color: $price-compare-selected-background-color;
+    }
+
+    .price-compare-list {
+      line-height: 2.44rem;
+    }
+
+    &.form-selector-indicator {
+      &:before {
+        content: $icon-circle;
+        margin: 0;
+      }
+
+      &:after {
+        border: none;
+      }
+    }
+ }
+
+.form-selector-input:checked + .price-compare.form-selector-indicator {
+  &:before {
+    border-color: $color-success;
+    color: $color-success;
+    content: $icon-check-solid;
+  }
+
+  &:after {
+    border: 1px solid $color-success;
+    bottom: -1px;
+    left: -1px;
+    right: -1px;
+    top: -1px;
+  }
+}

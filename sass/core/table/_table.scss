@@ -1,0 +1,127 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Table
+// Description:     Defines styles for table.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Core: Table
+ ========================================================================== */
+
+/* Table
+========================================================================== */
+
+.table {
+    border-collapse: collapse;
+    margin-bottom: $spacer;
+    max-width: 100%;
+    width: 100%;
+
+    caption {
+        text-align: left;
+        padding-bottom: $table-cell-padding;
+    }
+
+    th,
+    td {
+        border-top: 1px solid $table-border-color;
+        padding: $table-cell-padding;
+        text-align: left;
+    }
+
+    tfoot {
+        color: $table-foot-color;
+        font-style: italic;
+    }
+}
+
+/* Table Striped
+ ========================================================================== */
+
+.table-striped {
+    tbody tr:nth-of-type(odd) {
+        background-color: rgba($table-striped-background-color, 0.5);
+    }
+}
+
+/* Table Responsive
+ ========================================================================== */
+
+.table-responsive {
+    @extend .table;
+
+    @extend .table-striped;
+
+    th,
+    td {
+        display: block;
+        overflow: hidden;
+
+        &:before {
+            content: attr(data-table-header) ": ";
+            display: inline-block;
+            font-weight: $table-head-font-weight;
+            padding-right: $table-cell-padding;
+            width: $table-head-mobile-width;
+        }
+
+        &:after {
+            content: "";
+            display: inline;
+        }
+    }
+
+    thead th {
+        display: none;
+    }
+
+    tfoot td {
+        &:before {
+            display: none;
+        }
+    }
+
+    .table-content {
+        float: right;
+        width: calc(100% - #{$table-head-mobile-width});
+    }
+
+    @include breakpoint-up("tablet") {
+        th,
+        td {
+            display: table-cell;
+            padding: $table-cell-padding;
+
+            &:before {
+                display: none;
+            }
+        }
+
+        tr {
+            border-bottom: 1px solid $table-border-color;
+        }
+
+        thead {
+            background-color: $table-head-background-color;
+
+            th {
+                display: table-cell;
+                font-weight: $table-head-font-weight;
+                padding: $table-cell-padding;
+                vertical-align: bottom;
+            }
+        }
+
+        tfoot tr {
+            border-bottom: none;
+        }
+
+        .table-content {
+            display: block;
+            float: none;
+            width: auto;
+        }
+    }
+}

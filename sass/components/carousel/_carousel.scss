@@ -1,0 +1,115 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Carousel
+// Description:     Defines styles for carousel component.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Component: Carousel
+ ========================================================================== */
+
+.slick-dots {
+    list-style: none;
+    margin: $carousel-dots-margin;
+    padding: 0;
+    text-align: center;
+
+    > li {
+        display: inline-block;
+        margin-right: $carousel-dot-margin-right;
+
+        > button {
+            background-color: $carousel-dot-background-color;
+            border: none;
+            border-radius: 50%;
+            color: transparent;
+            cursor: pointer;
+            display: block;
+            font-size: 0;
+            height: $carousel-dot-height;
+            line-height: 0;
+            outline: none;
+            padding: $carousel-dot-padding;
+            width: $carousel-dot-width;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &.slick-active button {
+            background-color: $carousel-dot-background-color-active;
+        }
+    }
+}
+
+.slick-slider {
+    margin-left: -$carousel-slider-padding;
+    margin-right: -$carousel-slider-padding;
+
+    > .slick-list {
+        > .slick-track {
+            display: flex;
+
+            > .slick-slide {
+                height: auto;
+                outline: none;
+                padding: 0 $carousel-slider-padding;
+            }
+        }
+    }
+}
+
+.slick-track {
+    padding: 4px 0;
+}
+
+.slick-arrow {
+    @include transition(0.6s ease-in-out);
+    background-color: $carousel-arrow-background-color;
+    border: none;
+    border-radius: 50%;
+    box-shadow: $carousel-arrow-box-shadow;
+    color: transparent;
+    cursor: pointer;
+    font-size: 0;
+    height: $carousel-arrow-height;
+    line-height: 0;
+    margin-top: $carousel-arrow-margin-top;
+    outline: none;
+    position: absolute;
+    text-align: center;    
+    top: $carousel-arrow-top;
+    z-index: 1;
+    width: $carousel-arrow-width;
+
+    &.slick-disabled {
+        opacity: 0;
+    }
+
+    &.slick-next {
+        right: $carousel-arrow-next-right;
+
+        &:before {
+            @extend %icon;
+
+            content: $icon-arrow-right;
+            color: $carousel-arrow-color;
+            font-size: $carousel-arrow-next-font-size;
+        }
+    }
+
+    &.slick-prev {
+        left: $carousel-arrow-prev-left;
+
+        &:before {
+            @extend %icon;
+
+            content: $icon-arrow-left;
+            color: $carousel-arrow-color;
+            font-size: $carousel-arrow-prev-font-size;
+        }
+    }
+}

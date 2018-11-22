@@ -1,0 +1,99 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Product listing
+// Description:     Defines styles for product listing component.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Component: Product listing
+ ========================================================================== */
+
+.product-listing-item {
+    padding: $product-listing-item-padding;
+}
+
+.product-listing-item-content {
+    background-color: $product-listing-item-content-background-color;
+    color: $product-listing-item-content-color;
+    display: block;
+    height: 100%;
+    padding: $product-listing-item-content-padding;
+
+    &:hover {
+        color: $product-listing-item-content-color;
+        text-decoration: none;
+    }
+}
+
+.product-listing-item-image {
+    align-items: flex-end;
+    display: flex;
+    height: $product-listing-item-image-height;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    
+    .product-listing-item-image-front {
+        max-height: $product-listing-item-image-height;
+        position: absolute;
+        right: 0;
+        z-index: 1;
+    }
+
+    .product-listing-item-image-back {
+        left: 0;
+        max-height: $product-listing-item-image-height;
+        position: absolute;
+    }
+
+    > img {
+        max-height: 100%;
+    }
+}
+
+.product-listing-item-description {
+    > strong, 
+    > span {
+        display: block;
+        line-height: $product-listing-item-description-line-height;
+    }
+}
+
+.product-listing-item-title {
+    font-size: $product-listing-item-title-font-size;
+    text-transform: none;
+}
+
+
+ @include breakpoint-down("tablet") {
+    .product-listing-item {
+        margin-bottom: 0;
+        padding: $product-listing-item-padding-mobile;
+
+        &:nth-child(even) {
+            padding-right: 0;
+        }
+
+        &:nth-child(odd) {
+            padding-left: 0;
+        }
+            
+    }
+
+    .product-listing-item-content {
+         padding: $product-listing-item-content-padding-mobile;
+    }
+
+    .product-listing-item-image {
+        height: $product-listing-item-image-height-mobile;
+        max-width: $product-listing-item-image-max-width;
+
+        .product-listing-item-image-front, 
+        .product-listing-item-image-back {
+            max-height: $product-listing-item-image-height-mobile;
+        }
+    }
+ }

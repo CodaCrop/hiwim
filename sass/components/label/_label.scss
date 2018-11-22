@@ -1,0 +1,53 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Label
+// Description:     Defines styles for label.
+//
+// ===========================================================================
+
+@mixin label-variation($text-color, $background-color) {
+    @extend .label;
+
+    background-color: $background-color;
+    color: $text-color;
+}
+
+/* ========================================================================
+   Components: Label
+ ========================================================================== */
+
+.label {
+    background-color: $color-gray-darker;
+    border-radius: $label-border-radius;
+    color: $label-color;
+    display: inline-block;
+    font-size: $label-font-size;
+    font-weight: 800;
+    padding: $label-padding;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Label variations
+ ========================================================================== */
+
+.label-success {
+    @include label-variation($label-color, $color-success);
+}
+
+.label-warning {
+    @include label-variation($label-color, $color-warning);
+}
+
+.label-danger {
+    @include label-variation($label-color, $color-danger);
+}
+
+.label-brand {
+    @include label-variation($label-color, $color-brand);
+}
+
+.label-info {
+    @include label-variation($label-color, $color-info);
+}

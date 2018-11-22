@@ -1,0 +1,102 @@
+/// <reference path="../../_design-system.scss" />
+//
+// Subject:         Accordion
+// Description:     Defines styles for Accordion.
+//
+// ===========================================================================
+/* ========================================================================
+   Component: Accordion
+ ========================================================================== */
+
+.accordion {
+    background-color: $accordion-background-color;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    &.is-transparent {
+        background-color: transparent;
+    }
+}
+
+/* Acordion panel
+ ========================================================================== */
+
+.accordion-panel {
+    border-top: $accordion-panel-border;
+    &:last-child {
+        border-bottom: $accordion-panel-border;
+    } // Accordion panel is open
+    &.accordion-panel-open {
+        [data-accordion-toggle="arrow"] {
+            &:after {
+                @include transform(rotate(-180deg));
+            }
+        }
+        [data-accordion-toggle-hide] {
+            cursor: none;
+            height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            &:after {
+                display: none;
+            }
+            ~.accordion-panel-content {
+                margin-top: $accordion-spacing;
+            }
+        }
+    }
+}
+
+[data-accordion-toggle] {
+    cursor: pointer;
+    position: relative;
+}
+
+[data-accordion-toggle="arrow"] {
+    padding-right: ($accordion-spacing + $accordion-icon-size * 1.25) !important;
+    &:after {
+        @extend %icon;
+        @include transition(all 0.25s);
+        color: $accordion-icon-color;
+        content: $icon-arrow-down;
+        font-size: $accordion-icon-size;
+        height: $accordion-icon-size;
+        margin-top: $accordion-icon-size * -0.5;
+        position: absolute;
+        right: $accordion-icon-size * 1.25;
+        top: 50%;
+    }
+}
+
+[data-accordion-toggle="link"] {
+    &:after {
+        color: $base-link-color;
+        content: "Wijzig";
+        font-weight: 600;
+    }
+}
+
+[data-accordion-toggle="link"][data-accordion-toggle-text] {
+    &:after {
+        content: attr(data-accordion-toggle-text);
+    }
+}
+
+.accordion-panel-title {
+    align-items: center;
+    display: flex;
+    font-size: $accordion-panel-title-font-size;
+    font-weight: $base-body-font-weight;
+    margin-bottom: 0;
+    padding: $accordion-spacing;
+    text-transform: none;
+}
+
+.accordion-panel-content {
+    display: none;
+    margin-bottom: $accordion-spacing;
+    padding: 0 $accordion-spacing;
+    overflow: hidden;
+}

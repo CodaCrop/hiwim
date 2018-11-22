@@ -1,0 +1,48 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Color swatch
+// Description:     Defines styles for color swatch.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Components: Color swatch
+ ========================================================================== */
+
+.color-swatch-input {
+    appearance: none;
+    display: none;
+}
+
+.color-swatch {
+    border-radius: $color-swatch-size;
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    height: $color-swatch-size;
+    margin: 7px;
+    position: relative;
+    width: $color-swatch-size;
+
+    &:before {
+        @include transition(all 0.2s);
+
+        border: 2px solid transparent;
+        border-radius: $color-swatch-size;
+        content: "";
+        display: block;
+        height: $color-swatch-size + ($color-swatch-spacing * 2);
+        left: $color-swatch-spacing * -1;
+        position: absolute;
+        top: $color-swatch-spacing * -1;
+        transform: scale(0.8, 0.8);
+        width: $color-swatch-size + ($color-swatch-spacing * 2);
+    }
+}
+
+.color-swatch-input:checked + .color-swatch {
+    &:before {
+        border: 2px solid $color-swatch-checked-color;
+        transform: scale(1, 1);
+    }
+}

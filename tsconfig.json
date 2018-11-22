@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "module": "none",
+    "noEmitOnError": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "moduleResolution": "node"
+  },
+  "include": [
+    "./typescript/jquery-plugin-base.ts",
+    "./typescript/util/analytics.ts",
+    "./typescript/util/util.ts",
+    "./typescript/core/**/*.ts",
+    "./typescript/layout/**/*.ts",
+    "./typescript/**/*.ts"
+  ],
+  "exclude": [
+    "build"
+  ]
+}

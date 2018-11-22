@@ -1,0 +1,407 @@
+//
+// Subject:         Icon
+// Description:     Defines styles for icons.
+//
+// ===========================================================================
+
+
+// Variables
+// ========================================================================
+$icon-add-outline: "\E001" !default;
+$icon-arrow-down: "\E002" !default;
+$icon-arrow-left: "\E003" !default;
+$icon-arrow-right: "\E004" !default;
+$icon-arrow-up: "\E005" !default;
+$icon-award: "\E006" !default;
+$icon-cart: "\E007" !default;
+$icon-chat: "\E008" !default;
+$icon-check-solid: "\E009" !default;
+$icon-check: "\E00A" !default;
+$icon-checkmark: "\E00B" !default;
+$icon-choose-document: "\E00C" !default;
+$icon-circle: "\E00D" !default;
+$icon-close: "\E00E" !default;
+$icon-delivery: "\E00F" !default;
+$icon-dial-pad: "\E010" !default;
+$icon-draft-file: "\E011" !default;
+$icon-edit-file: "\E012" !default;
+$icon-error-outline: "\E013" !default;
+$icon-error: "\E014" !default;
+$icon-euro: "\E015" !default;
+$icon-facebook: "\E016" !default;
+$icon-family: "\E017" !default;
+$icon-headphone: "\E018" !default;
+$icon-house: "\E019" !default;
+$icon-info: "\E01A" !default;
+$icon-instagram: "\E01B" !default;
+$icon-invoice: "\E01C" !default;
+$icon-laptop: "\E01D" !default;
+$icon-manager: "\E01E" !default;
+$icon-meter: "\E01F" !default;
+$icon-minus: "\E020" !default;
+$icon-network: "\E021" !default;
+$icon-overview: "\E022" !default;
+$icon-pdf: "\E023" !default;
+$icon-play: "\E024" !default;
+$icon-plus: "\E025" !default;
+$icon-prepaid: "\E026" !default;
+$icon-price-tag: "\E027" !default;
+$icon-reload: "\E028" !default;
+$icon-renew: "\E029" !default;
+$icon-search: "\E02A" !default;
+$icon-settings: "\E02B" !default;
+$icon-sim-card-smartphone: "\E02C" !default;
+$icon-sim-card: "\E02D" !default;
+$icon-smartphone: "\E02E" !default;
+$icon-star-solid: "\E02F" !default;
+$icon-star: "\E030" !default;
+$icon-store: "\E031" !default;
+$icon-tablet: "\E032" !default;
+$icon-telekom: "\E033" !default;
+$icon-trash: "\E034" !default;
+$icon-twitter: "\E035" !default;
+$icon-unlimited: "\E036" !default;
+$icon-user: "\E037" !default;
+$icon-warning: "\E038" !default;
+
+
+/* ========================================================================
+   Component: Icon
+ ========================================================================== */
+@font-face {
+    font-family: "teleicon-ui";
+    src: url('/assets/fonts/teleicon-ui.eot?v=#{$version}');
+    src: url('/assets/fonts/teleicon-ui.eot?#iefix&v=#{$version}') format('eot'),
+         url('/assets/fonts/teleicon-ui.woff?v=#{$version}') format('woff'),
+         url('/assets/fonts/teleicon-ui.ttf?v=#{$version}') format('truetype'),
+         url('/assets/fonts/teleicon-ui.svg#teleicon-ui&v=#{$version}') format('svg');
+}
+
+%icon {
+    bottom: 1px;
+    display: inline-block;
+    font-family: "teleicon-ui";
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    position: relative;
+    speak: none;
+    text-transform: none !important;
+    vertical-align: middle;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    @extend %icon;
+}
+
+/* Link
+ ========================================================================== */
+
+.icon-link {
+    color: $icon-link-color;
+    cursor: pointer;
+
+    &:hover {
+        color: $icon-link-color;
+    }
+}
+
+/* Size modifiers
+ ========================================================================== */
+
+.icon-large:before {
+    vertical-align: -19%;
+    font-size: 1.65em;
+}
+
+.icon-extra-large:before {
+    vertical-align: -19%;
+    font-size: 4.5em;
+}
+
+/* Icon mapping
+ ========================================================================== */
+
+.icon-add-outline {
+    &:before {
+        content: $icon-add-outline;
+    }
+}
+.icon-arrow-down {
+    &:before {
+        content: $icon-arrow-down;
+    }
+}
+.icon-arrow-left {
+    &:before {
+        content: $icon-arrow-left;
+    }
+}
+.icon-arrow-right {
+    &:before {
+        content: $icon-arrow-right;
+    }
+}
+.icon-arrow-up {
+    &:before {
+        content: $icon-arrow-up;
+    }
+}
+.icon-award {
+    &:before {
+        content: $icon-award;
+    }
+}
+.icon-cart {
+    &:before {
+        content: $icon-cart;
+    }
+}
+.icon-chat {
+    &:before {
+        content: $icon-chat;
+    }
+}
+.icon-check-solid {
+    &:before {
+        content: $icon-check-solid;
+    }
+}
+.icon-check {
+    &:before {
+        content: $icon-check;
+    }
+}
+.icon-checkmark {
+    &:before {
+        content: $icon-checkmark;
+    }
+}
+.icon-choose-document {
+    &:before {
+        content: $icon-choose-document;
+    }
+}
+.icon-circle {
+    &:before {
+        content: $icon-circle;
+    }
+}
+.icon-close {
+    &:before {
+        content: $icon-close;
+    }
+}
+.icon-delivery {
+    &:before {
+        content: $icon-delivery;
+    }
+}
+.icon-dial-pad {
+    &:before {
+        content: $icon-dial-pad;
+    }
+}
+.icon-draft-file {
+    &:before {
+        content: $icon-draft-file;
+    }
+}
+.icon-edit-file {
+    &:before {
+        content: $icon-edit-file;
+    }
+}
+.icon-error-outline {
+    &:before {
+        content: $icon-error-outline;
+    }
+}
+.icon-error {
+    &:before {
+        content: $icon-error;
+    }
+}
+.icon-euro {
+    &:before {
+        content: $icon-euro;
+    }
+}
+.icon-facebook {
+    &:before {
+        content: $icon-facebook;
+    }
+}
+.icon-family {
+    &:before {
+        content: $icon-family;
+    }
+}
+.icon-headphone {
+    &:before {
+        content: $icon-headphone;
+    }
+}
+.icon-house {
+    &:before {
+        content: $icon-house;
+    }
+}
+.icon-info {
+    &:before {
+        content: $icon-info;
+    }
+}
+.icon-instagram {
+    &:before {
+        content: $icon-instagram;
+    }
+}
+.icon-invoice {
+    &:before {
+        content: $icon-invoice;
+    }
+}
+.icon-laptop {
+    &:before {
+        content: $icon-laptop;
+    }
+}
+.icon-manager {
+    &:before {
+        content: $icon-manager;
+    }
+}
+.icon-meter {
+    &:before {
+        content: $icon-meter;
+    }
+}
+.icon-minus {
+    &:before {
+        content: $icon-minus;
+    }
+}
+.icon-network {
+    &:before {
+        content: $icon-network;
+    }
+}
+.icon-overview {
+    &:before {
+        content: $icon-overview;
+    }
+}
+.icon-pdf {
+    &:before {
+        content: $icon-pdf;
+    }
+}
+.icon-play {
+    &:before {
+        content: $icon-play;
+    }
+}
+.icon-plus {
+    &:before {
+        content: $icon-plus;
+    }
+}
+.icon-prepaid {
+    &:before {
+        content: $icon-prepaid;
+    }
+}
+.icon-price-tag {
+    &:before {
+        content: $icon-price-tag;
+    }
+}
+.icon-reload {
+    &:before {
+        content: $icon-reload;
+    }
+}
+.icon-renew {
+    &:before {
+        content: $icon-renew;
+    }
+}
+.icon-search {
+    &:before {
+        content: $icon-search;
+    }
+}
+.icon-settings {
+    &:before {
+        content: $icon-settings;
+    }
+}
+.icon-sim-card-smartphone {
+    &:before {
+        content: $icon-sim-card-smartphone;
+    }
+}
+.icon-sim-card {
+    &:before {
+        content: $icon-sim-card;
+    }
+}
+.icon-smartphone {
+    &:before {
+        content: $icon-smartphone;
+    }
+}
+.icon-star-solid {
+    &:before {
+        content: $icon-star-solid;
+    }
+}
+.icon-star {
+    &:before {
+        content: $icon-star;
+    }
+}
+.icon-store {
+    &:before {
+        content: $icon-store;
+    }
+}
+.icon-tablet {
+    &:before {
+        content: $icon-tablet;
+    }
+}
+.icon-telekom {
+    &:before {
+        content: $icon-telekom;
+    }
+}
+.icon-trash {
+    &:before {
+        content: $icon-trash;
+    }
+}
+.icon-twitter {
+    &:before {
+        content: $icon-twitter;
+    }
+}
+.icon-unlimited {
+    &:before {
+        content: $icon-unlimited;
+    }
+}
+.icon-user {
+    &:before {
+        content: $icon-user;
+    }
+}
+.icon-warning {
+    &:before {
+        content: $icon-warning;
+    }
+}

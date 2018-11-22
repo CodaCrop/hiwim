@@ -1,0 +1,1128 @@
+/// <reference path="../../_design-system.scss" />
+//
+// Subject:         Navbar
+// Description:     Defines styles for navbar.
+//
+// ===========================================================================
+/* ========================================================================
+   Layout: Navbar
+ ========================================================================== */
+
+body.has-navbar-sticky {
+    padding-top: $navbar-height;
+    .navbar {
+        position: fixed;
+        top: 0;
+    }
+    .navbar-search-autocomplete {
+        &.autocomplete {
+            position: fixed;
+            top: $navbar-height !important;
+        }
+    }
+}
+
+body:not(.has-navbar-sticky) {
+    .navbar-search-show .navbar-search-overlay {
+        display: none;
+    }
+}
+
+body.navbar-focus {
+    background-color: rgba(38, 38, 38, 0.12);
+    transition: background-color 200ms ease-in-out;
+}
+
+body:not(.navbar-focus) {
+    transition: background-color 200ms ease-in-out;
+}
+
+.navbar {
+    background-color: $navbar-background-color;
+    border-bottom: 1px solid $navbar-border;
+    display: flex;
+    height: $navbar-height;
+    position: relative;
+    text-transform: uppercase;
+    transform: translateZ(0);
+    width: 100%;
+    z-index: $zindex-navbar;
+    [class*="icon-"] {
+        font-size: 1.25em;
+    }
+}
+
+/* Container
+ ========================================================================== */
+
+.navbar-container {
+    @include make-container;
+    @include make-container-max-widths;
+    display: flex;
+    position: static;
+
+    @include breakpoint-down("tablet") {
+        width: 100%;
+        padding-right: 0;
+    }
+}
+
+/* Item
+ ========================================================================== */
+
+.navbar-item {
+    align-items: center;
+    display: flex;
+}
+
+/* Logo
+ ========================================================================== */
+
+.navbar-logo {
+    @extend .navbar-item;
+    background-image: url($navbar-logo-url);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: $navbar-logo-width $navbar-logo-height;
+    margin-right: auto;
+    width: $navbar-logo-width;
+
+    @include breakpoint-up("desktop") {
+        margin-right: $navbar-logo-spacing;
+        position: relative;
+        z-index: $zindex-logo;
+    }
+}
+
+/* Link
+ ========================================================================== */
+
+.navbar-link {
+    color: $navbar-color;
+    font-weight: $base-body-font-weight;
+    text-decoration: none;
+
+    &:hover {
+        color: $navbar-active-color;
+        text-decoration: none;
+    }
+}
+
+/* Menu
+ ========================================================================== */
+
+@keyframes navbar-menu-slide-out {
+    0% {}
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes navbar-menu-slide-in {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes navbar-menu-sub-slide-in {
+    0% {
+        visibility: visible;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes navbar-menu-sub-slide-out {
+    0% {
+        opacity: 1;
+        visibility: visible;
+    }
+    99% {
+        opacity: 0;
+        visibility: visible;
+    }
+    100% {
+        visibility: hidden;
+    }
+}
+
+.navbar-menu {
+    @extend .navbar-item;
+
+    @include breakpoint-down("tablet") {
+        @include transition(opacity $navbar-menu-animation ease-in-out);
+        -webkit-overflow-scrolling: touch;
+        background-color: $navbar-menu-background-color;
+        display: block;
+        height: 0;
+        left: 0;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        top: $navbar-height;
+        transform: translateZ(0);
+        width: 100vw;
+        z-index: -1;
+    }
+}
+
+.navbar-menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    > li {
+        > a {
+            display: block;
+            padding: 22px $navbar-menu-spacing;
+            position: relative;
+        }
+
+        &:hover > a,
+        &.is-active > a {
+            color: $navbar-active-color;
+            &:hover {
+                color: $navbar-active-color;
+            }
+        }
+        &.is-primary-item > a {
+            font-weight: 900;
+        }
+    }
+
+    @include breakpoint-down("tablet") {
+        // height: 100%;
+
+        &.navbar-menu-slide-out {
+            animation: navbar-menu-slide-out 200ms ease-in-out forwards;
+        }
+        &.navbar-menu-slide-in {
+            animation: navbar-menu-slide-in 200ms ease-in-out forwards;
+        }
+
+        > li {
+            border-bottom: 1px solid $navbar-border;
+            display: block;
+
+            > a:not(:last-child) {
+                &.navbar-menu-sub-slide-in+.navbar-menu-sub {
+                    animation: navbar-menu-sub-slide-in 200ms ease-out forwards;
+                }
+
+                &.navbar-menu-sub-slide-out+.navbar-menu-sub {
+                    animation: navbar-menu-sub-slide-out 200ms ease-in forwards;
+                }
+
+                &:after {
+                    content: $icon-arrow-right;
+                    font-family: "teleicon-ui";
+                    position: absolute;
+                    top: calc(50% - 0.5em);
+                    right: $navbar-menu-spacing;
+                }
+            }
+        }
+    }
+    
+    @include breakpoint-up("desktop") {
+        padding: 0 $navbar-menu-spacing;
+
+        > li {
+            float: left;
+            > a {
+                height: $navbar-height;
+                line-height: $navbar-height;
+                padding: 0 $navbar-menu-spacing;
+
+                &:before {
+                    @include transition(all 300ms cubic-bezier(0.075, 0.82, 0.165, 1));
+                    content: "";
+                    background-color: $navbar-active-color;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    display: block;
+                    height: 2px;
+                    width: 0;
+                    margin: 0 auto;
+                    opacity: 0;
+                }
+            }
+
+            &:hover>a:before {
+                opacity: 1;
+                width: 100%;
+            }
+
+            &:hover>a:not(:last-child) + .navbar-menu-sub {
+                visibility: visible;
+            }
+        }
+    }
+}
+
+.navbar-menu-sub {
+    background-color: $navbar-background-color;
+    text-transform: none;
+    position: absolute;
+    visibility: hidden;
+
+    @include breakpoint-up("desktop") {
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.15);
+        padding: $navbar-menu-sub-spacing-desktop;
+        margin-left: $spacer-x - 3;
+        max-width: 860px;
+    }
+
+    @include breakpoint-down("tablet") {
+        -webkit-overflow-scrolling: touch;
+        opacity: 0;
+        right: -100%;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+    }
+}
+
+.navbar-menu-sub-container {
+    @include breakpoint-up("desktop") {
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0;
+
+        div[class*="row"] {
+            display: flex;
+            flex-flow: row;
+            overflow: hidden;
+
+            > div[class*="column"] {
+                flex: 1 0 25%;
+            }
+        }
+    }
+}
+
+.navbar-menu-sub-column {
+    @include breakpoint-up("desktop") {
+        width: auto;
+
+        &:not(:first-of-type) {
+            border-left: 1px solid $navbar-border;
+        }
+    }
+}
+
+.navbar-menu-sub-promo-column {
+    @include breakpoint-up("tablet") {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: auto;
+    }
+
+    @include breakpoint-down("tablet") {
+        display: flex;
+        align-items: center;
+        width: auto;
+        padding: 0 1rem;
+        margin-bottom: $spacer-y;
+
+        > figure {
+            background-color: $navbar-menu-sub-title-background-color;
+            margin: 0 $spacer-x;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        > header {
+            align-self: center;
+
+            span {
+                font-weight: 800;
+            }
+
+            span:first-of-type {
+                display: block;
+                padding-top: 0;
+            }
+        }
+    }
+}
+
+.navbar-menu-sub-promo-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    @include breakpoint-up("tablet") {
+        flex: 1 0 auto;
+        width: 200px;
+        height: 100%;
+        position: relative;
+        z-index: 1;
+        padding-right: $spacer-x;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: $spacer-x;
+            background-color: $navbar-menu-sub-title-background-color;
+            z-index: -1;
+        }
+
+        // > figure > img {
+        //     align-self: center;
+        //     max-width: 100%;
+        //     min-height: 1px;
+        // } 
+
+        // > figure > figcaption {
+        //     align-self: center;
+
+        //     span:first-of-type {
+        //         padding-top: $spacer-y; 
+        //     }
+        // }
+    }
+
+    @include breakpoint-down("tablet") {
+        margin: $spacer-y auto;
+        
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: $spacer-x;
+            bottom: 0;
+            right: $spacer-x;
+            background-color: $navbar-menu-sub-title-background-color;
+            z-index: -1;
+        }
+    }
+}
+
+.navbar-image-promo {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    > figcaption {
+        text-align: center;
+    }
+
+    > figcaption > span:first-of-type {
+        display: block;
+        font-weight: 800;
+    }
+
+    @include breakpoint-up("desktop") {
+        align-items: center;
+        flex: 1 0 auto;
+        width: 200px;
+        height: 100%;
+        position: relative;
+        z-index: 1;
+        padding-right: $spacer-x;
+
+        > img {
+            max-width: 100%;
+            min-height: 1px;
+        }
+
+        > figcaption > span:first-of-type { 
+            padding-top: $spacer-y; 
+        }
+    }
+
+    @include breakpoint-down("tablet") {
+        display: flex;
+        justify-content: center;
+
+        > img {
+            max-width: 50%;
+        }
+    }
+}
+
+.navbar-fullimage-promo {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    > figcaption > span {
+        font-weight: 800;
+        text-align: center;
+        padding: 0 $spacer-x;
+    }
+    
+    @include breakpoint-up("tablet") {
+        width: 200px;
+        margin: 0;
+
+        &:last-of-type {
+            margin-right: $spacer-x - 0.6;
+        }
+    }
+
+    @include breakpoint-down("tablet") {
+        width: 100%;
+    }
+}
+
+.navbar-menu-sub-back {
+    display: none;
+
+    @include breakpoint-down("tablet") {
+        background-color: $navbar-menu-sub-title-background-color;
+        border: 0;
+        border-bottom: 1px solid $navbar-border;
+        display: block;
+        font-size: $base-font-size;
+        font-family: $base-font-family-regular;
+        font-weight: 900;
+        outline: none;
+        padding: 22px $navbar-menu-spacing;
+        position: relative;
+        text-transform: uppercase;
+        text-decoration: none;
+        width: 100%;
+
+        &:before {
+            content: $icon-arrow-left;
+            font-family: "teleicon-ui";
+            position: absolute;
+            top: calc(50% - 0.5em);
+            left: $navbar-menu-spacing;
+        }
+    }
+}
+
+.navbar-menu-sub-heading {
+    margin-bottom: 0;
+
+    > a {
+        color: $navbar-color;
+        display: block;
+        font-size: $base-font-size;
+        font-weight: 900;
+        text-transform: uppercase;
+        text-decoration: none;
+
+        &:hover {
+            color: $navbar-active-color;
+            text-decoration: none;
+        }
+    }
+
+    @include breakpoint-up("desktop") {
+        > a {
+            padding: 0 ($navbar-menu-spacing * 2) $navbar-menu-spacing;
+        }
+    }
+
+    @include breakpoint-down("tablet") {
+        border-bottom: 1px solid $navbar-border;
+
+        > a {
+            padding: 22px $navbar-menu-spacing;
+        }
+    }
+}
+
+.navbar-menu-sub-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 200px;
+
+    > li {
+        display: block;
+
+        > a {
+            display: block;
+        }
+
+        > a:not([class*="button"]) {
+            @extend .navbar-link;
+        }
+
+        > a[class*="button"] {
+            transition: none;
+            margin: $spacer-y - .5 $spacer-x 0;
+        }
+    }
+    
+    @include breakpoint-up("desktop") {
+        > li {
+
+            > a:not([class*="button"]) {
+                padding: $navbar-menu-spacing ($navbar-menu-spacing * 2);
+                
+                &:hover {
+                    background-color: $navbar-menu-sub-title-background-color;
+                }
+            }
+
+            .navbar-menu-sub-heading {
+                padding-top: $navbar-menu-spacing;
+            }
+        }
+    }
+
+    @include breakpoint-down("tablet") {
+        > li {
+            display: block;
+
+            > a:not([class*="button"]) {
+                padding: 22px $navbar-menu-spacing;
+            }
+
+            > a[class*="button"] {
+                margin: $spacer-y $spacer-x;
+                @include button-size-variation(18px, 12px, 26px);
+            }
+
+            &:not(:last-of-type) {
+                border-bottom: 1px solid $navbar-border;
+            }
+                    
+            &:last-of-type, 
+            .navbar-menu-sub-heading {
+                border-bottom: none;
+            }
+        }
+    }
+}
+
+.navbar-menu-state {
+    display: none;
+
+    ~ .is-hidden-on-toggled {
+        opacity: initial;
+        visibility: visible;
+    }
+    @include breakpoint-down("tablet") {
+        &:checked {
+            ~ .is-hidden-on-toggled {
+                opacity: 0;
+                visibility: hidden;
+            }
+
+            ~ .navbar-menu {
+                height: 100%;
+                opacity: 1;
+                overflow-x: hidden;
+                overflow-y: auto;
+                z-index: $zindex-navbar-menu-state;
+            }
+
+            ~ .navbar-menu-toggle {
+                z-index: $zindex-navbar-menu-state;
+
+                &:after {
+                    content: "sluit";
+                }
+
+                span > span:nth-child(1) {
+                    @include transform(rotate(45deg));
+                    top: 1px;
+                    left: 3.3px;
+                }
+
+                span > span:nth-child(2) {
+                    opacity: 0;
+                    width: 0%;
+                }
+
+                span > span:nth-child(3) {
+                    @include transform(rotate(-45deg));
+                    top: 16.5px;
+                    left: 3.3px;
+                }
+            }
+        }
+    }
+}
+
+@include breakpoint-down("tablet") {
+    .has-navbar-menu-toggled,
+    .has-navbar-menu-toggled > body {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .has-navbar-menu-toggled > body {
+        padding-top: 0 !important;
+
+        .navbar {
+            position: absolute;
+            top: 0;
+        }
+    }
+}
+
+.navbar-menu-toggle {
+    @extend .navbar-item;
+    @include transform(rotate(0deg));
+    @include transition(0.5s ease-in-out);
+    align-self: center;
+    border-left: 1px solid $navbar-border;
+    cursor: pointer;
+    height: $navbar-height;
+    left: 0;
+    margin-left: $navbar-item-spacing / 2;
+    padding: 0 $navbar-item-spacing;
+    width: $navbar-height;
+
+    @include breakpoint-up("desktop") {
+        display: none;
+    }
+
+    &:after {
+        bottom: 15px;
+        content: "menu";
+        display: block;
+        font-size: 10px;
+        left: 0;
+        position: absolute;
+        text-align: center;
+        text-transform: uppercase;
+        width: 100%;
+    }
+
+    > span {
+        height: $navbar-menu-toggle-size;
+        margin: 0 auto;
+        position: relative;
+        width: $navbar-menu-toggle-size;
+    }
+
+    span > span {
+        @include transform(rotate(0deg));
+        @include transition(0.25s ease-in-out);
+        background: $navbar-color;
+        border-radius: 2px;
+        display: block;
+        height: 2px;
+        left: 0;
+        opacity: 1;
+        position: absolute;
+        width: 100%;
+    }
+
+    span > span:nth-child(1) {
+        top: 0;
+        -webkit-transform-origin: left center;
+        -moz-transform-origin: left center;
+        -o-transform-origin: left center;
+        transform-origin: left center;
+    }
+
+    span > span:nth-child(2) {
+        top: 8px;
+        -webkit-transform-origin: left center;
+        -moz-transform-origin: left center;
+        -o-transform-origin: left center;
+        transform-origin: left center;
+    }
+    span > span:nth-child(3) {
+        top: 16px;
+        -webkit-transform-origin: left center;
+        -moz-transform-origin: left center;
+        -o-transform-origin: left center;
+        transform-origin: left center;
+    }
+}
+
+/* Search
+ ========================================================================== */
+
+.navbar-search {
+    @extend .navbar-item;
+    color: $navbar-color;
+    flex-wrap: wrap;
+}
+
+.navbar-search-open {
+    cursor: pointer;
+    padding: $navbar-item-spacing / 2;
+}
+
+.navbar-search-input {
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+    color: $navbar-color;
+    display: none;
+    font-family: $base-font-family-regular;
+    font-size: inherit;
+    height: auto;
+    outline: none;
+    padding: 0 10px;
+    width: 100%;
+
+    &::-ms-clear {
+        display: none;
+    }
+}
+
+.navbar-search-close {
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    display: none;
+    font-size: inherit;
+    padding: 0;
+}
+
+.navbar-search-overlay {
+    @include transition(opacity 0.3s ease-in-out);
+    height: 0;
+    opacity: 0;
+    width: 0;
+}
+
+.navbar-search-show {
+    .navbar-search-open {
+        padding-right: 0;
+    }
+    
+    .navbar-search-overlay {
+        background-color: $color-black;
+        position: fixed;
+        top: #{$navbar-height};
+        left: 0;
+        display: block;
+        height: calc(100vh - #{$navbar-height});
+        opacity: 0.7;
+        width: 100vw;
+    }
+}
+
+.navbar-search-autocomplete {
+    &.autocomplete {
+        border-top-width: 1px;
+        max-height: calc(100% - #{$navbar-height});
+        z-index: $zindex-navbar + 1;
+
+        .autocomplete-suggestion.selected {
+            background-color: $navbar-search-autocomplete-background-color;
+            color: $navbar-search-autocomplete-selected-color;
+        }
+    }
+}
+
+/* Cart
+ ========================================================================== */
+
+.navbar-cart {
+    @extend .navbar-item;
+    color: $navbar-color;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.navbar-cart-open {
+    cursor: pointer;
+    padding: $navbar-item-spacing / 2;
+}
+
+.navbar .navbar-cart-open:hover {
+    color: initial;
+}
+
+.navbar-cart-dropdown {
+    background-color: $navbar-cart-dropdown-background-color;
+    border: 1px solid $navbar-cart-dropdown-border-color;
+    display: none;
+    font-size: $navbar-cart-dropdown-font-size;
+    position: relative;
+    text-transform: none;
+    width: $navbar-cart-dropdown-width;
+    z-index: $zindex-tooltip;
+
+    &.navbar-cart-dropdown-open {
+        display: block;
+    }
+
+    .navbar-cart-arrow {
+        background-color: $navbar-cart-dropdown-background-color;
+        border-left: 1px solid $navbar-cart-dropdown-border-color;
+        border-top: 1px solid $navbar-cart-dropdown-border-color;
+        display: block;
+        height: 15px;
+        position: absolute;
+        top: -8px;
+        transform: rotate(45deg);
+        width: 15px;
+    }
+}
+
+.navbar-cart-list {
+    max-height: calc(100vh - 270px);
+    overflow: auto;
+}
+
+.navbar-cart-footer {
+    background-color: $navbar-cart-dropdown-background-color;
+    border: 1px solid $navbar-cart-dropdown-border-color;
+    bottom: -$navbar-cart-footer-height;
+    left: -1px;
+    position: absolute;
+    right: -1px;
+}
+
+.navbar-cart-backdrop {
+    @include transition(opacity 0.3s ease-in-out);
+    height: 0;
+    opacity: 0;
+    width: 0;
+}
+
+.navbar-cart-dropdown.is-shown+.navbar-cart-backdrop {
+    background-color: $navbar-cart-dropdown-color;
+    position: fixed;
+    left: 0;
+    top: #{$navbar-height};
+    display: block;
+    height: calc(100vh - #{$navbar-height});
+    opacity: 0.5;
+    width: 100vw;
+}
+
+// .navbar-search-result {
+//     -webkit-overflow-scrolling: touch;
+//     background-color: $navbar-background-color;
+//     display: none;
+//     overflow-y: auto;
+//     padding: $navbar-search-result-spacing;
+//     text-transform: none;
+//     width: 100%;
+//     ul {
+//         display: block;
+//         list-style: none;
+//         margin: 0;
+//         padding: 0;
+//         > li {
+//             padding: $navbar-search-result-item-spacing;
+//         }
+//     }
+// }
+// .navbar-search-result-title {
+//     font-size: 0.888888em;
+//     padding: $navbar-search-result-item-spacing 0;
+// }
+@include breakpoint-down("tablet") {
+    .navbar-search {
+        &.navbar-search-show {
+            background-color: $navbar-background-color;
+            position: fixed;
+            left: 0;
+            margin-left: 0;
+            width: 100%;
+            z-index: $zindex-search;
+
+            .navbar-search-input {
+                display: flex;
+                flex: 1;
+                height: $navbar-height;
+            }
+
+            .navbar-search-close {
+                display: block;
+                margin-right: $navbar-search-spacing / 2;
+            } // .navbar-search-result {
+            //     border-top: 1px solid $navbar-border;
+            //     display: block;
+            //     height: calc(100% - #{$navbar-height});
+            // }
+        }
+    }
+    .navbar-search-autocomplete {
+
+        &.autocomplete {
+            height: calc(100vh - #{$navbar-height});
+            position: fixed;
+            left: 0 !important; 
+            top: $navbar-height !important;
+            width: 100vw !important;
+        }
+    }
+}
+
+@include breakpoint-up("desktop") {
+    .navbar-search {
+        &.navbar-search-show {
+            @include make-container-max-widths;
+            background-color: $navbar-background-color;
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: $navbar-height;
+            margin: 0 auto;
+            z-index: $zindex-search;
+            .navbar-search-open-label {
+                display: none;
+            }
+            .navbar-search-input {
+                display: flex;
+                flex: 1;
+                height: 100%;
+            }
+            .navbar-search-close {
+                display: block;
+            } // .navbar-search-result {
+            //     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            //     display: block;
+            //     margin-top: 1px;
+            //     max-height: 250px;
+            //     position: relative;
+            // }
+        }
+    }
+}
+
+/* User
+ ========================================================================== */
+
+.navbar-user {
+    @extend .navbar-item;
+    @include breakpoint-up("desktop") {
+        margin-left: auto;
+        position: relative;
+    }
+    &.navbar-user-dropdown-open {
+        .navbar-user-toggle:not([href]) {
+            pointer-events: none;
+        }
+        .navbar-user-dropdown {
+            display: block;
+        }
+    }
+}
+
+.navbar-user-toggle {
+    padding: $navbar-item-spacing / 2;
+}
+
+.navbar-user-dropdown {
+    background-color: $navbar-background-color;
+    display: none;
+    height: 100vh;
+    padding-top: 80px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100vw;
+    z-index: $zindex-user-dropdown;
+
+    @include breakpoint-down("tablet") {
+        padding-top: $navbar-height;
+        position: fixed;
+    }
+
+    @include breakpoint-up("desktop") {
+        border: 1px solid $navbar-border;
+        height: auto;
+        top: $navbar-height - 1;
+        width: 300px;
+
+        .navbar-user-dropdown-arrow {
+            background-color: $navbar-cart-dropdown-background-color;
+            position: absolute;
+            right: $navbar-user-dropdown-spacing * 2;
+            top: -8px;
+            border-left: 1px solid $navbar-cart-dropdown-border-color;
+            border-top: 1px solid $navbar-cart-dropdown-border-color;
+            display: block;
+            height: 15px;
+            transform: rotate(45deg);
+            width: 15px;
+        }
+    }
+}
+
+.navbar-user-close {
+    background: transparent;
+    position: absolute;
+    top: 0;
+    border: none;
+    color: inherit;
+    display: none;
+    font-size: inherit;
+    line-height: $navbar-height;
+    padding: 0;
+    right: $navbar-user-menu-close-spacing;
+
+    @include breakpoint-down("tablet") {
+        display: block;
+    }
+}
+
+.navbar-user-menu {
+    @include breakpoint-down("tablet") {
+        -webkit-overflow-scrolling: touch;
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        > li {
+            border-top: 1px solid $navbar-border;
+            &:first-child {
+                border-top-color: transparent;
+            }
+            > a {
+                color: $navbar-color;
+                display: block;
+                padding: $navbar-user-menu-spacing 0;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.navbar-user-menu-icon {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @include breakpoint-up("desktop") {
+        .navbar-menu-sub-container div[class*="row"] > div[class*="column"] {
+            flex: 1 0 auto;
+        }
+          
+        .image-promo-navbar-full:last-of-type {
+            margin-right: 20px;
+        }
+    }
+    
+    @include breakpoint-down("tablet") {
+        .navbar-image-promo > img {
+            min-height: 1px;
+        }
+    }
+}

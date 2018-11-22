@@ -1,0 +1,42 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Notify bar
+// Description:     Defines styles for notify bar component.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Component: Notify bar
+ ========================================================================== */
+
+.notify-bar {
+    display: block;
+    overflow: hidden;
+    position: relative;
+
+    &.notify-bar-brand .notify-bar-content {
+        background-color: $notify-bar-brand-background-color;
+        color: $notify-bar-brand-color;
+    }
+
+    &.notify-bar-success .notify-bar-content {
+        background-color: $notify-bar-success-background-color;
+        color: $notify-bar-success-color;
+    }
+}
+
+.notify-bar-content {
+    animation: notify-bar-slide-in .5s ease-out .5s backwards;
+    background-color: $notify-bar-background-color;    
+    padding: $notify-bar-spacing 0;
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+
+    @include breakpoint-down("tablet") {
+        padding: ($notify-bar-spacing / 2) 0;
+    }
+}

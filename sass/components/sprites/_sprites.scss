@@ -1,0 +1,47 @@
+/// <reference path="../../_design-system.scss" />
+/// <reference path="_mixins.scss" />
+
+//
+// Subject:         Sprites
+// Description:     Defines styles for sprites.
+//
+// ===========================================================================
+
+@import 'mixins';
+
+/* ========================================================================
+   Component: Sprites
+ ========================================================================== */
+
+[class^="sprite-icon-"],
+[class*=" sprite-icon-"] {
+    display: inline-block;
+}
+
+.sprite-icon-ideal {
+    @include retina-sprite($ideal-group);
+}
+
+.sprite-icon-paypal {
+    @include retina-sprite($paypal-group);
+}
+
+.sprite-icon-visa {
+    @include retina-sprite($visa-group);
+}
+
+.sprite-icon-master-card {
+    @include retina-sprite($master-card-group);
+}
+
+.sprite-icon-pin {
+    @include retina-sprite($pin-group);
+}
+
+.sprite-icon-flag-europe {
+    @include retina-sprite($flag-europe-group);
+}
+
+.sprite-icon-flag-usa {
+    @include retina-sprite($flag-usa-group);
+}

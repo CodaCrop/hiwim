@@ -1,0 +1,24 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Localnav
+// Description:     Defines styles for localnav.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Layout: Localnav
+ ========================================================================== */
+
+.localnav {
+    border-bottom: 1px solid $localnav-border-color;
+
+    .localnav-container {
+        @include make-container();
+        @include make-container-max-widths();
+        display: flex;
+        height: $localnav-height;
+        position: relative;
+        justify-content: space-between;
+    }
+}

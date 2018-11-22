@@ -1,0 +1,99 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Gallery images
+// Description:     Defines styles for Gallery images.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Component: Gallery images
+ ========================================================================== */
+
+ .gallery-images {
+     .gallery-image {
+         display: inline-block;
+         margin: 0 auto;
+         max-height: $gallery-image-max-height;
+         padding: $gallery-image-padding;
+         position: relative;
+         text-align: center;
+     }
+
+     .gallery-images-thumbnails {
+         list-style: none;
+         margin: $gallery-images-thumbnails-margin;
+         padding: 0;
+         text-align: center;
+
+         .gallery-images-thumbnail {
+            background-color: $gallery-images-thumbnail-background-color;
+            border: $gallery-images-thumbnail-border;
+            border-radius: $gallery-images-thumbnail-border-radius;
+            cursor: pointer;
+            display: inline-block;
+            height: $gallery-images-thumbnail-height;
+            margin: 0 $gallery-images-thumbnail-margin;
+            padding: $gallery-images-thumbnail-padding;
+            position: relative;
+            width: $gallery-images-thumbnail-width;
+
+            &:first-child {
+                margin: 0 $gallery-images-thumbnail-margin 0 0;
+            }
+
+            &:last-child {
+                margin: 0 0 0 $gallery-images-thumbnail-margin;
+            }
+
+            > img {
+                max-height: 100%;
+            }
+
+            &.is-active {
+                &:before {
+                    border-color: transparent;
+                    border-style: dashed dashed solid;
+                    border-width: 0 $gallery-images-thumbnail-triangle-width $gallery-images-thumbnail-triangle-width;
+                    border-bottom-color: $gallery-images-thumbnail-triangle-border-color;
+                    border-bottom-color: rgba(0, 0, 0, 0.2);
+                    content: "";
+                    display: block;
+                    height: 0;
+                    right: $gallery-images-thumbnail-triangle-right;
+                    position: absolute;
+                    top: $gallery-images-thumbnail-triangle-top;
+                    width: 0;
+                    z-index: 1;
+                }
+
+                &:after {
+                    border-color: transparent;
+                    border-bottom-color: $gallery-images-thumbnail-background-color;
+                    border-style: dashed dashed solid;
+                    border-width: 0 $gallery-images-thumbnail-triangle-width $gallery-images-thumbnail-triangle-width;
+                    content: "";
+                    display: block;
+                    height: 0;
+                    right: $gallery-images-thumbnail-triangle-right;
+                    position: absolute;
+                    top: $gallery-images-thumbnail-triangle-top + 1px;
+                    width: 0;
+                    z-index: 1;
+                }
+            }
+         }
+     }
+    @include breakpoint-down("tablet") {
+        .gallery-images-thumbnails .gallery-images-thumbnail {
+            background-color: $color-bright;
+
+            &.is-active {
+                &:after {
+                    border-bottom-color: $color-bright;
+                }
+            }
+        }
+    } 
+}
+

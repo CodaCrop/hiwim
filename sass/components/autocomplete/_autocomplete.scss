@@ -1,0 +1,64 @@
+﻿/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Autocomplete
+// Description:     Defines styles for autocomplete.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Components: Autocomplete
+ ========================================================================== */
+
+.autocomplete {
+    -webkit-overflow-scrolling: touch;
+    border: $autocomplete-border;
+    border-top-width: 0;
+    background-color: $autocomplete-background-color;
+    cursor: default;
+    display: none;
+    max-height: 265px;
+    overflow: hidden;
+    overflow-y: auto;
+    position: absolute;
+    text-align: left;
+    z-index: $zindex-autocomplete;
+}
+
+.autocomplete-suggestion-category {
+    color: $color-muted;
+    font-size: 0.888888em;
+    margin: $autocomplete-category-spacing-y $autocomplete-category-spacing-x 0;
+    padding: $autocomplete-category-suggestion-spacing $autocomplete-category-inset;
+
+    ~ .autocomplete-suggestion {
+        margin: $autocomplete-category-suggestion-spacing $autocomplete-category-spacing-x 0;
+        padding: $autocomplete-category-suggestion-spacing $autocomplete-category-inset * 2;
+
+        &:last-child {
+            margin-bottom: $autocomplete-category-spacing-y;
+        }
+    }
+}
+
+.autocomplete-suggestion {
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    font-weight: normal;
+    padding: $autocomplete-spacing-y $autocomplete-spacing-x;
+    position: relative;
+    overflow: hidden;    
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    b {
+        font-weight: bold;
+    }
+    
+    &.selected {
+        background-color: $autocomplete-selected-color;
+        color: $autocomplete-inverse-color;
+        cursor: pointer;
+    }
+}

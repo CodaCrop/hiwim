@@ -1,0 +1,234 @@
+.table-compare {
+    border-collapse: collapse;
+    table-layout: auto !important;
+    width: 100%;
+
+    caption {
+        text-align: left;
+    }
+
+    tr {
+        &:last-of-type > td:nth-of-type(2) {
+            border-bottom: 2px solid $color-brand;
+        }
+
+        &:not(:last-of-type) {
+            border-bottom: 1px solid $color-gray-light;
+        }
+    }
+
+    .cell {
+        &-head {
+            width: 100%;
+
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: $spacer-y 0.5rem;
+
+            img {
+                width: 80px;
+            }
+        }
+    }
+
+    th {
+        margin: 0;
+        padding: 0;
+
+        &:nth-of-type(2) {
+            border-left: 2px solid $color-brand;
+            border-right: 2px solid $color-brand;
+            background-color: $color-brand;
+            color: $color-bright;
+        }
+
+        &:nth-of-type(1n+3) {
+            padding-left: $spacer-x;
+            background-color: $color-bright;
+
+            > .cell-head {
+                background-color: $list-group-header-background-color;
+            }
+        }
+    }
+
+    td {
+        margin: 0;
+        padding: 0;
+
+        &:first-of-type {
+            padding: $spacer-y $spacer-x * 2 $spacer-y 0;
+            min-width: 350px;
+        }
+
+        &:not(:first-of-type) > .cell {
+            text-align: center;
+        }
+
+        &:nth-of-type(2) {
+            height: 4.2rem;
+            border-left: 2px solid $color-brand;
+            border-right: 2px solid $color-brand;
+            padding: 0 3rem;
+        }
+
+        &:nth-of-type(1n+3) {
+            height: 80px;
+            padding: 0 $spacer-y * 3 0 $spacer-x * 4;
+        }
+
+        span[class*='icon'] {
+            width: $spacer * 2;
+            &::before {
+                font-size: 1.5rem;
+                font-weight: 800;
+            }
+
+            &.icon-checkmark {
+                color: $color-success;
+            }
+
+            &.icon-close {
+                color: $color-danger;
+            }
+        }
+    }
+
+    tfoot {
+        small {
+            color: $table-foot-color;
+        }
+    }
+}
+
+@include breakpoint-down("desktop") {
+    .table-compare {
+        td:first-of-type {
+            min-width: 250px;
+        }
+    }
+}
+
+@include breakpoint-down("tablet") {
+    table {
+        table-layout: fixed !important;
+    }
+
+    table, thead, tbody {
+        display: block;
+    }
+
+    .table-compare {
+        thead {
+            background-color: $color-bright; 
+            padding: $spacer 0;
+            margin: 0;
+            width: 100%;
+            overflow: hidden;
+            border-bottom: 1px solid $list-group-header-background-color;
+
+            tr {
+                display: flex;
+                justify-content: space-between;
+                padding: 0;
+                margin: 0;
+            }
+
+            th {
+                flex: 1;
+                width: 25vw;
+                
+                &:first-of-type {
+                    position: absolute;
+                    left: -9999px;
+                    top: -9999px;
+                }
+
+                &:nth-of-type(2) {
+                    border: none;
+                }
+
+                &:last-of-type > .cell-head {
+                    margin-left: 0;
+                }
+
+                &:nth-of-type(1n+3) {
+                    padding-left: $spacer;
+                }
+            }
+        }
+
+        td:first-of-type {
+            min-width: 0;
+            padding: $spacer 0;
+        }
+
+        tbody {
+            td, tr {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            tr {
+                padding: 0 0 1rem;
+
+                &:last-of-type > td:nth-of-type(2) {
+                    border-bottom: none;
+                }
+            }
+
+            td:first-of-type {
+                display: block;
+                min-width: 100%;
+                height: auto;
+                padding-right: 0;
+                padding-bottom: 1rem;
+                text-align: center;
+            }
+
+            td:nth-of-type(1n+2) {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex: 1;
+
+                .cell {
+                    min-width: 1rem;
+                }
+            }
+
+            td:nth-of-type(1n+3):not(:last-of-type) {
+                padding: 1rem 0.25rem 1rem .25rem;
+            }
+
+            td:nth-of-type(2) {
+                height: unset;
+                border-left: none;
+                padding: 1rem 0.25rem 1rem 0;
+            }
+
+            td:last-of-type {
+                padding: $spacer-y 0 $spacer-x .25rem;
+            }
+
+            td:not(:first-of-type):not(:last-of-type) {
+                border-right: 1px solid $color-gray-light;
+            }
+        }
+    }
+}
+
+@include breakpoint-down("mobile") {
+    .table-compare .cell-head {
+        padding: 0rem 0.2rem;
+        height: 72px;
+    }
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .table-compare tbody td:nth-of-type(2) {
+        margin-left: 0;
+    }
+}

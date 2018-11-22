@@ -1,0 +1,190 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Sub navigation
+// Description:     Defines styles for the sub navigation.
+//
+// ===========================================================================
+
+@keyframes subnav-slide-in {
+    0% {
+        opacity: 0;
+    }
+
+    1% {
+        -webkit-transform: translateX(160px);
+        transform: translateX(160px);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+/* ========================================================================
+   Layout: Sub navigation
+ ========================================================================== */
+
+.subnav {
+    background-color: $subnav-background-color;
+    height: $subnav-height;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+
+    &.is-scrolled-min {
+        .subnav-button-left {
+            opacity: 0;
+        }
+    }
+
+    &.is-scrolled-max {
+        .subnav-button-right {
+            opacity: 0;
+        }
+    }
+}
+
+/* Items
+ ========================================================================== */
+
+.subnav-items {
+    -webkit-overflow-scrolling: touch;
+    list-style: none;
+    margin: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0;
+    white-space: nowrap;
+
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        display: none;
+    }
+
+    > li {
+        display: inline-block;
+        padding: $subnav-item-spacing-y $subnav-item-spacing-x;
+        padding-bottom: 50px;
+        text-align: center;
+
+        &:first-child {
+            margin-left: $subnav-list-spacing-x;
+            padding-left: 0;
+        }
+
+        &:last-child {
+            margin-right: $subnav-list-spacing-x;
+            padding-right: 0;
+        }
+
+        > a {
+            color: $subnav-link-color;
+            text-decoration: none;
+        }
+
+        @include breakpoint-down("desktop") {
+            animation: subnav-slide-in 0.4s ease-out 0.3s backwards;
+        }
+
+        &.is-active .subnav-icon,
+        &.is-active .subnav-label {
+            color: $subnav-link-active-color;          
+        }
+    }
+}
+
+/* Icon
+ ========================================================================== */
+
+.subnav-icon {
+    display: block;
+    font-size: $subnav-icon-size;
+    margin-bottom: 5px;
+
+    &:before {
+        @extend %icon;
+    }
+}
+
+/// NOTE: This is not a flexible way of configuring the subnav icons; rather have option in the CMS.
+
+.subnav-icon-alle-telefoons:before {
+	content: $icon-smartphone;
+}
+
+.subnav-icon-sim-only:before {
+	content: $icon-sim-card;
+}
+
+.subnav-icon-mobiel-internet:before {
+	content: $icon-laptop;
+}
+
+.subnav-icon-oplossingen:before {
+    content: $icon-manager;
+}
+
+.subnav-icon-verlengen:before {
+    content: $icon-choose-document;	
+}
+
+.subnav-icon-unlimited:before {
+    content: $icon-unlimited;	
+}
+
+.subnav-icon-4g-voor-thuis:before {
+    content: $icon-house;
+}
+
+.subnav-icon-aanbiedingen:before {
+    content: $icon-price-tag;        		
+}
+
+.subnav-icon-ons-netwerk:before {    
+    content: $icon-network;		
+}
+
+/* Label
+ ========================================================================== */
+
+.subnav-label {
+    display: block;
+    font-size: 0.888889rem;
+    font-weight: $base-body-font-weight;
+}
+
+/* Button
+ ========================================================================== */
+
+%subnav-button {
+    @include transition(0.3s linear);
+
+    background-color: $subnav-background-color;
+    border: 1px solid $color-border;
+    cursor: pointer;
+    height: 80%;
+    outline: none;
+    position: absolute;
+    top: 10%;
+    z-index: 2;
+}
+
+.subnav-button-left {
+    @extend %subnav-button;
+
+    border-width: 0 1px 0 0;
+    left: 0;
+}
+
+.subnav-button-right {
+    @extend %subnav-button;
+
+    border-width: 0 0 0 1px;
+    right: 0;
+}

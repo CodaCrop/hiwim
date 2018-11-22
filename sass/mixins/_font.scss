@@ -1,0 +1,14 @@
+﻿/// <reference path="../../_design-system.scss" />
+
+@mixin font-face($font-family, $svg-font-id, $filepath, $weight: normal, $style: normal) {
+    @font-face {
+        font-family: $font-family;
+        font-style: $style;
+        font-weight: $weight;
+        src: url('#{$filepath}.eot');
+        src: url('#{$filepath}.eot?#iefix') format('embedded-opentype'),
+             url('#{$filepath}.woff') format('woff'),
+             url('#{$filepath}.ttf') format('truetype'),
+             url('#{$filepath}.svg##{$svg-font-id}') format('svg');
+    }
+}

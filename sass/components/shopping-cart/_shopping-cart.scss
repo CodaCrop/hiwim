@@ -1,0 +1,76 @@
+/// <reference path="../../_design-system.scss" />
+//
+// Subject:         Shopping cart
+// Description:     Defines styles for shopping cart.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Components: Shopping cart
+ ========================================================================== */
+
+.shopping-cart {
+    background-color: $shopping-cart-background-color;
+    padding: $shopping-cart-padding;
+    
+    @include breakpoint-up("tablet") {
+        background-color: transparent;
+        border: 1px solid $shopping-cart-border-color;
+        padding: $shopping-cart-padding-desktop;
+    }
+}
+
+
+/* Table
+ ========================================================================== */
+
+.shopping-cart-table {
+    @include transition(all 0.25s);
+    border-collapse: collapse;
+    width: 100%;
+
+    caption {
+        text-align: left;
+    }
+
+    td {
+        padding: 0.25rem 0;
+    }
+
+    tfoot {
+        tr.shopping-cart-table-total {
+            td {
+                font-size: 1.25rem;
+                font-weight: 900;
+                padding-bottom: 0;
+                padding-top: 0;
+                text-transform: uppercase;
+            }
+        }        
+    }
+
+    tbody {
+        td {
+            padding-bottom: 0;
+            padding-top: 0;
+
+            > div {
+                display: none;
+                padding-bottom: 0.25rem;
+                padding-top: 0.25rem;
+            }
+        }
+    }
+}
+
+.is-opened > .shopping-cart-table {
+    margin-bottom: $shopping-cart-table-spacing;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+
+    tbody td > div {
+        display: block;
+    }
+}

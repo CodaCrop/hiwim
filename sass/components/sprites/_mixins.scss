@@ -1,0 +1,418 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$flag-europe-name: 'flag-europe';
+$flag-europe-x: 168px;
+$flag-europe-y: 136px;
+$flag-europe-offset-x: -168px;
+$flag-europe-offset-y: -136px;
+$flag-europe-width: 32px;
+$flag-europe-height: 32px;
+$flag-europe-total-width: 325px;
+$flag-europe-total-height: 200px;
+$flag-europe-image: '/assets/images/spritesheets/sprites.png';
+$flag-europe: (168px, 136px, -168px, -136px, 32px, 32px, 325px, 200px, '/assets/images/spritesheets/sprites.png', 'flag-europe', );
+$flag-usa-name: 'flag-usa';
+$flag-usa-x: 84px;
+$flag-usa-y: 52px;
+$flag-usa-offset-x: -84px;
+$flag-usa-offset-y: -52px;
+$flag-usa-width: 32px;
+$flag-usa-height: 32px;
+$flag-usa-total-width: 325px;
+$flag-usa-total-height: 200px;
+$flag-usa-image: '/assets/images/spritesheets/sprites.png';
+$flag-usa: (84px, 52px, -84px, -52px, 32px, 32px, 325px, 200px, '/assets/images/spritesheets/sprites.png', 'flag-usa', );
+$faq-name: 'faq';
+$faq-x: 0px;
+$faq-y: 52px;
+$faq-offset-x: 0px;
+$faq-offset-y: -52px;
+$faq-width: 64px;
+$faq-height: 64px;
+$faq-total-width: 325px;
+$faq-total-height: 200px;
+$faq-image: '/assets/images/spritesheets/sprites.png';
+$faq: (0px, 52px, 0px, -52px, 64px, 64px, 325px, 200px, '/assets/images/spritesheets/sprites.png', 'faq', );
+$manual-name: 'manual';
+$manual-x: 145px;
+$manual-y: 0px;
+$manual-offset-x: -145px;
+$manual-offset-y: 0px;
+$manual-width: 64px;
+$manual-height: 64px;
+$manual-total-width: 325px;
+$manual-total-height: 200px;
+$manual-image: '/assets/images/spritesheets/sprites.png';
+$manual: (145px, 0px, -145px, 0px, 64px, 64px, 325px, 200px, '/assets/images/spritesheets/sprites.png', 'manual', );
+$settings-name: 'settings';
+$settings-x: 0px;
+$settings-y: 136px;
+$settings-offset-x: 0px;
+$settings-offset-y: -136px;
+$settings-width: 64px;
+$settings-height: 64px;
+$settings-total-width: 325px;
+$settings-total-height: 200px;
+$settings-image: '/assets/images/spritesheets/sprites.png';
+$settings: (0px, 136px, 0px, -136px, 64px, 64px, 325px, 200px, '/assets/images/spritesheets/sprites.png', 'settings', );
+$tips-tricks-name: 'tips-tricks';
+$tips-tricks-x: 84px;
+$tips-tricks-y: 136px;
+$tips-tricks-offset-x: -84px;
+$tips-tricks-offset-y: -136px;
+$tips-tricks-width: 64px;
+$tips-tricks-height: 64px;
+$tips-tricks-total-width: 325px;
+$tips-tricks-total-height: 200px;
+$tips-tricks-image: '/assets/images/spritesheets/sprites.png';
+$tips-tricks: (84px, 136px, -84px, -136px, 64px, 64px, 325px, 200px, '/assets/images/spritesheets/sprites.png', 'tips-tricks', );
+$creditcards-name: 'creditcards';
+$creditcards-x: 229px;
+$creditcards-y: 104px;
+$creditcards-offset-x: -229px;
+$creditcards-offset-y: -104px;
+$creditcards-width: 45px;
+$creditcards-height: 32px;
+$creditcards-total-width: 325px;
+$creditcards-total-height: 200px;
+$creditcards-image: '/assets/images/spritesheets/sprites.png';
+$creditcards: (229px, 104px, -229px, -104px, 45px, 32px, 325px, 200px, '/assets/images/spritesheets/sprites.png', 'creditcards', );
+$ideal-name: 'ideal';
+$ideal-x: 145px;
+$ideal-y: 84px;
+$ideal-offset-x: -145px;
+$ideal-offset-y: -84px;
+$ideal-width: 36px;
+$ideal-height: 32px;
+$ideal-total-width: 325px;
+$ideal-total-height: 200px;
+$ideal-image: '/assets/images/spritesheets/sprites.png';
+$ideal: (145px, 84px, -145px, -84px, 36px, 32px, 325px, 200px, '/assets/images/spritesheets/sprites.png', 'ideal', );
+$master-card-name: 'master-card';
+$master-card-x: 229px;
+$master-card-y: 52px;
+$master-card-offset-x: -229px;
+$master-card-offset-y: -52px;
+$master-card-width: 50px;
+$master-card-height: 32px;
+$master-card-total-width: 325px;
+$master-card-total-height: 200px;
+$master-card-image: '/assets/images/spritesheets/sprites.png';
+$master-card: (229px, 52px, -229px, -52px, 50px, 32px, 325px, 200px, '/assets/images/spritesheets/sprites.png', 'master-card', );
+$paypal-name: 'paypal';
+$paypal-x: 0px;
+$paypal-y: 0px;
+$paypal-offset-x: 0px;
+$paypal-offset-y: 0px;
+$paypal-width: 125px;
+$paypal-height: 32px;
+$paypal-total-width: 325px;
+$paypal-total-height: 200px;
+$paypal-image: '/assets/images/spritesheets/sprites.png';
+$paypal: (0px, 0px, 0px, 0px, 125px, 32px, 325px, 200px, '/assets/images/spritesheets/sprites.png', 'paypal', );
+$pin-name: 'pin';
+$pin-x: 229px;
+$pin-y: 156px;
+$pin-offset-x: -229px;
+$pin-offset-y: -156px;
+$pin-width: 45px;
+$pin-height: 32px;
+$pin-total-width: 325px;
+$pin-total-height: 200px;
+$pin-image: '/assets/images/spritesheets/sprites.png';
+$pin: (229px, 156px, -229px, -156px, 45px, 32px, 325px, 200px, '/assets/images/spritesheets/sprites.png', 'pin', );
+$visa-name: 'visa';
+$visa-x: 229px;
+$visa-y: 0px;
+$visa-offset-x: -229px;
+$visa-offset-y: 0px;
+$visa-width: 96px;
+$visa-height: 32px;
+$visa-total-width: 325px;
+$visa-total-height: 200px;
+$visa-image: '/assets/images/spritesheets/sprites.png';
+$visa: (229px, 0px, -229px, 0px, 96px, 32px, 325px, 200px, '/assets/images/spritesheets/sprites.png', 'visa', );
+$flag-europe-2x-name: 'flag-europe-2x';
+$flag-europe-2x-x: 336px;
+$flag-europe-2x-y: 272px;
+$flag-europe-2x-offset-x: -336px;
+$flag-europe-2x-offset-y: -272px;
+$flag-europe-2x-width: 64px;
+$flag-europe-2x-height: 64px;
+$flag-europe-2x-total-width: 650px;
+$flag-europe-2x-total-height: 400px;
+$flag-europe-2x-image: '/assets/images/spritesheets/sprites-2x.png';
+$flag-europe-2x: (336px, 272px, -336px, -272px, 64px, 64px, 650px, 400px, '/assets/images/spritesheets/sprites-2x.png', 'flag-europe-2x', );
+$flag-usa-2x-name: 'flag-usa-2x';
+$flag-usa-2x-x: 168px;
+$flag-usa-2x-y: 104px;
+$flag-usa-2x-offset-x: -168px;
+$flag-usa-2x-offset-y: -104px;
+$flag-usa-2x-width: 64px;
+$flag-usa-2x-height: 64px;
+$flag-usa-2x-total-width: 650px;
+$flag-usa-2x-total-height: 400px;
+$flag-usa-2x-image: '/assets/images/spritesheets/sprites-2x.png';
+$flag-usa-2x: (168px, 104px, -168px, -104px, 64px, 64px, 650px, 400px, '/assets/images/spritesheets/sprites-2x.png', 'flag-usa-2x', );
+$faq-2x-name: 'faq-2x';
+$faq-2x-x: 0px;
+$faq-2x-y: 104px;
+$faq-2x-offset-x: 0px;
+$faq-2x-offset-y: -104px;
+$faq-2x-width: 128px;
+$faq-2x-height: 128px;
+$faq-2x-total-width: 650px;
+$faq-2x-total-height: 400px;
+$faq-2x-image: '/assets/images/spritesheets/sprites-2x.png';
+$faq-2x: (0px, 104px, 0px, -104px, 128px, 128px, 650px, 400px, '/assets/images/spritesheets/sprites-2x.png', 'faq-2x', );
+$manual-2x-name: 'manual-2x';
+$manual-2x-x: 290px;
+$manual-2x-y: 0px;
+$manual-2x-offset-x: -290px;
+$manual-2x-offset-y: 0px;
+$manual-2x-width: 128px;
+$manual-2x-height: 128px;
+$manual-2x-total-width: 650px;
+$manual-2x-total-height: 400px;
+$manual-2x-image: '/assets/images/spritesheets/sprites-2x.png';
+$manual-2x: (290px, 0px, -290px, 0px, 128px, 128px, 650px, 400px, '/assets/images/spritesheets/sprites-2x.png', 'manual-2x', );
+$settings-2x-name: 'settings-2x';
+$settings-2x-x: 0px;
+$settings-2x-y: 272px;
+$settings-2x-offset-x: 0px;
+$settings-2x-offset-y: -272px;
+$settings-2x-width: 128px;
+$settings-2x-height: 128px;
+$settings-2x-total-width: 650px;
+$settings-2x-total-height: 400px;
+$settings-2x-image: '/assets/images/spritesheets/sprites-2x.png';
+$settings-2x: (0px, 272px, 0px, -272px, 128px, 128px, 650px, 400px, '/assets/images/spritesheets/sprites-2x.png', 'settings-2x', );
+$tips-tricks-2x-name: 'tips-tricks-2x';
+$tips-tricks-2x-x: 168px;
+$tips-tricks-2x-y: 272px;
+$tips-tricks-2x-offset-x: -168px;
+$tips-tricks-2x-offset-y: -272px;
+$tips-tricks-2x-width: 128px;
+$tips-tricks-2x-height: 128px;
+$tips-tricks-2x-total-width: 650px;
+$tips-tricks-2x-total-height: 400px;
+$tips-tricks-2x-image: '/assets/images/spritesheets/sprites-2x.png';
+$tips-tricks-2x: (168px, 272px, -168px, -272px, 128px, 128px, 650px, 400px, '/assets/images/spritesheets/sprites-2x.png', 'tips-tricks-2x', );
+$creditcards-2x-name: 'creditcards-2x';
+$creditcards-2x-x: 458px;
+$creditcards-2x-y: 208px;
+$creditcards-2x-offset-x: -458px;
+$creditcards-2x-offset-y: -208px;
+$creditcards-2x-width: 90px;
+$creditcards-2x-height: 64px;
+$creditcards-2x-total-width: 650px;
+$creditcards-2x-total-height: 400px;
+$creditcards-2x-image: '/assets/images/spritesheets/sprites-2x.png';
+$creditcards-2x: (458px, 208px, -458px, -208px, 90px, 64px, 650px, 400px, '/assets/images/spritesheets/sprites-2x.png', 'creditcards-2x', );
+$ideal-2x-name: 'ideal-2x';
+$ideal-2x-x: 290px;
+$ideal-2x-y: 168px;
+$ideal-2x-offset-x: -290px;
+$ideal-2x-offset-y: -168px;
+$ideal-2x-width: 72px;
+$ideal-2x-height: 64px;
+$ideal-2x-total-width: 650px;
+$ideal-2x-total-height: 400px;
+$ideal-2x-image: '/assets/images/spritesheets/sprites-2x.png';
+$ideal-2x: (290px, 168px, -290px, -168px, 72px, 64px, 650px, 400px, '/assets/images/spritesheets/sprites-2x.png', 'ideal-2x', );
+$master-card-2x-name: 'master-card-2x';
+$master-card-2x-x: 458px;
+$master-card-2x-y: 104px;
+$master-card-2x-offset-x: -458px;
+$master-card-2x-offset-y: -104px;
+$master-card-2x-width: 100px;
+$master-card-2x-height: 64px;
+$master-card-2x-total-width: 650px;
+$master-card-2x-total-height: 400px;
+$master-card-2x-image: '/assets/images/spritesheets/sprites-2x.png';
+$master-card-2x: (458px, 104px, -458px, -104px, 100px, 64px, 650px, 400px, '/assets/images/spritesheets/sprites-2x.png', 'master-card-2x', );
+$paypal-2x-name: 'paypal-2x';
+$paypal-2x-x: 0px;
+$paypal-2x-y: 0px;
+$paypal-2x-offset-x: 0px;
+$paypal-2x-offset-y: 0px;
+$paypal-2x-width: 250px;
+$paypal-2x-height: 64px;
+$paypal-2x-total-width: 650px;
+$paypal-2x-total-height: 400px;
+$paypal-2x-image: '/assets/images/spritesheets/sprites-2x.png';
+$paypal-2x: (0px, 0px, 0px, 0px, 250px, 64px, 650px, 400px, '/assets/images/spritesheets/sprites-2x.png', 'paypal-2x', );
+$pin-2x-name: 'pin-2x';
+$pin-2x-x: 458px;
+$pin-2x-y: 312px;
+$pin-2x-offset-x: -458px;
+$pin-2x-offset-y: -312px;
+$pin-2x-width: 90px;
+$pin-2x-height: 64px;
+$pin-2x-total-width: 650px;
+$pin-2x-total-height: 400px;
+$pin-2x-image: '/assets/images/spritesheets/sprites-2x.png';
+$pin-2x: (458px, 312px, -458px, -312px, 90px, 64px, 650px, 400px, '/assets/images/spritesheets/sprites-2x.png', 'pin-2x', );
+$visa-2x-name: 'visa-2x';
+$visa-2x-x: 458px;
+$visa-2x-y: 0px;
+$visa-2x-offset-x: -458px;
+$visa-2x-offset-y: 0px;
+$visa-2x-width: 192px;
+$visa-2x-height: 64px;
+$visa-2x-total-width: 650px;
+$visa-2x-total-height: 400px;
+$visa-2x-image: '/assets/images/spritesheets/sprites-2x.png';
+$visa-2x: (458px, 0px, -458px, 0px, 192px, 64px, 650px, 400px, '/assets/images/spritesheets/sprites-2x.png', 'visa-2x', );
+$spritesheet-width: 325px;
+$spritesheet-height: 200px;
+$spritesheet-image: '/assets/images/spritesheets/sprites.png';
+$spritesheet-sprites: ($flag-europe, $flag-usa, $faq, $manual, $settings, $tips-tricks, $creditcards, $ideal, $master-card, $paypal, $pin, $visa, );
+$spritesheet: (325px, 200px, '/assets/images/spritesheets/sprites.png', $spritesheet-sprites, );
+$retina-spritesheet-width: 650px;
+$retina-spritesheet-height: 400px;
+$retina-spritesheet-image: '/assets/images/spritesheets/sprites-2x.png';
+$retina-spritesheet-sprites: ($flag-europe-2x, $flag-usa-2x, $faq-2x, $manual-2x, $settings-2x, $tips-tricks-2x, $creditcards-2x, $ideal-2x, $master-card-2x, $paypal-2x, $pin-2x, $visa-2x, );
+$retina-spritesheet: (650px, 400px, '/assets/images/spritesheets/sprites-2x.png', $retina-spritesheet-sprites, );
+
+// These "retina group" variables are mappings for the naming and pairing of normal and retina sprites.
+//
+// The list formatted variables are intended for mixins like `retina-sprite` and `retina-sprites`.
+$flag-europe-group-name: 'flag-europe';
+$flag-europe-group: ('flag-europe', $flag-europe, $flag-europe-2x, );
+$flag-usa-group-name: 'flag-usa';
+$flag-usa-group: ('flag-usa', $flag-usa, $flag-usa-2x, );
+$faq-group-name: 'faq';
+$faq-group: ('faq', $faq, $faq-2x, );
+$manual-group-name: 'manual';
+$manual-group: ('manual', $manual, $manual-2x, );
+$settings-group-name: 'settings';
+$settings-group: ('settings', $settings, $settings-2x, );
+$tips-tricks-group-name: 'tips-tricks';
+$tips-tricks-group: ('tips-tricks', $tips-tricks, $tips-tricks-2x, );
+$creditcards-group-name: 'creditcards';
+$creditcards-group: ('creditcards', $creditcards, $creditcards-2x, );
+$ideal-group-name: 'ideal';
+$ideal-group: ('ideal', $ideal, $ideal-2x, );
+$master-card-group-name: 'master-card';
+$master-card-group: ('master-card', $master-card, $master-card-2x, );
+$paypal-group-name: 'paypal';
+$paypal-group: ('paypal', $paypal, $paypal-2x, );
+$pin-group-name: 'pin';
+$pin-group: ('pin', $pin, $pin-2x, );
+$visa-group-name: 'visa';
+$visa-group: ('visa', $visa, $visa-2x, );
+$retina-groups: ($flag-europe-group, $flag-usa-group, $faq-group, $manual-group, $settings-group, $tips-tricks-group, $creditcards-group, $ideal-group, $master-card-group, $paypal-group, $pin-group, $visa-group, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `retina-sprite` mixin sets up rules and a media query for a sprite/retina sprite.
+//   It should be used with a "retina group" variable.
+//
+// The media query is from CSS Tricks: https://css-tricks.com/snippets/css/retina-display-media-query/
+//
+// $icon-home-group: ('icon-home', $icon-home, $icon-home-2x, );
+//
+// .icon-home {
+//   @include retina-sprite($icon-home-group);
+// }
+@mixin sprite-background-size($sprite) {
+  $sprite-total-width: nth($sprite, 7);
+  $sprite-total-height: nth($sprite, 8);
+  background-size: $sprite-total-width $sprite-total-height;
+}
+
+@mixin retina-sprite($retina-group) {
+  $normal-sprite: nth($retina-group, 2);
+  $retina-sprite: nth($retina-group, 3);
+  @include sprite($normal-sprite);
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+         (min-resolution: 192dpi) {
+    @include sprite-image($retina-sprite);
+    @include sprite-background-size($normal-sprite);
+  }
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}
+
+// The `retina-sprites` mixin generates a CSS rule and media query for retina groups
+//   This yields the same output as CSS retina template but can be overridden in SCSS
+//
+// @include retina-sprites($retina-groups);
+@mixin retina-sprites($retina-groups) {
+  @each $retina-group in $retina-groups {
+    $sprite-name: nth($retina-group, 1);
+    .#{$sprite-name} {
+      @include retina-sprite($retina-group);
+    }
+  }
+}

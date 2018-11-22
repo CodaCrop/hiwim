@@ -1,0 +1,163 @@
+//
+// Subject:         Section
+// Description:     Defines styles for sections.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Layout: Section
+ ========================================================================== */
+
+.section {
+    padding: $section-padding-y 0;
+
+    &.section-align-left {
+        .section-heading {
+            text-align: left;
+        }
+
+        .section-intro {
+            text-align: left;
+        }
+    }
+}
+
+.section-heading {
+    margin-bottom: $section-heading-margin-bottom;
+    text-align: center;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.section-intro {
+    color: $section-intro-color;
+    font-size: $section-intro-font-size;
+    line-height: $section-intro-line-height;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+/* Variants
+========================================================================== */
+
+.section-article {
+    padding-top: $section-article-padding-y;
+
+    .section-heading {
+        border-bottom: 1px solid $section-heading-border-color;
+        padding-bottom: $section-heading-margin-bottom;
+        text-align: left;
+    }
+
+    .section-intro {
+        text-align: left;
+    }
+}
+
+%section-service-base {
+    position: relative;
+    z-index: 1;
+
+    &:before {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
+        bottom: 0;
+        content: "";
+        height: 10px;
+        left: 0;
+        opacity: 0.03;
+        position: absolute;
+        right: 0;
+        z-index: 1;
+    }
+
+    &:after {
+        background-image: url($section-service-background-image);
+        background-position: center;
+        background-repeat: repeat;
+        background-size: 500px;
+        bottom: 0;
+        content: "";
+        display: block;
+        left: 0;
+        opacity: 0.03;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: -1;
+    }
+}
+
+.section-service {
+    @extend %section-service-base;
+
+    background-color: $section-service-background-color;
+
+    .section-heading {
+        text-align: left;
+    }
+
+    .section-intro {
+        text-align: left;
+    }
+}
+
+.section-service-landing {
+    @extend %section-service-base;
+
+    background: linear-gradient(270deg, $color-brand 0%, darken($color-brand, 10%) 100%);
+
+    .section-heading {
+        color: $section-service-landing-color;
+    }
+
+    .section-intro {
+        color: $section-service-landing-color;
+    }
+
+    &:after {
+        opacity: 0.06;
+    }
+}
+
+.section-gray-light {
+    background-color: $section-gray-light;
+
+    .section-intro {
+        color: $section-gray-light-intro-color;
+    }
+}
+
+.section-promo {
+    @extend .section-gray-light;
+
+    .section-heading {
+        color: $section-promo-heading-color;
+    }
+}
+
+.section-marker {
+    border-top: $section-marker-border;
+    border-bottom: $section-marker-border;
+}
+
+.section-marker + .section-marker {
+    border-top: 0;
+}
+
+@include breakpoint-up("desktop") {
+    .section-split-gray-light {
+        position: relative;
+
+        &:before {
+            background: linear-gradient(to left, transparent 50%, $section-split-gray-color 50%);
+            bottom: 0;
+            content: "";
+            left: -$grid-gutter-width-base / 2;
+            position: absolute;
+            right: $grid-gutter-width-base / 2;
+            top: 0;
+        }
+    }
+}

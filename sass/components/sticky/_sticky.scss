@@ -1,0 +1,24 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Sticky
+// Description:     Defines styles for sticky component.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Component: Sticky
+ ========================================================================== */
+
+@include breakpoint-up("desktop") {
+    .sticky {
+        position: sticky;
+        top: 0px;
+    }
+
+    .sticky:before,
+    .sticky:after {
+        content: '';
+        display: table;
+    }
+}

@@ -1,0 +1,131 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Toast
+// Description:     Defines styles for toast.
+//
+// ===========================================================================
+
+@keyframes toast-backdrop {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: $toast-backdrop-opacity;
+    }
+}
+
+@keyframes toast-show {
+    0% {
+        opacity: 0;
+        transform: translate(0, -20%);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes toast-hide {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0, -20%);        
+    }
+}
+
+/* ========================================================================
+   Component: Toast
+ ========================================================================== */
+.toast-container {
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    position: fixed;
+    right: 0;
+    top: 80px;
+    visibility: hidden;
+    z-index: $zindex-toast-container;
+
+    &.full-height {
+        top: 0;
+        z-index: $zindex-toast-container + 201;
+
+        .toast-list {
+            z-index: $zindex-toast + 201;
+        }
+
+        .toast-backdrop {
+            top: 0;
+            z-index: $zindex-toast-container + 200;
+        }
+    }
+}
+
+.toast-list {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    visibility: visible;
+    z-index: $zindex-toast; 
+
+    &.show {
+        display: block;
+    }
+}
+
+.toast {    
+    animation: toast-show 0.4s ease-out 0s forwards;
+    background-color: $toast-background-color;	
+    box-shadow: $toast-box-shadow;
+    margin-bottom: $toast-margin-bottom;
+    max-width: 100%;
+    opacity: 0;
+    padding: $toast-padding;
+    position: relative;
+    max-width: $toast-width;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &.toast-hide {
+        animation: toast-hide 0.4s ease-out 0s forwards;
+    }
+}
+
+.toast-close {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: $toast-close-size;
+    outline: none;
+    padding: 0;
+    position: absolute;
+    right: $toast-close-right;
+    top: $toast-close-right;
+    z-index: $zindex-toast-close;
+    -webkit-appearance: none;
+
+    &:after {
+        @extend %icon;
+        content: $icon-close;
+    }
+}
+
+.toast-backdrop {
+    animation: toast-backdrop 0.4s ease-out 0s forwards;
+    background-color: $toast-backdrop-background-color;
+    bottom: 0;
+    left: 0;
+    opacity: 0;	
+    position: fixed;
+    right: 0;
+    top: $toast-backdrop-top;
+    visibility: visible;
+}

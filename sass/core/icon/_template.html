@@ -1,0 +1,16 @@
+﻿---
+title: Icon
+---
+
+## Icons ##
+
+Defines styles for icons
+
+<ul class="doc-icon-list">
+    <% _.each(glyphs, function(icon){ %>
+    <li>
+        <span class="doc-icon-list-icon icon-<%= icon.name %>"></span><br />
+        <span class="doc-icon-list-name">icon-<%= icon.name %></span>
+    </li>
+    <% }) %>
+</ul>

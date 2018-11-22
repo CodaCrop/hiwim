@@ -1,0 +1,36 @@
+/// <reference path="../../_design-system.scss" />
+//
+// Subject:         Stock status
+// Description:     Defines styles for Stock status.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Component: Stock status
+ ========================================================================== */
+
+%stock-status {
+    &:before {
+        content: "●";
+        font-size: 1.25rem;
+        margin-right: 0.5rem;
+    }
+}
+
+.stock-status-low {
+    @extend %stock-status;
+    
+    color: $color-danger;
+}
+
+.stock-status-medium {
+    @extend %stock-status;
+    
+    color: $color-warning;
+}
+
+.stock-status-high {
+    @extend %stock-status;
+    
+    color: $color-success;
+}
