@@ -186,6 +186,7 @@ var TMNL;
                 _this.$body = $('body');
                 _this.$html = $('html');
                 _this.$menu = _this.$element.find(NavBar.SELECTOR.MENU);
+                _this.$dropdown = _this.$element.find(NavBar.SELECTOR.DROPDOWN);
                 _this.$cart = _this.$element.find(NavBar.SELECTOR.CART);
                 _this.$cartDropdown = _this.$element.find(NavBar.SELECTOR.CART_DROPDOWN);
                 _this.$user = _this.$element.find(NavBar.SELECTOR.USER);
@@ -207,11 +208,16 @@ var TMNL;
                 else {
                     this.$body.removeClass(NavBar.CSS.NAVBAR_STICKY);
                 }
-                this.$menu.find(".navbar-menu-sub").parent().hover(function () {
-                    _this.$body.addClass(NavBar.CSS.NAVBAR_FOCUS);
-                }, function () {
-                    _this.$body.removeClass(NavBar.CSS.NAVBAR_FOCUS);
-                });
+                if (!TMNL.CurrentBreakpoint.isMobile()) {
+                    this.$dropdown.hover(function () {
+                        _this.$body.addClass(NavBar.CSS.NAVBAR_FOCUS);
+                    }, function () {
+                        _this.$body.removeClass(NavBar.CSS.NAVBAR_FOCUS);
+                    });
+                }
+                else {
+                    this.$element.find(NavBar.SELECTOR.MENU_TOGGLE).prop("checked", false);
+                }
                 // menu
                 this.$element.on('click', NavBar.SELECTOR.MENU_TOGGLE, function (event) {
                     var $target = $(event.target);
@@ -230,23 +236,27 @@ var TMNL;
                     if ((TMNL.CurrentBreakpoint.isMobile() || TMNL.CurrentBreakpoint.isTablet()) && $target.next().length > 0) {
                         event.preventDefault();
                         event.stopPropagation();
+                        $(".navbar-menu").addClass(NavBar.CSS.NAVBAR_MENU_DEEP);
                         $target.removeClass(NavBar.CSS.MENU_SUB_SLIDE_OUT).addClass(NavBar.CSS.MENU_SUB_SLIDE_IN);
                         $target.parents(NavBar.SELECTOR.MENU).removeClass(NavBar.CSS.MENU_SLIDE_IN).addClass(NavBar.CSS.MENU_SLIDE_OUT);
+                        _this.calculateHeight();
                     }
                 });
                 this.$element.on('click', NavBar.SELECTOR.MENU_BACK, function (event) {
                     _this.$element.find(NavBar.SELECTOR.MENU_ITEM).removeClass(NavBar.CSS.MENU_SUB_SLIDE_IN).addClass(NavBar.CSS.MENU_SUB_SLIDE_OUT);
                     $(event.target).parents(NavBar.SELECTOR.MENU).removeClass(NavBar.CSS.MENU_SLIDE_OUT).addClass(NavBar.CSS.MENU_SLIDE_IN);
+                    _this.calculateHeight();
+                    $(".navbar-menu").removeClass(NavBar.CSS.NAVBAR_MENU_DEEP);
                 });
                 // cart
-                this.$element.on('mouseenter', NavBar.SELECTOR.CART, function (event) {
+                this.$element.on('mouseenter', NavBar.SELECTOR.CART, function () {
                     if (!TMNL.CurrentBreakpoint.isMobile()) {
                         _this.cartPopper.update();
                         _this.$cartDropdown.addClass(NavBar.CSS.CART_OPEN);
                         _this.$user.removeClass(NavBar.CSS.USER_TOGGLE);
                     }
                 });
-                this.$element.on('mouseleave', NavBar.SELECTOR.CART, function (event) {
+                this.$element.on('mouseleave', NavBar.SELECTOR.CART, function () {
                     _this.$cartDropdown.removeClass(NavBar.CSS.CART_OPEN);
                 });
                 this.$element.on('tmnl.navbar.cart.update', function (event, html) {
@@ -262,7 +272,7 @@ var TMNL;
                     });
                 });
                 // search
-                this.$search.on('click', NavBar.SELECTOR.SEARCH_OPEN, function (event) {
+                this.$search.on('click', NavBar.SELECTOR.SEARCH_OPEN, function () {
                     _this.$search.addClass(NavBar.CSS.SEARCH_TOGGLE);
                     _this.$user.removeClass(NavBar.CSS.USER_TOGGLE);
                     _this.$cartDropdown.removeClass(NavBar.CSS.CART_OPEN);
@@ -271,7 +281,7 @@ var TMNL;
                     var currentValue = _this.$searchInput.val();
                     _this.$searchInput.val(currentValue);
                 });
-                this.$search.on('click', NavBar.SELECTOR.SEARCH_CLOSE, function (event) {
+                this.$search.on('click', NavBar.SELECTOR.SEARCH_CLOSE, function () {
                     _this.$search.removeClass(NavBar.CSS.SEARCH_TOGGLE);
                     _this.$searchInput.blur();
                 });
@@ -291,8 +301,8 @@ var TMNL;
                 this.$user.on('click', NavBar.SELECTOR.USER_CLOSE, function (event) {
                     _this.$user.find(NavBar.SELECTOR.USER_TOGGLE).trigger('click');
                 });
-                // resize window
-                $(window).on('resize', function (event) {
+                // resize window 
+                $(window).on('resize', function () {
                     if (TMNL.CurrentBreakpoint.isMobile()) {
                         _this.$cartDropdown.removeClass(NavBar.CSS.CART_OPEN);
                     }
@@ -305,22 +315,39 @@ var TMNL;
                 this.$body.css('marginTop', '');
                 this.$menu.parent().css('height', '');
                 var scrollY = window.scrollY;
-                var menuHeight = window.innerHeight - this.$element.height();
-                this.$html.removeClass(NavBar.CSS.MENU_TOGGLED);
                 this.$body.css('marginTop', (scrollY * -1));
                 this.$html.addClass(NavBar.CSS.MENU_TOGGLED);
-                this.$menu.parent().css('height', menuHeight);
+                this.calculateHeight();
             };
             NavBar.prototype.hideMenu = function () {
-                var scrollY = parseInt(this.$body.css('marginTop'), 10) * -1;
-                this.$html.removeClass(NavBar.CSS.MENU_TOGGLED);
-                window.scrollTo(0, scrollY);
                 this.$body.css('marginTop', 0);
                 this.$menu.parent().css('height', '');
+                this.$html.removeClass(NavBar.CSS.MENU_TOGGLED);
+                var scrollY = parseInt(this.$body.css('marginTop'), 10) * -1;
+                window.scrollTo(0, scrollY);
                 $(window).off('resize.navbar.menu');
                 this.$element.find(NavBar.SELECTOR.MENU_TOGGLE).prop("checked", false);
+                this.$element.find(NavBar.SELECTOR.MENU_ITEM).parents(NavBar.SELECTOR.MENU).removeClass(NavBar.CSS.MENU_SLIDE_OUT).addClass(NavBar.CSS.MENU_SLIDE_IN);
+                $(".navbar-menu").removeClass(NavBar.CSS.NAVBAR_MENU_DEEP);
+            };
+            NavBar.prototype.calculateHeight = function () {
+                var menuHeight = window.innerHeight - this.$element.height();
+                this.$menu.parent().css('height', menuHeight);
+                $(".navbar-menu-sub-container").each(function () {
+                    if ($(this).height() > menuHeight) {
+                        if ($(this).parent().prev().hasClass('navbar-menu-sub-slide-in')) {
+                            $(this).parent().parent().parent().parent().css('overflow-y', 'auto');
+                        }
+                        else {
+                            $(this).parent().parent().parent().parent().css('overflow-y', 'hidden');
+                        }
+                    }
+                    else {
+                    }
+                });
             };
             NavBar.prototype.toggleUser = function (event) {
+                this.$menu.parent().css('height', '');
                 this.$user.toggleClass(NavBar.CSS.USER_TOGGLE);
             };
             NavBar.NAME = 'tmnl.navbar';
@@ -331,6 +358,7 @@ var TMNL;
                 CART_OPEN: 'navbar-cart-dropdown-open',
                 NAVBAR_STICKY: 'has-navbar-sticky',
                 NAVBAR_FOCUS: 'navbar-focus',
+                NAVBAR_MENU_DEEP: 'navbar-menu-deep',
                 MENU_TOGGLED: 'has-navbar-menu-toggled',
                 MENU_SLIDE_OUT: 'navbar-menu-slide-out',
                 MENU_SLIDE_IN: 'navbar-menu-slide-in',
@@ -345,6 +373,7 @@ var TMNL;
                 MENU_TOGGLE: '[data-navbar-menu-toggle]',
                 MENU_ITEM: '[data-navbar-menu-item]',
                 MENU_BACK: '[data-navbar-menu-back]',
+                DROPDOWN: '[data-navbar-menu-dropdown]',
                 CART: '[data-navbar-cart]',
                 CART_OPEN: '[data-navbar-cart-open]',
                 CART_DROPDOWN: '[data-navbar-cart-dropdown]',
