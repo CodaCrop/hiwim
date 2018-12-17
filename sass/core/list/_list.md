@@ -180,6 +180,58 @@ You can create columns for lists by using one of the modifier classes, for examp
 </ol>
 ```
 
+## Ordered steps
+
+<ol class="list-ordered-steps">
+   <li>
+      <h3>Listing item #1</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+   <li>
+      <h3>Listing item #2</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+   <li>
+      <h3>Listing item #3</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+   <li>
+      <h3>Listing item #4</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+   <li>
+      <h3>Listing item #5</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+   <li>
+      <h3>Listing item #6</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+   <li>
+      <h3>Listing item #7</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+</ol>
+
+``` html
+<ol class="list-ordered-steps">
+   <li>
+      <h3>Listing item #1</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+   <li>
+      <h3>Listing item #2</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+   <li>
+      <h3>Listing item #3</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+   <li>
+      <h3>Listing item #4</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+   <li>
+      <h3>Listing item #5</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+   <li>
+      <h3>Listing item #6</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+   <li>
+      <h3>Listing item #7</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus nec turpis interdum, eleifend tortor vel, vulputate mauris. Nam eu ipsum enim. Sed aliquam risus urna, et tempor metus pulvinar a. Aliquam sed luctus urna, ut rhoncus purus.</p></li>
+</ol>
+```
+
 ## Group
 
 <ul class="list-group">

@@ -1,0 +1,132 @@
+/// <reference path="../../_design-system.scss" />
+
+//
+// Subject:         Floating action button
+// Description:     Defines styles for Floating action button.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Component: Floating action button
+ ========================================================================== */
+
+ .floating-action-container {
+    overflow: hidden;
+    
+    &.sticky {
+        position: fixed;
+        top: 85vh;
+        right: 10vw;
+        z-index: 1;
+    }
+
+    @supports(position: sticky) {
+        position: sticky;
+        left: 0;
+        right: 0;
+        top: 85vh;
+
+        @include breakpoint-down("mobile") {
+            top: 90vh;
+        }
+    }
+ }
+
+ .floating-action-button {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    background-color: $color-gray-darker;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.25);
+    display: block;
+    border: none;
+    margin-left: auto;
+
+    @include breakpoint-down("mobile") {
+        flex-direction: row-reverse;
+        position: relative;
+        z-index: 2;
+        width: 50px;
+        height: 50px;
+        transition: transform 200ms ease-in-out;
+        transform: translateX(0);
+        transition-delay: 100ms;
+
+        &::before {
+            content: "";
+            transition: all 200ms ease-in-out;
+            background-color: $color-gray-darker;
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            left: 50%;
+            border-top-right-radius: 5rem;
+            border-bottom-right-radius: 5rem;
+            max-width: 0;
+            width: 6.5rem;
+            z-index: -1;
+        }
+
+        span.floating-action-button-text  {
+            position: absolute;
+            right: -4.5rem;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            transition: all 200ms ease-in-out;
+            opacity: 0;
+        }
+    }
+
+    span {
+        color: $color-bright;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    span.floating-action-button-text {
+        padding: 0 0.5rem;
+    }
+
+    &:hover, &:active, &:focus {
+        cursor: pointer;
+        
+        @include breakpoint-down("mobile") {
+            transform: translateX(-5.15rem);
+            transition: transform 150ms ease-in-out;
+            transition-delay: 100ms;
+
+            &::before {               
+                transition: all 200ms ease-in-out;
+                max-width: 6.5rem;
+            }
+
+            span.text-small {
+                transition: all 200ms ease-in-out;
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.modal-pane {
+    .rounded-circle {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .request-has-succeeded {
+        background-color: $color-success;
+    }
+
+    .request-has-failed {
+        background-color: $color-danger;
+    }
+}

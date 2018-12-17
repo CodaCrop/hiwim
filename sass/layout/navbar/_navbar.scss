@@ -4,12 +4,14 @@
 // Description:     Defines styles for navbar.
 //
 // ===========================================================================
+
 /* ========================================================================
    Layout: Navbar
  ========================================================================== */
 
-body.has-navbar-sticky {
+ body.has-navbar-sticky {
     padding-top: $navbar-height;
+
     .navbar {
         position: fixed;
         top: 0;
@@ -28,12 +30,20 @@ body:not(.has-navbar-sticky) {
     }
 }
 
-body.navbar-focus {
+body.navbar-focus::after {
+    content: "";
+    position: fixed;
     background-color: rgba(38, 38, 38, 0.12);
     transition: background-color 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
 }
 
-body:not(.navbar-focus) {
+body:not(.navbar-focus)::after {
+    content: "";
     transition: background-color 200ms ease-in-out;
 }
 
@@ -47,6 +57,7 @@ body:not(.navbar-focus) {
     transform: translateZ(0);
     width: 100%;
     z-index: $zindex-navbar;
+    
     [class*="icon-"] {
         font-size: 1.25em;
     }
@@ -106,6 +117,12 @@ body:not(.navbar-focus) {
         color: $navbar-active-color;
         text-decoration: none;
     }
+
+    @include breakpoint-down("tablet") {
+        &:hover, &:focus, &:active {
+            background-color: $navbar-menu-background-color;
+        }
+    }
 }
 
 /* Menu
@@ -157,6 +174,44 @@ body:not(.navbar-focus) {
 .navbar-menu {
     @extend .navbar-item;
 
+    @include breakpoint-up("desktop") {
+        /// :not(.navbar-menu-fixed) is a technicall debt, will be phased out when
+        /// the consumer side of website will also switch to the fixed variant.
+        &:not(.navbar-menu-fixed) {
+            .navbar-menu-sub {                
+                left: 0;
+                margin-left: 0;
+                max-width: 100vw;
+                width: 100vw;
+
+                /// rather not have such a selector as this div[class*="row"] (because of overwriting core styling)
+                div[class*="row"] {
+                    margin: 0 auto;
+                    border-left: 1px solid $navbar-border;
+
+                    /// rather not have such a selector as this div[class*="column"] (because of overwriting core styling)
+                    > div[class*="column"] {
+                        display: inline-block;
+                    }
+                }
+            }
+
+            .navbar-menu-sub-container {
+                @include make-container;
+                @include make-container-max-widths;
+            }
+        }
+
+        &.navbar-menu-fixed .navbar-menu-sub {
+            margin-left: $spacer-x - 3;
+        
+            div[class*="navbar-menu-sub-promo-column"]:last-of-type {
+                margin-right: $spacer-x;
+            }
+        }
+        
+    }
+
     @include breakpoint-down("tablet") {
         @include transition(opacity $navbar-menu-animation ease-in-out);
         -webkit-overflow-scrolling: touch;
@@ -168,9 +223,13 @@ body:not(.navbar-focus) {
         overflow: hidden;
         position: absolute;
         top: $navbar-height;
-        transform: translateZ(0);
+        transform: translateZ(0) translateY(0);
         width: 100vw;
         z-index: -1;
+
+        &.navbar-menu-deep {
+            overflow-y: auto;
+        }
     }
 }
 
@@ -199,8 +258,6 @@ body:not(.navbar-focus) {
     }
 
     @include breakpoint-down("tablet") {
-        // height: 100%;
-
         &.navbar-menu-slide-out {
             animation: navbar-menu-slide-out 200ms ease-in-out forwards;
         }
@@ -244,17 +301,17 @@ body:not(.navbar-focus) {
 
                 &:before {
                     @include transition(all 300ms cubic-bezier(0.075, 0.82, 0.165, 1));
-                    content: "";
                     background-color: $navbar-active-color;
-                    position: absolute;
                     bottom: 0;
-                    left: 0;
-                    right: 0;
+                    content: "";
                     display: block;
                     height: 2px;
-                    width: 0;
+                    left: 0;
                     margin: 0 auto;
                     opacity: 0;
+                    position: absolute;
+                    right: 0;
+                    width: 0;
                 }
             }
 
@@ -272,15 +329,13 @@ body:not(.navbar-focus) {
 
 .navbar-menu-sub {
     background-color: $navbar-background-color;
-    text-transform: none;
     position: absolute;
+    text-transform: none;
     visibility: hidden;
 
     @include breakpoint-up("desktop") {
         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.15);
         padding: $navbar-menu-sub-spacing-desktop;
-        margin-left: $spacer-x - 3;
-        max-width: 860px;
     }
 
     @include breakpoint-down("tablet") {
@@ -295,19 +350,16 @@ body:not(.navbar-focus) {
 
 .navbar-menu-sub-container {
     @include breakpoint-up("desktop") {
-        position: relative;
         margin-left: auto;
         margin-right: auto;
         padding: 0;
+        position: relative;
+    }
 
-        div[class*="row"] {
+    @include breakpoint-up("desktop") {
+        .row {
             display: flex;
-            flex-flow: row;
-            overflow: hidden;
-
-            > div[class*="column"] {
-                flex: 1 0 25%;
-            }
+            flex-wrap: nowrap;
         }
     }
 }
@@ -320,169 +372,171 @@ body:not(.navbar-focus) {
             border-left: 1px solid $navbar-border;
         }
     }
+
+    @include breakpoint-down("tablet") {
+        margin-bottom: 0;
+
+        .navbar-menu-sub-list {
+            border-bottom: 1px solid $navbar-border;
+        }
+    }
 }
 
 .navbar-menu-sub-promo-column {
-    @include breakpoint-up("tablet") {
-        display: flex;
+    a:hover, a:focus {
+        text-decoration: none;
+    }
+
+    @include breakpoint-up("desktop") {
         align-items: flex-start;
+        display: flex;
         justify-content: space-between;
         width: auto;
+        margin-left: $spacer-x;
+
+        ~ .navbar-menu-sub-promo-column,
+        .navbar-full-image-promo figure,
+        .navbar-image-promo {
+            margin: 0;
+        }
+
+        &:nth-of-type(1n+2) {
+            margin-left: $spacer-x;
+        }
+    }
+
+    @include breakpoint-down("desktop") {
+        margin-bottom: 0;
     }
 
     @include breakpoint-down("tablet") {
-        display: flex;
         align-items: center;
+        background-color: $color-bright;
+        display: flex;
+        margin: -1px 0;
+        padding: 1px $spacer-x 0;
         width: auto;
-        padding: 0 1rem;
-        margin-bottom: $spacer-y;
 
-        > figure {
-            background-color: $navbar-menu-sub-title-background-color;
-            margin: 0 $spacer-x;
-            display: flex;
+
+        figure {
             align-items: center;
+            display: flex;
             justify-content: center;
         }
 
-        > header {
-            align-self: center;
-
-            span {
-                font-weight: 800;
-            }
-
-            span:first-of-type {
-                display: block;
-                padding-top: 0;
-            }
-        }
-    }
-}
-
-.navbar-menu-sub-promo-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    @include breakpoint-up("tablet") {
-        flex: 1 0 auto;
-        width: 200px;
-        height: 100%;
-        position: relative;
-        z-index: 1;
-        padding-right: $spacer-x;
-
-        &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: $spacer-x;
-            background-color: $navbar-menu-sub-title-background-color;
-            z-index: -1;
-        }
-
-        // > figure > img {
-        //     align-self: center;
-        //     max-width: 100%;
-        //     min-height: 1px;
-        // } 
-
-        // > figure > figcaption {
-        //     align-self: center;
-
-        //     span:first-of-type {
-        //         padding-top: $spacer-y; 
-        //     }
-        // }
-    }
-
-    @include breakpoint-down("tablet") {
-        margin: $spacer-y auto;
-        
-        &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: $spacer-x;
-            bottom: 0;
-            right: $spacer-x;
-            background-color: $navbar-menu-sub-title-background-color;
-            z-index: -1;
+        a > figure {
+            background-color: transparent;
         }
     }
 }
 
 .navbar-image-promo {
-    margin: 0;
-    display: flex;
     align-items: center;
-    justify-content: center;
+    display: flex;
     flex-direction: column;
+    justify-content: center;
 
-    > figcaption {
+    figcaption {
         text-align: center;
     }
 
-    > figcaption > span:first-of-type {
+    figcaption > span:first-of-type {
         display: block;
         font-weight: 800;
     }
 
     @include breakpoint-up("desktop") {
         align-items: center;
+        background-color: $navbar-menu-sub-title-background-color;
         flex: 1 0 auto;
-        width: 200px;
         height: 100%;
+        padding: 0 $spacer-x;
         position: relative;
+        max-width: 200px;
+        width: 200px;
         z-index: 1;
-        padding-right: $spacer-x;
 
-        > img {
+        img, a {
             max-width: 100%;
             min-height: 1px;
+            padding-bottom: 0;
+            padding: 0 $spacer-x - 0.5;
         }
 
-        > figcaption > span:first-of-type { 
+        img {
+            max-height: 250px;
+            object-fit: contain;
+        }
+
+        figcaption > span:first-of-type { 
             padding-top: $spacer-y; 
         }
     }
 
     @include breakpoint-down("tablet") {
+        background-color: $navbar-menu-sub-title-background-color;
         display: flex;
+        flex-grow: 1;
         justify-content: center;
+        margin: 0 $spacer-x $spacer-y;
+        padding: $spacer-y 0;
+        
+        a {
+            text-align: center;
+        }
 
-        > img {
-            max-width: 50%;
+        img {
+            max-width: 75%;
         }
     }
+
 }
 
-.navbar-fullimage-promo {
-    height: 300px;
-    display: flex;
+.navbar-full-image-promo {
     align-items: center;
+    display: flex;
     justify-content: center;
 
-    > figcaption > span {
-        font-weight: 800;
+    figure {
+        align-items: center;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        height: 100%;
+        flex: 1 0 auto;
+        justify-content: center;
+    }
+
+    figcaption {
         text-align: center;
-        padding: 0 $spacer-x;
+
+        > span {
+            font-weight: 800;
+            text-align: center;
+        }
     }
     
-    @include breakpoint-up("tablet") {
-        width: 200px;
-        margin: 0;
+    @include breakpoint-up("desktop") {
+        height: 100%;
 
-        &:last-of-type {
-            margin-right: $spacer-x - 0.6;
+        figure {
+            height: inherit;
+            max-width: 200px;
+            width: 200px;
         }
     }
 
     @include breakpoint-down("tablet") {
+        height: 300px;
+        margin: 0 $spacer-x $spacer-y;
         width: 100%;
+
+        figure {
+            height: inherit;
+            width: 100%;
+            margin: 0;
+        }
     }
 }
 
@@ -531,12 +585,6 @@ body:not(.navbar-focus) {
         }
     }
 
-    @include breakpoint-up("desktop") {
-        > a {
-            padding: 0 ($navbar-menu-spacing * 2) $navbar-menu-spacing;
-        }
-    }
-
     @include breakpoint-down("tablet") {
         border-bottom: 1px solid $navbar-border;
 
@@ -544,39 +592,50 @@ body:not(.navbar-focus) {
             padding: 22px $navbar-menu-spacing;
         }
     }
+
+    @include breakpoint-up("desktop") {
+        > a {
+            padding: 0 ($navbar-menu-spacing * 2) $navbar-menu-spacing;
+        }
+    }
 }
 
 .navbar-menu-sub-list {
     list-style: none;
     margin: 0;
-    padding: 0;
     min-width: 200px;
+    padding: 0;
 
     > li {
         display: block;
 
-        > a {
+        &:not(.has-button) {
+            > a {
+                @extend .navbar-link;
+                display: block;
+    
+                &:hover, &:focus {
+                    background-color: $navbar-menu-sub-title-background-color;
+                }
+            }
+        }
+
+        &.has-button > a {
             display: block;
-        }
-
-        > a:not([class*="button"]) {
-            @extend .navbar-link;
-        }
-
-        > a[class*="button"] {
-            transition: none;
             margin: $spacer-y - .5 $spacer-x 0;
+            transition: none;
         }
     }
     
     @include breakpoint-up("desktop") {
         > li {
+            &:last-of-type {
+                border-bottom: none;
+            }
 
-            > a:not([class*="button"]) {
-                padding: $navbar-menu-spacing ($navbar-menu-spacing * 2);
-                
-                &:hover {
-                    background-color: $navbar-menu-sub-title-background-color;
+            &:not(.has-button) {
+                > a {
+                    padding: $navbar-menu-spacing ($navbar-menu-spacing * 2);
                 }
             }
 
@@ -590,11 +649,13 @@ body:not(.navbar-focus) {
         > li {
             display: block;
 
-            > a:not([class*="button"]) {
-                padding: 22px $navbar-menu-spacing;
+            &:not(.has-button) {
+                > a {
+                    padding: 22px $navbar-menu-spacing;
+                }
             }
 
-            > a[class*="button"] {
+            &.has-button > a {
                 margin: $spacer-y $spacer-x;
                 @include button-size-variation(18px, 12px, 26px);
             }
@@ -602,8 +663,7 @@ body:not(.navbar-focus) {
             &:not(:last-of-type) {
                 border-bottom: 1px solid $navbar-border;
             }
-                    
-            &:last-of-type, 
+
             .navbar-menu-sub-heading {
                 border-bottom: none;
             }
@@ -629,21 +689,18 @@ body:not(.navbar-focus) {
                 height: 100%;
                 opacity: 1;
                 overflow-x: hidden;
-                overflow-y: auto;
                 z-index: $zindex-navbar-menu-state;
             }
 
             ~ .navbar-menu-toggle {
-                z-index: $zindex-navbar-menu-state;
-
                 &:after {
                     content: "sluit";
                 }
 
                 span > span:nth-child(1) {
                     @include transform(rotate(45deg));
-                    top: 1px;
                     left: 3.3px;
+                    top: 1px;
                 }
 
                 span > span:nth-child(2) {
@@ -653,8 +710,8 @@ body:not(.navbar-focus) {
 
                 span > span:nth-child(3) {
                     @include transform(rotate(-45deg));
-                    top: 16.5px;
                     left: 3.3px;
+                    top: 16.5px;
                 }
             }
         }
@@ -807,12 +864,12 @@ body:not(.navbar-focus) {
     
     .navbar-search-overlay {
         background-color: $color-black;
-        position: fixed;
-        top: #{$navbar-height};
-        left: 0;
         display: block;
         height: calc(100vh - #{$navbar-height});
+        left: 0;
         opacity: 0.7;
+        position: fixed;
+        top: #{$navbar-height};
         width: 100vw;
     }
 }
@@ -899,44 +956,22 @@ body:not(.navbar-focus) {
 
 .navbar-cart-dropdown.is-shown+.navbar-cart-backdrop {
     background-color: $navbar-cart-dropdown-color;
-    position: fixed;
-    left: 0;
-    top: #{$navbar-height};
     display: block;
     height: calc(100vh - #{$navbar-height});
+    left: 0;
     opacity: 0.5;
+    position: fixed;
+    top: #{$navbar-height};
     width: 100vw;
 }
 
-// .navbar-search-result {
-//     -webkit-overflow-scrolling: touch;
-//     background-color: $navbar-background-color;
-//     display: none;
-//     overflow-y: auto;
-//     padding: $navbar-search-result-spacing;
-//     text-transform: none;
-//     width: 100%;
-//     ul {
-//         display: block;
-//         list-style: none;
-//         margin: 0;
-//         padding: 0;
-//         > li {
-//             padding: $navbar-search-result-item-spacing;
-//         }
-//     }
-// }
-// .navbar-search-result-title {
-//     font-size: 0.888888em;
-//     padding: $navbar-search-result-item-spacing 0;
-// }
 @include breakpoint-down("tablet") {
     .navbar-search {
         &.navbar-search-show {
             background-color: $navbar-background-color;
-            position: fixed;
             left: 0;
             margin-left: 0;
+            position: fixed;
             width: 100%;
             z-index: $zindex-search;
 
@@ -949,19 +984,15 @@ body:not(.navbar-focus) {
             .navbar-search-close {
                 display: block;
                 margin-right: $navbar-search-spacing / 2;
-            } // .navbar-search-result {
-            //     border-top: 1px solid $navbar-border;
-            //     display: block;
-            //     height: calc(100% - #{$navbar-height});
-            // }
+            }
         }
     }
     .navbar-search-autocomplete {
 
         &.autocomplete {
             height: calc(100vh - #{$navbar-height});
+            left: 0 !important;
             position: fixed;
-            left: 0 !important; 
             top: $navbar-height !important;
             width: 100vw !important;
         }
@@ -973,29 +1004,26 @@ body:not(.navbar-focus) {
         &.navbar-search-show {
             @include make-container-max-widths;
             background-color: $navbar-background-color;
-            position: absolute;
-            left: 0;
-            right: 0;
             height: $navbar-height;
+            left: 0;
             margin: 0 auto;
+            position: absolute;
+            right: 0;
             z-index: $zindex-search;
+
             .navbar-search-open-label {
                 display: none;
             }
+
             .navbar-search-input {
                 display: flex;
                 flex: 1;
                 height: 100%;
             }
+
             .navbar-search-close {
                 display: block;
-            } // .navbar-search-result {
-            //     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            //     display: block;
-            //     margin-top: 1px;
-            //     max-height: 250px;
-            //     position: relative;
-            // }
+            }
         }
     }
 }
@@ -1027,9 +1055,9 @@ body:not(.navbar-focus) {
     background-color: $navbar-background-color;
     display: none;
     height: 100vh;
-    padding-top: 80px;
     position: absolute;
     right: 0;
+    left: 0;
     top: 0;
     width: 100vw;
     z-index: $zindex-user-dropdown;
@@ -1047,13 +1075,13 @@ body:not(.navbar-focus) {
 
         .navbar-user-dropdown-arrow {
             background-color: $navbar-cart-dropdown-background-color;
-            position: absolute;
-            right: $navbar-user-dropdown-spacing * 2;
-            top: -8px;
             border-left: 1px solid $navbar-cart-dropdown-border-color;
             border-top: 1px solid $navbar-cart-dropdown-border-color;
             display: block;
             height: 15px;
+            left: $navbar-user-dropdown-spacing * 2;
+            position: absolute;
+            top: -8px;
             transform: rotate(45deg);
             width: 15px;
         }
@@ -1062,15 +1090,15 @@ body:not(.navbar-focus) {
 
 .navbar-user-close {
     background: transparent;
-    position: absolute;
-    top: 0;
     border: none;
     color: inherit;
     display: none;
     font-size: inherit;
     line-height: $navbar-height;
     padding: 0;
-    right: $navbar-user-menu-close-spacing;
+    position: absolute;
+    top: 0;
+    right: $spacer-x * 2.5;
 
     @include breakpoint-down("tablet") {
         display: block;
@@ -1089,16 +1117,19 @@ body:not(.navbar-focus) {
         margin: 0;
         padding: 0;
 
-        > li {
+        li {
             border-top: 1px solid $navbar-border;
+
             &:first-child {
                 border-top-color: transparent;
             }
-            > a {
+
+            a {
                 color: $navbar-color;
                 display: block;
-                padding: $navbar-user-menu-spacing 0;
+                padding: $spacer-y $spacer-x;
                 text-decoration: none;
+                text-transform: none;
             }
         }
     }
@@ -1109,14 +1140,30 @@ body:not(.navbar-focus) {
     margin-right: 10px;
 }
 
+.navbar-user-menu-title {
+    text-transform: none;
+    font-size: 0.888888em;
+}
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     @include breakpoint-up("desktop") {
-        .navbar-menu-sub-container div[class*="row"] > div[class*="column"] {
+        .navbar-menu-sub-container .navbar-menu-sub-column,
+        .navbar-menu-sub-container .navbar-menu-sub-promo-column {
             flex: 1 0 auto;
         }
           
-        .image-promo-navbar-full:last-of-type {
+        .navbar-full-image-promo:last-of-type {
             margin-right: 20px;
+        }
+
+        .navbar-full-image-promo figure {
+            margin-right: $spacer-x - 0.5;
+        }
+    }
+
+    @include breakpoint-up("tablet") { 
+        .navbar-full-image-promo:last-of-type {
+            margin-right: $spacer-x - 0.5;
         }
     }
     

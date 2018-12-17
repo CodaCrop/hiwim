@@ -1,5 +1,5 @@
 ﻿module.exports = {
-    release: 'R1813',
+    release: 'Dev',
     paths: {
         css: {
             all: './sass/**/*.scss',
@@ -30,4 +30,4 @@
             all: './images/sprites/**/*.png'
         }
     }
-};
+}

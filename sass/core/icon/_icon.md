@@ -154,6 +154,11 @@ Defines styles for icons
     </li>
     
     <li>
+        <span class="doc-icon-list-icon icon-linkedin"></span><br />
+        <span class="doc-icon-list-name">icon-linkedin</span>
+    </li>
+    
+    <li>
         <span class="doc-icon-list-icon icon-manager"></span><br />
         <span class="doc-icon-list-name">icon-manager</span>
     </li>
@@ -216,6 +221,11 @@ Defines styles for icons
     <li>
         <span class="doc-icon-list-icon icon-search"></span><br />
         <span class="doc-icon-list-name">icon-search</span>
+    </li>
+    
+    <li>
+        <span class="doc-icon-list-icon icon-service-employee"></span><br />
+        <span class="doc-icon-list-name">icon-service-employee</span>
     </li>
     
     <li>

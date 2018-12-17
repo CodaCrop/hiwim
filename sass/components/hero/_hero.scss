@@ -37,6 +37,46 @@
     }
 }
 
+.hero-heading-textbar {
+    @extend .hero-heading;
+ 
+    > span:first-child {
+        background-color: $color-brand;
+        box-decoration-break: clone;
+        color: $color-bright;
+        line-height: 1.333333;
+        padding: 0 0.444444rem;
+    }
+
+    > span:first-child ~ span {
+        background-color: $color-bright;
+        box-decoration-break: clone;
+        color: $color-brand;
+        font-size: 0.875em;
+        line-height: 1.333333;
+        padding: 0 0.444444rem;
+    }
+
+    &-inverse {
+        > span:first-child {
+            background-color: $color-bright;
+            color: $color-brand;
+        }
+        
+        > span:first-child ~ span {
+            background-color: $color-brand;
+            color: $color-bright;
+        }
+    }
+
+    &.is-business {
+        > span:first-child ~ span {
+            background-color: #000;
+            color: $color-bright;
+        }
+    }
+}
+
 .hero-content-container {
     display: flex; /// Required for height and vertical alignment issues in IE.
     flex-direction: column; /// Required for height and vertical alignment issues in IE.
@@ -50,9 +90,11 @@
         min-height: $hero-tablet-height;
     }
 
+
     @include breakpoint-up("desktop") {
         min-height: $hero-desktop-height;
     }
+
 
     @include breakpoint-up("desktop-large") {
         min-height: $hero-desktop-large-height;

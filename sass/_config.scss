@@ -10,7 +10,7 @@
 // Design System
 // ===========================================================================
 
-$version:                                       '0.9.13-beta';
+$version:                                       '0.9.15-beta';
 $building-unit:                                 10px !default;
 
 // Colors
@@ -133,6 +133,10 @@ $list-border-color:                             $color-border !default;
 $list-spacing:                                  $building-unit * 1 !default;
 $list-inline-spacing:                           $building-unit * 1 !default;
 
+$list-ordered-steps-bg-color:                   $color-gray-light;
+$list-ordered-steps-spacing:                    $building-unit * 3 !default;
+$list-ordered-steps-size:                       $building-unit * 2.8 !default;
+
 $list-group-border-color:                       $color-border !default;
 $list-group-spacing:                            $building-unit * 2 !default;
 $list-group-header-background-color:            #f6f6f6 !default;
@@ -247,6 +251,8 @@ $form-selector-indicator-size:                  $building-unit * 2.5 !default;
 $form-selector-width-small:                     $building-unit * 10 !default;
 $form-selector-width-medium:                    $form-selector-width-small * 2 !default;
 $form-selector-width-large:                     $form-selector-width-small * 3 !default;
+$form-selector-callout-color:                   $color-brand !default;
+$form-selector-callout-padding:                 $building-unit * 0.5 $building-unit * 1.5 !default;
 
 // Core: Icon
 // ===========================================================================
@@ -470,8 +476,8 @@ $hero-tablet-height:                            212px !default;
 $hero-desktop-height:                           360px !default;
 $hero-desktop-large-height:                     420px !default;
 
-$hero-heading-mobile-font-size:                 36px !default;
-$hero-heading-desktop-font-size:                48px !default;
+$hero-heading-mobile-font-size:                 2.0rem !default;
+$hero-heading-desktop-font-size:                2.666666rem !default;
 
 // Core: Cookie
 // ===========================================================================
@@ -700,7 +706,7 @@ $modal-content-background-color:               $color-bright !default;
 $modal-content-box-shadow:                     0 0 4px 0 rgba(0,0,0,0.1) !default;
 $modal-content-border-radius:                  4px !default;
 
-$modal-backdrop-background-color:              #EDEDED !default;
+$modal-backdrop-background-color:              $color-gray-darker !default;
 $modal-backdrop-opacity:                       0.9 !default;
 
 $modal-header-height:                          80px !default;
@@ -803,4 +809,11 @@ $stepper-dot-line-width:                        80px !default;
 $stepper-label-font-weight:                     600 !default;
 $stepper-label-margin-top:                      14px !default;
 
+// Components: Panel
+// ===========================================================================
 
+$panel-border-color:                            $color-selected !default;
+$panel-border-radius:                           3px !default;
+$panel-spacing:                                 $building-unit * 2 !default;
+
+$panel-heading-bg:                              lighten($panel-border-color, 25%);

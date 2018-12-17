@@ -12,6 +12,7 @@ namespace TMNL {
                 CART_OPEN: 'navbar-cart-dropdown-open',
                 NAVBAR_STICKY: 'has-navbar-sticky',
                 NAVBAR_FOCUS: 'navbar-focus',
+                NAVBAR_MENU_DEEP: 'navbar-menu-deep',
                 MENU_TOGGLED: 'has-navbar-menu-toggled',
                 MENU_SLIDE_OUT: 'navbar-menu-slide-out',
                 MENU_SLIDE_IN: 'navbar-menu-slide-in',
@@ -27,6 +28,7 @@ namespace TMNL {
                 MENU_TOGGLE: '[data-navbar-menu-toggle]',
                 MENU_ITEM: '[data-navbar-menu-item]',
                 MENU_BACK: '[data-navbar-menu-back]',
+                DROPDOWN: '[data-navbar-menu-dropdown]',
                 CART: '[data-navbar-cart]',
                 CART_OPEN: '[data-navbar-cart-open]',
                 CART_DROPDOWN: '[data-navbar-cart-dropdown]',
@@ -42,6 +44,7 @@ namespace TMNL {
             private $body: JQuery;
             private $html: JQuery;
             private $menu: JQuery;
+            private $dropdown: JQuery;
             private $cart: JQuery;
             private $cartDropdown: JQuery;
             private $user: JQuery;
@@ -54,6 +57,7 @@ namespace TMNL {
                 this.$body = $('body');
                 this.$html = $('html');
                 this.$menu = this.$element.find(NavBar.SELECTOR.MENU);
+                this.$dropdown = this.$element.find(NavBar.SELECTOR.DROPDOWN);
                 this.$cart = this.$element.find(NavBar.SELECTOR.CART);
                 this.$cartDropdown = this.$element.find(NavBar.SELECTOR.CART_DROPDOWN);
                 this.$user = this.$element.find(NavBar.SELECTOR.USER);
@@ -76,11 +80,15 @@ namespace TMNL {
                     this.$body.removeClass(NavBar.CSS.NAVBAR_STICKY);
                 }
 
-                this.$menu.find(".navbar-menu-sub").parent().hover(() => {
-                    this.$body.addClass(NavBar.CSS.NAVBAR_FOCUS);  
-                }, () => {
-                    this.$body.removeClass(NavBar.CSS.NAVBAR_FOCUS);  
-                })
+                if(!CurrentBreakpoint.isMobile()) {
+                    this.$dropdown.hover(() => {
+                        this.$body.addClass(NavBar.CSS.NAVBAR_FOCUS);  
+                    }, () => {
+                        this.$body.removeClass(NavBar.CSS.NAVBAR_FOCUS);  
+                    })
+                } else {
+                    this.$element.find(NavBar.SELECTOR.MENU_TOGGLE).prop("checked", false);
+                }
 
                 // menu
                 this.$element.on('click', NavBar.SELECTOR.MENU_TOGGLE, (event) => {
@@ -103,18 +111,22 @@ namespace TMNL {
                     if((CurrentBreakpoint.isMobile() || CurrentBreakpoint.isTablet()) && $target.next().length > 0) {
                         event.preventDefault();
                         event.stopPropagation();
+                        this.$menu.parent().addClass(NavBar.CSS.NAVBAR_MENU_DEEP);
                         $target.removeClass(NavBar.CSS.MENU_SUB_SLIDE_OUT).addClass(NavBar.CSS.MENU_SUB_SLIDE_IN);                        
                         $target.parents(NavBar.SELECTOR.MENU).removeClass(NavBar.CSS.MENU_SLIDE_IN).addClass(NavBar.CSS.MENU_SLIDE_OUT);
+                        this.calculateHeight();
                     }
                 });
 
                 this.$element.on('click', NavBar.SELECTOR.MENU_BACK, (event) => {
                     this.$element.find(NavBar.SELECTOR.MENU_ITEM).removeClass(NavBar.CSS.MENU_SUB_SLIDE_IN).addClass(NavBar.CSS.MENU_SUB_SLIDE_OUT);
                     $(event.target).parents(NavBar.SELECTOR.MENU).removeClass(NavBar.CSS.MENU_SLIDE_OUT).addClass(NavBar.CSS.MENU_SLIDE_IN);
+                    this.calculateHeight();
+                    this.$menu.parent().removeClass(NavBar.CSS.NAVBAR_MENU_DEEP);
                 });
 
                 // cart
-                this.$element.on('mouseenter', NavBar.SELECTOR.CART,  (event) => {
+                this.$element.on('mouseenter', NavBar.SELECTOR.CART, (event) => {
                     if(!CurrentBreakpoint.isMobile()) {
                         this.cartPopper.update();
                         this.$cartDropdown.addClass(NavBar.CSS.CART_OPEN);
@@ -122,7 +134,7 @@ namespace TMNL {
                     }
                 });
 
-                this.$element.on('mouseleave', NavBar.SELECTOR.CART,  (event) => {
+                this.$element.on('mouseleave', NavBar.SELECTOR.CART, (event) => {
                     this.$cartDropdown.removeClass(NavBar.CSS.CART_OPEN);
                 });
 
@@ -144,7 +156,7 @@ namespace TMNL {
                 });
 
                 // search
-                this.$search.on('click', NavBar.SELECTOR.SEARCH_OPEN,  (event) => {
+                this.$search.on('click', NavBar.SELECTOR.SEARCH_OPEN, (event) => {
                     this.$search.addClass(NavBar.CSS.SEARCH_TOGGLE);
                     this.$user.removeClass(NavBar.CSS.USER_TOGGLE);
                     this.$cartDropdown.removeClass(NavBar.CSS.CART_OPEN);
@@ -155,7 +167,7 @@ namespace TMNL {
                     this.$searchInput.val(currentValue);
                 });
 
-                this.$search.on('click', NavBar.SELECTOR.SEARCH_CLOSE,  (event) => {
+                this.$search.on('click', NavBar.SELECTOR.SEARCH_CLOSE, (event) => {
                     this.$search.removeClass(NavBar.CSS.SEARCH_TOGGLE);
                     this.$searchInput.blur();
                 });
@@ -180,12 +192,12 @@ namespace TMNL {
                     this.$user.find(NavBar.SELECTOR.USER_TOGGLE).trigger('click');                    
                 });
 
-                // resize window
+                // resize window 
                 $(window).on('resize', (event) => {
                     if(CurrentBreakpoint.isMobile()) {
                         this.$cartDropdown.removeClass(NavBar.CSS.CART_OPEN);
                     }
-
+                    
                     if ((CurrentBreakpoint.isDesktop() || CurrentBreakpoint.isLargeDesktop()) && this.$html.hasClass(NavBar.CSS.MENU_TOGGLED)) {
                         this.hideMenu();
                     }
@@ -195,30 +207,31 @@ namespace TMNL {
             showMenu():void {
                 this.$body.css('marginTop', '');
                 this.$menu.parent().css('height', '');
-
                 let scrollY = window.scrollY;
-                let menuHeight = window.innerHeight - this.$element.height();
-
-                this.$html.removeClass(NavBar.CSS.MENU_TOGGLED);
                 this.$body.css('marginTop', (scrollY * -1));
                 this.$html.addClass(NavBar.CSS.MENU_TOGGLED);
+                this.calculateHeight();
+            }
+
+            hideMenu():void { 
+                this.$body.css('marginTop', 0);
+                this.$menu.parent().css('height', '');
+                this.$html.removeClass(NavBar.CSS.MENU_TOGGLED);
+                let scrollY = parseInt(this.$body.css('marginTop'), 10) * -1;
+                window.scrollTo(0, scrollY);
+                $(window).off('resize.navbar.menu');
+                this.$element.find(NavBar.SELECTOR.MENU_TOGGLE).prop("checked", false);
+                this.$element.find(NavBar.SELECTOR.MENU_ITEM).parents(NavBar.SELECTOR.MENU).removeClass(NavBar.CSS.MENU_SLIDE_OUT).addClass(NavBar.CSS.MENU_SLIDE_IN);
+                this.$menu.parent().removeClass(NavBar.CSS.NAVBAR_MENU_DEEP);
+            }
+
+            calculateHeight():void {
+                let menuHeight = window.innerHeight - this.$element.height();
                 this.$menu.parent().css('height', menuHeight);
             }
 
-            hideMenu():void {
-                let scrollY = parseInt(this.$body.css('marginTop'), 10) * -1;
-                        
-                this.$html.removeClass(NavBar.CSS.MENU_TOGGLED);                        
-                window.scrollTo(0, scrollY);
-                this.$body.css('marginTop', 0);
-                this.$menu.parent().css('height', '');
-
-                $(window).off('resize.navbar.menu');
-                
-                this.$element.find(NavBar.SELECTOR.MENU_TOGGLE).prop("checked", false);
-            }
-
             toggleUser(event: JQuery.Event): void {
+                this.$menu.parent().css('height', '');
                 this.$user.toggleClass(NavBar.CSS.USER_TOGGLE);
             }
         }

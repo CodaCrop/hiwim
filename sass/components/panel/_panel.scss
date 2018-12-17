@@ -1,0 +1,26 @@
+/// <reference path="../../_design-system.scss" />
+//
+// Subject:         Panel
+// Description:     Defines styles for panel.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Components: Panel
+ ========================================================================== */
+
+.panel {
+    border: 1px solid $panel-border-color;
+    border-radius: $panel-border-radius;
+}
+
+.panel-heading {
+    background-color: $panel-heading-bg;
+    border-bottom: 1px solid $panel-border-color;
+    font-weight: 700;
+    padding: $panel-spacing;
+}
+
+.panel-body {
+    padding: $panel-spacing;
+}

@@ -40,7 +40,14 @@
     }
 
     &:disabled {
+        background-color: $color-gray;
         opacity: 0.7;
+
+        &:hover, 
+        &:focus, 
+        &:active {
+            background-color: $color-gray;
+        }
     }
 }
 

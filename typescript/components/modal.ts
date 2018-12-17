@@ -14,7 +14,8 @@ namespace TMNL {
                 keyboard: true,
                 focus: true,
                 show: true,
-                closable: true
+                closable: true,
+                direction: "right"
             };
 
             public static CSS: any = {

@@ -5,10 +5,8 @@
         font-family: $font-family;
         font-style: $style;
         font-weight: $weight;
-        src: url('#{$filepath}.eot');
-        src: url('#{$filepath}.eot?#iefix') format('embedded-opentype'),
-             url('#{$filepath}.woff') format('woff'),
-             url('#{$filepath}.ttf') format('truetype'),
-             url('#{$filepath}.svg##{$svg-font-id}') format('svg');
+        src: url('#{$filepath}.woff2') format('woff2'),
+            url('#{$filepath}.woff') format('woff'),
+            url('#{$filepath}.ttf') format('truetype');
     }
 }

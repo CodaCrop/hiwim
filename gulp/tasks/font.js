@@ -17,7 +17,8 @@ gulp.task('font', function () {
             prependUnicode: true,
             fontName: 'teleicon-ui',
             formats: ['ttf', 'eot', 'woff', 'svg'],
-            normalize: true
+            normalize: true,
+            fontHeight: 1001
         }))
         .on('glyphs', function (glyphs, options) {
             gulp.src(config.paths.icons.sass.templateDoc)

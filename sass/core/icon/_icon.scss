@@ -36,33 +36,35 @@ $icon-info: "\E01A" !default;
 $icon-instagram: "\E01B" !default;
 $icon-invoice: "\E01C" !default;
 $icon-laptop: "\E01D" !default;
-$icon-manager: "\E01E" !default;
-$icon-meter: "\E01F" !default;
-$icon-minus: "\E020" !default;
-$icon-network: "\E021" !default;
-$icon-overview: "\E022" !default;
-$icon-pdf: "\E023" !default;
-$icon-play: "\E024" !default;
-$icon-plus: "\E025" !default;
-$icon-prepaid: "\E026" !default;
-$icon-price-tag: "\E027" !default;
-$icon-reload: "\E028" !default;
-$icon-renew: "\E029" !default;
-$icon-search: "\E02A" !default;
-$icon-settings: "\E02B" !default;
-$icon-sim-card-smartphone: "\E02C" !default;
-$icon-sim-card: "\E02D" !default;
-$icon-smartphone: "\E02E" !default;
-$icon-star-solid: "\E02F" !default;
-$icon-star: "\E030" !default;
-$icon-store: "\E031" !default;
-$icon-tablet: "\E032" !default;
-$icon-telekom: "\E033" !default;
-$icon-trash: "\E034" !default;
-$icon-twitter: "\E035" !default;
-$icon-unlimited: "\E036" !default;
-$icon-user: "\E037" !default;
-$icon-warning: "\E038" !default;
+$icon-linkedin: "\E01E" !default;
+$icon-manager: "\E01F" !default;
+$icon-meter: "\E020" !default;
+$icon-minus: "\E021" !default;
+$icon-network: "\E022" !default;
+$icon-overview: "\E023" !default;
+$icon-pdf: "\E024" !default;
+$icon-play: "\E025" !default;
+$icon-plus: "\E026" !default;
+$icon-prepaid: "\E027" !default;
+$icon-price-tag: "\E028" !default;
+$icon-reload: "\E029" !default;
+$icon-renew: "\E02A" !default;
+$icon-search: "\E02B" !default;
+$icon-service-employee: "\E02C" !default;
+$icon-settings: "\E02D" !default;
+$icon-sim-card-smartphone: "\E02E" !default;
+$icon-sim-card: "\E02F" !default;
+$icon-smartphone: "\E030" !default;
+$icon-star-solid: "\E031" !default;
+$icon-star: "\E032" !default;
+$icon-store: "\E033" !default;
+$icon-tablet: "\E034" !default;
+$icon-telekom: "\E035" !default;
+$icon-trash: "\E036" !default;
+$icon-twitter: "\E037" !default;
+$icon-unlimited: "\E038" !default;
+$icon-user: "\E039" !default;
+$icon-warning: "\E03A" !default;
 
 
 /* ========================================================================
@@ -270,6 +272,11 @@ $icon-warning: "\E038" !default;
         content: $icon-laptop;
     }
 }
+.icon-linkedin {
+    &:before {
+        content: $icon-linkedin;
+    }
+}
 .icon-manager {
     &:before {
         content: $icon-manager;
@@ -333,6 +340,11 @@ $icon-warning: "\E038" !default;
 .icon-search {
     &:before {
         content: $icon-search;
+    }
+}
+.icon-service-employee {
+    &:before {
+        content: $icon-service-employee;
     }
 }
 .icon-settings {
@@ -404,4 +416,4 @@ $icon-warning: "\E038" !default;
     &:before {
         content: $icon-warning;
     }
-}
+}

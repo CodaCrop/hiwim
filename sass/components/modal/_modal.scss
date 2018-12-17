@@ -41,21 +41,28 @@
     }
 }
 
-// Shell div to position the modal with bottom padding
-.modal-dialog {
-    margin: $modal-dialog-margin-mobile;
+.modal-base {
     opacity: 0;
     pointer-events: none;
     position: relative;
-    transform: scale(0.7);
     transition: all 0.3s;
+}
+
+// Shell div to position the modal with bottom padding
+.modal-dialog {
+    @extend .modal-base;
+    margin: $modal-dialog-margin-mobile;
     width: auto; // When fading in the modal, animate it to slide down
+
+    &:not(.modal-dialog-drawer) {
+        transform: scale(0.7);
+    }
     
-    .modal.fade & {
+    .fade & {
         @include transition($modal-transition);
     }
 
-    .modal.show & {
+    .show & {
         transform: scale(1);
         opacity: 1;
     }
@@ -123,6 +130,106 @@
     }
 }
 
+.modal-dialog-drawer {
+    @extend .modal-base;
+
+    &.drawer-from-right,
+    &.drawer-from-left,
+    &.drawer-from-top, 
+    &.drawer-from-bottom {
+        .modal-has-bg {
+            background-color: $color-gray-light;
+        }
+
+        .modal-is-borderless {
+            border: none;
+        }
+    }
+
+    &.drawer-from-right, &.drawer-from-left {
+        margin-top: 0;
+        margin-bottom: 0;
+        height: 100vh;
+
+        @include breakpoint-up("tablet") {
+            width: 450px;
+        }
+
+        @include breakpoint-down("mobile") {
+            width: 100%;
+        }
+
+        .fade & {
+            transform: translateX(-100%);
+        }
+    
+        .show & {
+            transform: translateX(0);
+        }
+    }
+    
+    &.drawer-from-right {
+        margin-left: auto;
+        margin-right: 0;
+        
+        .fade & {
+            transform: translateX(100%);
+        }
+    
+        .show & {
+            transform: translateX(0);
+        }
+    }
+
+    &.drawer-from-left {
+        margin-right: auto;
+        margin-left: 0;
+        
+        .fade & {
+            transform: translateX(-100%);
+        }
+    
+        .show & {
+            transform: translateX(0);
+        }
+    }
+
+    &.drawer-from-bottom, &.drawer-from-top {
+        position: absolute;
+        height: 400px;
+        width: 100vw;
+        margin: 0;
+    }
+
+    &.drawer-from-bottom {
+        bottom: 0;
+
+        .fade & {
+            transform: translateY(100%);
+        }
+    
+        .show & {
+            transform: translateY(0);
+        }
+    }
+
+    &.drawer-from-top {
+        top: 0;
+        
+        .fade & {
+            transform: translateY(-100%);
+        }
+    
+        .show & {
+            transform: translateY(0);
+        }
+    }
+
+    .modal-content {
+        border-radius: 0;
+    }
+}
+
 // Actual modal
 .modal-content {
     background-color: $modal-content-background-color;
@@ -130,6 +237,7 @@
     border-radius: $modal-content-border-radius;
     box-shadow: $modal-content-box-shadow;
     display: flex;
+    height: inherit;
     flex-direction: column;
     outline: 0;
     pointer-events: auto;
@@ -223,7 +331,7 @@
   background-color: $modal-content-background-color;
   border-top: 1px solid $color-border;
   display: flex;
-  height: $modal-header-height;
+  min-height: $modal-header-height;
   justify-content: space-between;
   padding: $modal-header-padding;
 
@@ -243,7 +351,7 @@
 
 // Scale up the modal
 @include breakpoint-up(tablet) {
-    .modal-dialog {
+    .modal-dialog:not(.modal-dialog-drawer) {
         margin: $modal-dialog-margin auto;
         max-width: $modal-medium;
         &.modal-large {
@@ -256,7 +364,7 @@
 }
 
 @include breakpoint-up(desktop) {
-    .modal-dialog {
+    .modal-dialog:not(.modal-dialog-drawer) {
         &.modal-large {
             margin: $modal-dialog-margin auto;
         }

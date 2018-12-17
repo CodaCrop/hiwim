@@ -545,7 +545,7 @@
     }
 }
 
-.form-selector-input:checked + .form-selector {    
+.form-selector-input:checked ~ .form-selector {    
     &:after {
         border-width: 2px;
         border-color: $form-selector-active-color;
@@ -555,6 +555,39 @@
     [class*=" icon-"] {
         color: $form-selector-active-color;
     }
+}
+
+// Callout
+//
+// Display's an callout element.
+
+.form-selector-callout {
+    background-color: $form-selector-callout-color;
+    border-top-left-radius:$form-selector-border-radius;
+    border-top-right-radius: $form-selector-border-radius;
+    color: $color-bright;
+    font-size: 0.777778rem;
+    font-weight: 800;
+    line-height: 1.4;
+    padding: $form-selector-callout-padding;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    top: 4px;
+    z-index: 2;
+}
+
+.form-selector-callout :after {
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid $form-selector-callout-color;
+    bottom: -8px;
+    content: "";
+    height: 0;
+    left: 50%;
+    margin-left: -4px;
+    position: absolute;
+    width: 0
 }
 
 // Indicator
@@ -584,7 +617,7 @@
     }
 }
 
-.form-selector-input:checked + .form-selector-indicator {
+.form-selector-input:checked ~ .form-selector-indicator {
     &:before {
         color: $form-selector-active-color;
         content: $icon-check;

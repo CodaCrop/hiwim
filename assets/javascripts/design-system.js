@@ -236,7 +236,7 @@ var TMNL;
                     if ((TMNL.CurrentBreakpoint.isMobile() || TMNL.CurrentBreakpoint.isTablet()) && $target.next().length > 0) {
                         event.preventDefault();
                         event.stopPropagation();
-                        $(".navbar-menu").addClass(NavBar.CSS.NAVBAR_MENU_DEEP);
+                        _this.$menu.parent().addClass(NavBar.CSS.NAVBAR_MENU_DEEP);
                         $target.removeClass(NavBar.CSS.MENU_SUB_SLIDE_OUT).addClass(NavBar.CSS.MENU_SUB_SLIDE_IN);
                         $target.parents(NavBar.SELECTOR.MENU).removeClass(NavBar.CSS.MENU_SLIDE_IN).addClass(NavBar.CSS.MENU_SLIDE_OUT);
                         _this.calculateHeight();
@@ -246,17 +246,17 @@ var TMNL;
                     _this.$element.find(NavBar.SELECTOR.MENU_ITEM).removeClass(NavBar.CSS.MENU_SUB_SLIDE_IN).addClass(NavBar.CSS.MENU_SUB_SLIDE_OUT);
                     $(event.target).parents(NavBar.SELECTOR.MENU).removeClass(NavBar.CSS.MENU_SLIDE_OUT).addClass(NavBar.CSS.MENU_SLIDE_IN);
                     _this.calculateHeight();
-                    $(".navbar-menu").removeClass(NavBar.CSS.NAVBAR_MENU_DEEP);
+                    _this.$menu.parent().removeClass(NavBar.CSS.NAVBAR_MENU_DEEP);
                 });
                 // cart
-                this.$element.on('mouseenter', NavBar.SELECTOR.CART, function () {
+                this.$element.on('mouseenter', NavBar.SELECTOR.CART, function (event) {
                     if (!TMNL.CurrentBreakpoint.isMobile()) {
                         _this.cartPopper.update();
                         _this.$cartDropdown.addClass(NavBar.CSS.CART_OPEN);
                         _this.$user.removeClass(NavBar.CSS.USER_TOGGLE);
                     }
                 });
-                this.$element.on('mouseleave', NavBar.SELECTOR.CART, function () {
+                this.$element.on('mouseleave', NavBar.SELECTOR.CART, function (event) {
                     _this.$cartDropdown.removeClass(NavBar.CSS.CART_OPEN);
                 });
                 this.$element.on('tmnl.navbar.cart.update', function (event, html) {
@@ -272,7 +272,7 @@ var TMNL;
                     });
                 });
                 // search
-                this.$search.on('click', NavBar.SELECTOR.SEARCH_OPEN, function () {
+                this.$search.on('click', NavBar.SELECTOR.SEARCH_OPEN, function (event) {
                     _this.$search.addClass(NavBar.CSS.SEARCH_TOGGLE);
                     _this.$user.removeClass(NavBar.CSS.USER_TOGGLE);
                     _this.$cartDropdown.removeClass(NavBar.CSS.CART_OPEN);
@@ -281,7 +281,7 @@ var TMNL;
                     var currentValue = _this.$searchInput.val();
                     _this.$searchInput.val(currentValue);
                 });
-                this.$search.on('click', NavBar.SELECTOR.SEARCH_CLOSE, function () {
+                this.$search.on('click', NavBar.SELECTOR.SEARCH_CLOSE, function (event) {
                     _this.$search.removeClass(NavBar.CSS.SEARCH_TOGGLE);
                     _this.$searchInput.blur();
                 });
@@ -302,7 +302,7 @@ var TMNL;
                     _this.$user.find(NavBar.SELECTOR.USER_TOGGLE).trigger('click');
                 });
                 // resize window 
-                $(window).on('resize', function () {
+                $(window).on('resize', function (event) {
                     if (TMNL.CurrentBreakpoint.isMobile()) {
                         _this.$cartDropdown.removeClass(NavBar.CSS.CART_OPEN);
                     }
@@ -328,23 +328,11 @@ var TMNL;
                 $(window).off('resize.navbar.menu');
                 this.$element.find(NavBar.SELECTOR.MENU_TOGGLE).prop("checked", false);
                 this.$element.find(NavBar.SELECTOR.MENU_ITEM).parents(NavBar.SELECTOR.MENU).removeClass(NavBar.CSS.MENU_SLIDE_OUT).addClass(NavBar.CSS.MENU_SLIDE_IN);
-                $(".navbar-menu").removeClass(NavBar.CSS.NAVBAR_MENU_DEEP);
+                this.$menu.parent().removeClass(NavBar.CSS.NAVBAR_MENU_DEEP);
             };
             NavBar.prototype.calculateHeight = function () {
                 var menuHeight = window.innerHeight - this.$element.height();
                 this.$menu.parent().css('height', menuHeight);
-                $(".navbar-menu-sub-container").each(function () {
-                    if ($(this).height() > menuHeight) {
-                        if ($(this).parent().prev().hasClass('navbar-menu-sub-slide-in')) {
-                            $(this).parent().parent().parent().parent().css('overflow-y', 'auto');
-                        }
-                        else {
-                            $(this).parent().parent().parent().parent().css('overflow-y', 'hidden');
-                        }
-                    }
-                    else {
-                    }
-                });
             };
             NavBar.prototype.toggleUser = function (event) {
                 this.$menu.parent().css('height', '');
@@ -995,6 +983,42 @@ var TMNL;
 var TMNL;
 (function (TMNL) {
     (function ($, window, document) {
+        var FloatingActionButton = /** @class */ (function (_super) {
+            __extends(FloatingActionButton, _super);
+            // private $body: JQuery;
+            // private $html: JQuery;
+            function FloatingActionButton(element, options) {
+                var _this = _super.call(this, FloatingActionButton.NAME, element, FloatingActionButton.DEFAULTS, options) || this;
+                _this.init();
+                return _this;
+            }
+            FloatingActionButton.prototype.init = function () { };
+            FloatingActionButton.NAME = 'tmnl.floatingactionbutton';
+            FloatingActionButton.DEFAULTS = {
+                sticky: true
+            };
+            FloatingActionButton.CSS = {
+                FLOATING_ACTION_CONTAINER: 'floating-action-container'
+            };
+            // public static EVENT: any = {
+            //     TOGGLE_CLICK: 'click.modal.toggle'
+            // };
+            FloatingActionButton.SELECTOR = {};
+            return FloatingActionButton;
+        }(TMNL.JQueryPluginBase));
+        $(document).ready(function (event) {
+            var container = $(FloatingActionButton.CSS.FLOATING_ACTION_CONTAINER);
+            if (container.css("position") !== "sticky") {
+                // if no support for sticky...
+                $(window).scroll(function (event) {
+                });
+            }
+        });
+    })(jQuery, window, document);
+})(TMNL || (TMNL = {}));
+var TMNL;
+(function (TMNL) {
+    (function ($, window, document) {
         var GalleryImages = /** @class */ (function (_super) {
             __extends(GalleryImages, _super);
             function GalleryImages(element) {
@@ -1359,7 +1383,8 @@ var TMNL;
                 keyboard: true,
                 focus: true,
                 show: true,
-                closable: true
+                closable: true,
+                direction: "right"
             };
             Modal.CSS = {
                 SCROLLBAR_MEASURER: 'modal-scrollbar-measure',

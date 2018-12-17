@@ -4,6 +4,7 @@ namespace TMNL {
         keyboard: boolean,
         focus: boolean,
         show: boolean,
-        closable: boolean
+        closable: boolean,
+        direction: string
     }
 }

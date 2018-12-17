@@ -112,44 +112,6 @@
     }
 }
 
-/// NOTE: This is not a flexible way of configuring the subnav icons; rather have option in the CMS.
-
-.subnav-icon-alle-telefoons:before {
-	content: $icon-smartphone;
-}
-
-.subnav-icon-sim-only:before {
-	content: $icon-sim-card;
-}
-
-.subnav-icon-mobiel-internet:before {
-	content: $icon-laptop;
-}
-
-.subnav-icon-oplossingen:before {
-    content: $icon-manager;
-}
-
-.subnav-icon-verlengen:before {
-    content: $icon-choose-document;	
-}
-
-.subnav-icon-unlimited:before {
-    content: $icon-unlimited;	
-}
-
-.subnav-icon-4g-voor-thuis:before {
-    content: $icon-house;
-}
-
-.subnav-icon-aanbiedingen:before {
-    content: $icon-price-tag;        		
-}
-
-.subnav-icon-ons-netwerk:before {    
-    content: $icon-network;		
-}
-
 /* Label
  ========================================================================== */
 

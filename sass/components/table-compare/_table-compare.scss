@@ -1,4 +1,15 @@
-.table-compare {
+/// <reference path="../../_design-system.scss" />
+//
+// Subject:         Table Compare
+// Description:     Defines styles for table compare element.
+//
+// ===========================================================================
+
+/* ========================================================================
+   Component: Table Compare
+ ========================================================================== */
+
+ .table-compare {
     border-collapse: collapse;
     table-layout: auto !important;
     width: 100%;
@@ -7,50 +18,86 @@
         text-align: left;
     }
 
-    tr {
-        &:last-of-type > td:nth-of-type(2) {
-            border-bottom: 2px solid $color-brand;
+    &.is-highlighted {
+        tr {
+            &:last-of-type > td:nth-of-type(2) {
+                @include breakpoint-up("desktop") {
+                    border-bottom: 2px solid $color-brand;
+                }
+            }
         }
 
+        th {
+            &:nth-of-type(2) {
+                background-color: $color-brand;
+                border-left: 2px solid $color-brand;
+                border-right: 2px solid $color-brand;
+                color: $color-bright;
+            }
+        }
+
+        td {
+            &:nth-of-type(2) {
+                @include breakpoint-up("desktop") {
+                    border-left: 2px solid $color-brand;
+                    border-right: 2px solid $color-brand;
+                }
+            }
+        }
+    }
+
+    &:not(.is-highlighted) {
+        @include breakpoint-up("desktop") {
+            th:not(:first-of-type) {
+                min-width: 200px;
+                max-width: 200px;
+            }
+        }
+    }
+
+    tr {
         &:not(:last-of-type) {
             border-bottom: 1px solid $color-gray-light;
         }
     }
 
-    .cell {
-        &-head {
-            width: 100%;
-
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: $spacer-y 0.5rem;
-
-            img {
-                width: 80px;
-            }
-        }
-    }
-
     th {
+        height: 80px;
+        padding: $spacer-y 0.5rem;
+        width: 100%;
         margin: 0;
         padding: 0;
+        
+        @include breakpoint-up("tablet") {
+            display: table-cell;
+        }
 
-        &:nth-of-type(2) {
-            border-left: 2px solid $color-brand;
-            border-right: 2px solid $color-brand;
-            background-color: $color-brand;
-            color: $color-bright;
+        @include breakpoint-down("tablet") {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         &:nth-of-type(1n+3) {
             padding-left: $spacer-x;
-            background-color: $color-bright;
+            position: relative;
+            z-index: 1;
 
-            > .cell-head {
+            &::before {
+                content: "";
                 background-color: $list-group-header-background-color;
+                position: absolute;
+                top: 0;
+                left: $spacer-x;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+                height: inherit;
             }
+        }
+
+        img {
+            width: 80px;
         }
     }
 
@@ -59,46 +106,56 @@
         padding: 0;
 
         &:first-of-type {
-            padding: $spacer-y $spacer-x * 2 $spacer-y 0;
             min-width: 350px;
+            padding: $spacer-y $spacer-x * 2 $spacer-y 0;
         }
-
-        &:not(:first-of-type) > .cell {
-            text-align: center;
-        }
-
+        
         &:nth-of-type(2) {
             height: 4.2rem;
-            border-left: 2px solid $color-brand;
-            border-right: 2px solid $color-brand;
             padding: 0 3rem;
         }
 
         &:nth-of-type(1n+3) {
             height: 80px;
-            padding: 0 $spacer-y * 3 0 $spacer-x * 4;
-        }
-
-        span[class*='icon'] {
-            width: $spacer * 2;
-            &::before {
-                font-size: 1.5rem;
-                font-weight: 800;
-            }
-
-            &.icon-checkmark {
-                color: $color-success;
-            }
-
-            &.icon-close {
-                color: $color-danger;
-            }
+            padding: 0 $spacer-x * 3 0 $spacer-x * 4;
         }
     }
 
-    tfoot {
-        small {
-            color: $table-foot-color;
+    th:nth-of-type(2) {
+        background-color: $list-group-header-background-color;
+        color: $color-gray-darker;
+    }
+
+    th:nth-of-type(2), td:nth-of-type(2)  {
+        border-left: none;
+        border-right: 1px solid $list-group-header-background-color;
+        border-left: 1px solid $list-group-header-background-color;
+    }
+
+    tr:last-of-type > td:nth-of-type(2) {
+        border-bottom: none;
+    }
+}
+
+@include breakpoint-up("desktop") {
+    .table-compare:not(.is-highlighted) {
+        td:nth-of-type(1n+3) {
+            border-right: 1px solid $list-group-header-background-color;
+            position: relative;
+
+            &::before {
+                content: "";
+                border-left: 1px solid $list-group-header-background-color;
+                bottom: 0;
+                left: $spacer-x;
+                position: absolute;
+                top: 0;
+                height: inherit;
+            }
+        }
+
+        th:nth-of-type(1n+3) {
+            border-right: 1px solid $list-group-header-background-color;
         }
     }
 }
@@ -112,28 +169,27 @@
 }
 
 @include breakpoint-down("tablet") {
-    table {
-        table-layout: fixed !important;
-    }
-
-    table, thead, tbody {
-        display: block;
-    }
-
     .table-compare {
+        display: block;
+        table-layout: fixed !important;
+
+        thead, tbody {
+            display: block;
+        }
+
         thead {
             background-color: $color-bright; 
-            padding: $spacer 0;
-            margin: 0;
-            width: 100%;
-            overflow: hidden;
             border-bottom: 1px solid $list-group-header-background-color;
+            margin: 0;
+            overflow: hidden;
+            padding: $spacer 0;
+            width: 100%;
 
             tr {
                 display: flex;
                 justify-content: space-between;
-                padding: 0;
                 margin: 0;
+                padding: 0;
             }
 
             th {
@@ -141,17 +197,13 @@
                 width: 25vw;
                 
                 &:first-of-type {
-                    position: absolute;
                     left: -9999px;
+                    position: absolute;
                     top: -9999px;
                 }
 
                 &:nth-of-type(2) {
                     border: none;
-                }
-
-                &:last-of-type > .cell-head {
-                    margin-left: 0;
                 }
 
                 &:nth-of-type(1n+3) {
@@ -181,22 +233,19 @@
 
             td:first-of-type {
                 display: block;
-                min-width: 100%;
                 height: auto;
-                padding-right: 0;
+                min-width: 100%;
                 padding-bottom: 1rem;
+                padding-right: 0;
                 text-align: center;
             }
 
             td:nth-of-type(1n+2) {
-                display: flex;
-                justify-content: center;
                 align-items: center;
+                display: flex;
                 flex: 1;
-
-                .cell {
-                    min-width: 1rem;
-                }
+                justify-content: center;
+                min-width: 1rem;
             }
 
             td:nth-of-type(1n+3):not(:last-of-type) {
@@ -204,8 +253,8 @@
             }
 
             td:nth-of-type(2) {
-                height: unset;
                 border-left: none;
+                height: unset;
                 padding: 1rem 0.25rem 1rem 0;
             }
 
@@ -221,7 +270,7 @@
 }
 
 @include breakpoint-down("mobile") {
-    .table-compare .cell-head {
+    .table-compare th {
         padding: 0rem 0.2rem;
         height: 72px;
     }
